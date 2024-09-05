@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Moeda e Pagamento" />
+    <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Moeda">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Negocio/Pagamento.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -97,7 +99,23 @@
       <option name="project" value="LOCAL" />
       <updated>1725570390427</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Correção">
+      <option name="closed" value="true" />
+      <created>1725570930214</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1725570930214</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Commit Moeda">
+      <option name="closed" value="true" />
+      <created>1725570992243</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1725570992243</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -116,6 +134,8 @@
     <MESSAGE value="Commit Correção do pom" />
     <MESSAGE value="Commit Relatorio" />
     <MESSAGE value="Commit Moeda e Pagamento" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit Moeda e Pagamento" />
+    <MESSAGE value="Correção" />
+    <MESSAGE value="Commit Moeda" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit Moeda" />
   </component>
 </project>
