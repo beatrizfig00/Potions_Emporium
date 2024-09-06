@@ -55,8 +55,4 @@ public class Cliente {
     public void setHistoricoCompras(List<Pedido> historicoCompras) {
         this.historicoCompras = historicoCompras;
     }
-
-
-    public Endereco getEndereco() {
-     return new Endereco();    }
 }
