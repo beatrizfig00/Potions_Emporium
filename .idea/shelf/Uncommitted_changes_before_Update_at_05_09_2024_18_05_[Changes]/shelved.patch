@@ -1,0 +1,251 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectColorInfo\"><![CDATA[{\r\n  \"associatedIndex\": 1\r\n}]]></component>\r\n  <component name=\"ProjectId\" id=\"2lf3Cxku3uF0Nh3hlxEIB8n2rgD\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"kotlin-language-version-configured\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"f98de7f8-be93-41c1-8f8d-03c0cb9bcdc1\" name=\"Changes\" comment=\"\" />\r\n      <created>1725557183281</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1725557183281</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision fc1597b44b24ea9af8159cd7e6a38ea008e2b300)
++++ b/.idea/workspace.xml	(date 1725567191058)
+@@ -4,10 +4,23 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
++    <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Produto e Herança">
++      <change afterPath="$PROJECT_DIR$/src/main/java/Negocio/Moeda.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/Negocio/Pagamento.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="Class" />
++      </list>
++    </option>
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+@@ -19,22 +32,22 @@
+       </MavenGeneralSettings>
+     </option>
+   </component>
+-  <component name="ProjectColorInfo"><![CDATA[{
+-  "associatedIndex": 1
+-}]]></component>
++  <component name="ProjectColorInfo">{
++  &quot;associatedIndex&quot;: 1
++}</component>
+   <component name="ProjectId" id="2lf3Cxku3uF0Nh3hlxEIB8n2rgD" />
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "git-widget-placeholder": "master",
+-    "kotlin-language-version-configured": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+@@ -44,6 +57,43 @@
+       <option name="presentableId" value="Default" />
+       <updated>1725557183281</updated>
+     </task>
++    <task id="LOCAL-00001" summary="Commit Produto e Herança">
++      <option name="closed" value="true" />
++      <created>1725562188798</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1725562188798</updated>
++    </task>
++    <task id="LOCAL-00002" summary="Commit Produto e Herança">
++      <option name="closed" value="true" />
++      <created>1725562247173</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1725562247173</updated>
++    </task>
++    <task id="LOCAL-00003" summary="Commit Produto e Herança">
++      <option name="closed" value="true" />
++      <created>1725562350608</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1725562350608</updated>
++    </task>
++    <task id="LOCAL-00004" summary="Commit Produto e Herança">
++      <option name="closed" value="true" />
++      <created>1725562362437</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1725562362437</updated>
++    </task>
++    <option name="localTasksCounter" value="5" />
+     <servers />
+   </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="Commit Produto e Herança" />
++    <option name="LAST_COMMIT_MESSAGE" value="Commit Produto e Herança" />
++  </component>
+ </project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_X\" default=\"true\" project-jdk-name=\"openjdk-22\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision fc1597b44b24ea9af8159cd7e6a38ea008e2b300)
++++ b/.idea/misc.xml	(date 1725565582829)
+@@ -8,7 +8,7 @@
+       </list>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="openjdk-22" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_22" default="true" project-jdk-name="openjdk-22" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: src/main/java/Negocio/Pagamento.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Negocio/Pagamento.java b/src/main/java/Negocio/Pagamento.java
+new file mode 100644
+--- /dev/null	(date 1725570129787)
++++ b/src/main/java/Negocio/Pagamento.java	(date 1725570129787)
+@@ -0,0 +1,75 @@
++package Negocio;
++
++public class Pagamento {
++
++    private int idPagamento;
++    private Pedido pedido;
++    private int valor;
++    private boolean pagamentoProcessado;
++
++    public Pagamento(int idPagamento, Pedido pedido, int valor) {
++        this.idPagamento = idPagamento;
++        this.pedido = pedido;
++        this.valor = valor;
++        this.pagamentoProcessado = false;
++    }
++
++    public boolean processarPagamento(int galeoes, int sicles, int nuques) {
++        int totalNuquesRecebidos = Moeda.galeoesParaNuques(galeoes)
++                + Moeda.siclesParaNuques(sicles)
++                + nuques;
++
++        if (totalNuquesRecebidos >= valor) {
++            pagamentoProcessado = true;
++            int troco = totalNuquesRecebidos - valor;
++            distribuirTroco(troco);
++            return true;
++        } else {
++            System.out.println("Pagamento insuficiente. Faltam "
++                    + (valor - totalNuquesRecebidos) + " Nuques.");
++            return false;
++        }
++    }
++
++    public boolean validarPagamento() {
++        return pagamentoProcessado;
++    }
++
++    private void distribuirTroco(int troco) {
++        int galeoes = Moeda.nuquesParaGaleoes(troco);
++        int trocoRestante = troco - Moeda.galeoesParaNuques(galeoes);
++
++        int sicles = Moeda.nuquesParaSicles(trocoRestante);
++        trocoRestante -= Moeda.siclesParaNuques(sicles);
++
++        int nuques = trocoRestante;
++    }
++
++    public int getIdPagamento() {
++        return idPagamento;
++    }
++
++    public void setIdPagamento(int idPagamento) {
++        this.idPagamento = idPagamento;
++    }
++
++    public Pedido getPedido() {
++        return pedido;
++    }
++
++    public void setPedido(Pedido pedido) {
++        this.pedido = pedido;
++    }
++
++    public int getValor() {
++        return valor;
++    }
++
++    public void setValor(int valor) {
++        this.valor = valor;
++    }
++
++    public boolean isPagamentoProcessado() {
++        return pagamentoProcessado;
++    }
++}
+\ No newline at end of file
+Index: src/main/java/Negocio/Moeda.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Negocio/Moeda.java b/src/main/java/Negocio/Moeda.java
+new file mode 100644
+--- /dev/null	(date 1725570022432)
++++ b/src/main/java/Negocio/Moeda.java	(date 1725570022432)
+@@ -0,0 +1,24 @@
++package Negocio;
++
++public class Moeda {
++
++    public static final int SICLES_POR_GALEAO = 17;
++    public static final int NUQUES_POR_SICLE = 29;
++    public static final int NUQUES_POR_GALEAO = SICLES_POR_GALEAO * NUQUES_POR_SICLE;
++
++    public static int galeoesParaNuques(int galeoes) {
++        return galeoes * NUQUES_POR_GALEAO;
++    }
++
++    public static int nuquesParaGaleoes(int nuques) {
++        return nuques / NUQUES_POR_GALEAO;
++    }
++
++    public static int siclesParaNuques(int sicles) {
++        return sicles * NUQUES_POR_SICLE;
++    }
++
++    public static int nuquesParaSicles(int nuques) {
++        return nuques / NUQUES_POR_SICLE;
++    }
++}
