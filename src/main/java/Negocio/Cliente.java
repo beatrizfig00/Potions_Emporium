@@ -1,6 +1,7 @@
 package Negocio;
 
 import java.util.List;
+import java.util.Random;
 
 public class Cliente {
     private int id;
@@ -8,20 +9,22 @@ public class Cliente {
     private String coruja;
     private String flooPowder;
     private List<Pedido> historicoCompras;
-
-    public Cliente(int id, String nome, String coruja, String flooPowder, List<Pedido> historicoCompras) {
-        this.id = id;
+    
+    public Cliente(String nome, String coruja, String flooPowder, List<Pedido> historicoCompras) {
+        this.id = gerarId(); 
         this.nome = nome;
         this.coruja = coruja;
         this.flooPowder = flooPowder;
         this.historicoCompras = historicoCompras;
     }
 
+    private int gerarId() {
+        Random random = new Random();
+        return random.nextInt(10000); 
+    }
+
     public int getId() {
         return id;
-    }
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNome() {
