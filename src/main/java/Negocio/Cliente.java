@@ -8,13 +8,15 @@ public class Cliente {
     private String nome;
     private String coruja;
     private String flooPowder;
+    private String senha;
     private List<Pedido> historicoCompras;
     
-    public Cliente(String nome, String coruja, String flooPowder, List<Pedido> historicoCompras) {
+    public Cliente(String nome, String coruja, String flooPowder, String senha, List<Pedido> historicoCompras) {
         this.id = gerarId(); 
         this.nome = nome;
         this.coruja = coruja;
         this.flooPowder = flooPowder;
+        this.senha = senha; 
         this.historicoCompras = historicoCompras;
     }
 
@@ -49,6 +51,14 @@ public class Cliente {
 
     public void setFlooPowder(String flooPowder) {
         this.flooPowder = flooPowder;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public List<Pedido> getHistoricoCompras() {
