@@ -8,10 +8,12 @@ import java.util.Map;
 public class Carrinho {
     private List<Produto> itens;
     private Map<Produto, Integer> quantidade;
+    private double desconto;
 
     public Carrinho() {
         this.itens = new ArrayList<>();
         this.quantidade = new HashMap<>();
+        this.desconto = 0.0;
     }
 
     public void adicionarProduto(Produto produto, int qtd) {
@@ -23,10 +25,15 @@ public class Carrinho {
         }
     }
 
-    public void removerProduto(Produto produto) {
+    public void removerProduto(Produto produto, int qtd) {
         if (quantidade.containsKey(produto)) {
-            itens.remove(produto);
-            quantidade.remove(produto);
+            int quantidadeAtual = quantidade.get(produto);
+            if (quantidadeAtual > qtd) {
+                quantidade.put(produto, quantidadeAtual - qtd);
+            } else {
+                itens.remove(produto);
+                quantidade.remove(produto);
+            }
         } else {
             System.out.println("Produto não encontrado no carrinho.");
         }
@@ -37,7 +44,12 @@ public class Carrinho {
         for (Produto produto : itens) {
             total += produto.getPreco() * quantidade.get(produto);
         }
+        total -= desconto;
         return total;
+    }
+
+    public void aplicarDesconto(double desconto) {
+        this.desconto = desconto;
     }
 
     public List<Produto> getItens() {

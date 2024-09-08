@@ -29,7 +29,7 @@ public class Loja {
             Produto produto = entry.getKey();
             int quantidadeNoPedido = entry.getValue();
             if (verificarEstoque(produto) < quantidadeNoPedido) {
-                throw new Exception("Estoque insuficiente para o produto: " + produto.getNome());
+                throw new Exception(STR."Estoque insuficiente para o produto: \{produto.getNome()}");
             }
         }
 
@@ -40,6 +40,7 @@ public class Loja {
         }
 
         pedidos.add(pedido);
+        System.out.println(STR."Pedido registrado com sucesso. Total com desconto: \{pedido.getTotal()}");
     }
 
     public List<Pedido> getHistoricoPedidos() {

@@ -37,6 +37,6 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return "Endereço: " + rua + ", " + numero + " - " + cidade;
+        return STR."Endereço: \{rua}, \{numero} - \{cidade}";
     }
 }

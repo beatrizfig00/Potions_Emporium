@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Produto e Herança">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_09_2024_18_05__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_09_2024_09_06__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_09_2024_09_06__Changes_.xml" afterDir="false" />
+    <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Ajustes Pedido e Estoque">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Testes/TesteHistoricoCompras.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Testes/TesteMoeda.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Testes/TestePromocoes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Carrinho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Carrinho.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Endereco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Endereco.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Estoque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Estoque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Loja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Loja.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Pedido.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Promocao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Promocao.java" afterDir="false" />
     </list>
@@ -46,13 +49,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.TesteHistoricoCompras.executor": "Debug",
+    "Application.TesteMoeda.executor": "Run",
+    "Application.TestePromocoes.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -101,11 +107,20 @@
       <option name="project" value="LOCAL" />
       <updated>1725562362437</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Commit Ajustes Pedido e Estoque">
+      <option name="closed" value="true" />
+      <created>1725758838544</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1725758838544</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Commit Produto e Herança" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit Produto e Herança" />
+    <MESSAGE value="Commit Ajustes Pedido e Estoque" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit Ajustes Pedido e Estoque" />
   </component>
 </project>

@@ -1,54 +1,37 @@
 package Negocio;
 
 public class Promocao {
-    private int idPromocao;
-    private String descricao;
     private double percentualDesconto;
 
-    public Promocao(int idPromocao, String descricao, double percentualDesconto) {
-        this.idPromocao = idPromocao;
-        this.descricao = descricao;
+    public Promocao(double percentualDesconto) {
         this.percentualDesconto = percentualDesconto;
     }
 
-    public double aplicarPromocao(Pedido pedido, Cliente cliente) {
-        double desconto5Porcento = 0.0;
-        double desconto10Porcento = 0.0;
+    public double calcularDesconto(double total) {
+        return total * percentualDesconto / 100;
+    }
 
-        if (Moeda.nuquesParaGaleoes((int) pedido.getTotal()) >= 100) {
-            desconto5Porcento = pedido.getTotal() * 0.05;
+    public double aplicarPromocao(Pedido pedido) {
+        double total = pedido.getTotal();
+        Cliente cliente = pedido.getCliente();
+        double desconto = 0.0;
+
+        if (Moeda.nuquesParaGaleoes((int) total) >= 10) {
+            desconto = calcularDesconto(total);
         }
 
-        if (cliente.getHistoricoCompras().size() >= 3) {
-            desconto10Porcento = pedido.getTotal() * 0.10;
+        if (cliente.getHistoricoCompras().size() >= 4) {
+            double descontoAdicional = total * 0.10;
+            if (descontoAdicional > desconto) {
+                desconto = descontoAdicional;
+            }
         }
 
-        if (desconto10Porcento > desconto5Porcento) {
-            return pedido.getTotal() - desconto10Porcento;
-        } else {
-            return pedido.getTotal() - desconto5Porcento;
-        }
+        return desconto;
     }
 
     public boolean validarPromocao() {
         return percentualDesconto > 0;
-    }
-
-    // Getters e Setters
-    public int getIdPromocao() {
-        return idPromocao;
-    }
-
-    public void setIdPromocao(int idPromocao) {
-        this.idPromocao = idPromocao;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public double getPercentualDesconto() {

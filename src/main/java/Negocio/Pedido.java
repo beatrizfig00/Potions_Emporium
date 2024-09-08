@@ -11,18 +11,18 @@ public class Pedido {
     private Promocao promocao;
     private Entrega entrega;
 
-    public Pedido(int idPedido, Cliente cliente, Map<Produto, Integer> itens, String statusPedido, Promocao promocao, Entrega entrega) {
+    public Pedido(int idPedido, Cliente cliente, Map<Produto, Integer> itens, String statusPedido, Promocao promocao) {
         this.idPedido = idPedido;
         this.cliente = cliente;
         this.itens = itens;
         this.statusPedido = statusPedido;
-        this.total = calcularTotal();
         this.promocao = promocao;
-        this.entrega = entrega;
+        this.total = calcularTotal();
+        aplicarPromocao();
     }
 
     public double calcularTotal() {
-        total = 0.0;
+        double total = 0.0;
         for (Map.Entry<Produto, Integer> entry : itens.entrySet()) {
             Produto produto = entry.getKey();
             int quantidade = entry.getValue();
@@ -31,9 +31,17 @@ public class Pedido {
         return total;
     }
 
+    public void aplicarPromocao() {
+        if (promocao != null && promocao.validarPromocao()) {
+            double desconto = promocao.aplicarPromocao(this);
+            this.total -= desconto;
+        }
+    }
+
     public void atualizarStatus(String novoStatus) {
         this.statusPedido = novoStatus;
     }
+
 
     public int getIdPedido() {
         return idPedido;
@@ -49,6 +57,7 @@ public class Pedido {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+        aplicarPromocao();
     }
 
     public Map<Produto, Integer> getItens() {
@@ -58,6 +67,7 @@ public class Pedido {
     public void setItens(Map<Produto, Integer> itens) {
         this.itens = itens;
         this.total = calcularTotal();
+        aplicarPromocao();
     }
 
     public double getTotal() {
@@ -72,20 +82,13 @@ public class Pedido {
         this.statusPedido = statusPedido;
     }
 
-    public int getQuantidade(Produto produto) {
-        return itens.getOrDefault(produto, 0);
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
     public Promocao getPromocao() {
         return promocao;
     }
 
     public void setPromocao(Promocao promocao) {
         this.promocao = promocao;
+        aplicarPromocao();
     }
 
     public Entrega getEntrega() {
@@ -94,5 +97,13 @@ public class Pedido {
 
     public void setEntrega(Entrega entrega) {
         this.entrega = entrega;
+    }
+
+    public int getQuantidade(Produto produto) {
+        return itens.getOrDefault(produto, 0);
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 }
