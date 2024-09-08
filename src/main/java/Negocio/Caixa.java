@@ -27,9 +27,8 @@ public class Caixa {
 
     private double aplicarPromocao() {
         Promocao promocao = pedido.getPromocao();
-        Cliente cliente = pedido.getCliente();
-        if (promocao != null && cliente != null) {
-            return promocao.aplicarPromocao(pedido, cliente);
+        if (promocao != null) {
+            return promocao.aplicarPromocao(pedido);
         }
         return 0.0;
     }
