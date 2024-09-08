@@ -5,16 +5,20 @@ import java.util.Map;
 public class Pedido {
     private int idPedido;
     private Cliente cliente;
-    private Map<Produto, Integer> itens; // Alterado para Map<Produto, Integer>
+    private Map<Produto, Integer> itens;
     private double total;
     private String statusPedido;
+    private Promocao promocao;
+    private Entrega entrega;
 
-    public Pedido(int idPedido, Cliente cliente, Map<Produto, Integer> itens, String statusPedido) {
+    public Pedido(int idPedido, Cliente cliente, Map<Produto, Integer> itens, String statusPedido, Promocao promocao, Entrega entrega) {
         this.idPedido = idPedido;
         this.cliente = cliente;
         this.itens = itens;
         this.statusPedido = statusPedido;
         this.total = calcularTotal();
+        this.promocao = promocao;
+        this.entrega = entrega;
     }
 
     public double calcularTotal() {
@@ -70,5 +74,25 @@ public class Pedido {
 
     public int getQuantidade(Produto produto) {
         return itens.getOrDefault(produto, 0);
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public Promocao getPromocao() {
+        return promocao;
+    }
+
+    public void setPromocao(Promocao promocao) {
+        this.promocao = promocao;
+    }
+
+    public Entrega getEntrega() {
+        return entrega;
+    }
+
+    public void setEntrega(Entrega entrega) {
+        this.entrega = entrega;
     }
 }

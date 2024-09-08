@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Estoque {
-    private Map<Produto, Integer> produtos;
+    private final Map<Produto, Integer> produtos;
 
     public Estoque() {
         this.produtos = new HashMap<>();
@@ -26,6 +26,20 @@ public class Estoque {
             throw new Exception("Quantidade insuficiente para remover.");
         }
     }
+
+    public void listarProdutos() {
+        if (produtos.isEmpty()) {
+            System.out.println("O estoque está vazio.");
+        } else {
+            System.out.println("Produtos no estoque:");
+            for (Map.Entry<Produto, Integer> entry : produtos.entrySet()) {
+                Produto produto = entry.getKey();
+                int quantidade = entry.getValue();
+                System.out.println(produto.getNome() + " - Quantidade: " + quantidade);
+            }
+        }
+    }
+
 
     public int verificarDisponibilidade(Produto produto) {
         return produtos.getOrDefault(produto, 0);
