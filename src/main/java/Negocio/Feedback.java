@@ -1,18 +1,14 @@
 package Negocio;
 
-import java.util.Date;
-
 public class Feedback {
     private int id;
     private Cliente cliente;
-    private String mensagem;
-    private Date data;
+    private int nota; 
 
-    public Feedback(int id, Cliente cliente, String mensagem, Date data) {
+    public Feedback(int id, Cliente cliente, int nota) {
         this.id = id;
         this.cliente = cliente;
-        this.mensagem = mensagem;
-        this.data = data;
+        this.nota = nota;
     }
 
     public int getId() {
@@ -31,25 +27,11 @@ public class Feedback {
         this.cliente = cliente;
     }
 
-    public String getMensagem() {
-        return mensagem;
+    public int getNota() {
+        return nota;
     }
 
-    public void setMensagem(String mensagem) {
-        this.mensagem = mensagem;
-    }
-
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
-    }
-
-    public void registrarFeedback() {
-            }
-
-    public void analisarFeedback() {
+    public void setNota(int nota) {
+        this.nota = nota;
     }
 }
