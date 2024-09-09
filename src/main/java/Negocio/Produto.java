@@ -1,5 +1,7 @@
 package Negocio;
 
+import Exceptions.DadosInvalidosException;
+
 public class Produto {
     private int id;
     private String nome;
@@ -9,7 +11,13 @@ public class Produto {
     private String codigoBarra;
     private int quantidade;
 
-    public Produto(int id, String nome, String descricao, double preco, String categoria, String codigoBarra, int quantidade){
+    public Produto(int id, String nome, String descricao, double preco, String categoria, String codigoBarra, int quantidade) throws DadosInvalidosException {
+        if (preco < 0) {
+            throw new DadosInvalidosException("O preço do produto não pode ser negativo.");
+        }
+        if (quantidade < 0) {
+            throw new DadosInvalidosException("A quantidade do produto não pode ser negativa.");
+        }
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -43,7 +51,10 @@ public class Produto {
     public double getPreco() {
         return preco;
     }
-    public void setPreco(double preco) {
+    public void setPreco(double preco) throws DadosInvalidosException {
+        if (preco < 0) {
+            throw new DadosInvalidosException("O preço do produto não pode ser negativo.");
+        }
         this.preco = preco;
     }
 
@@ -64,7 +75,10 @@ public class Produto {
     public int getQuantidade() {
         return quantidade;
     }
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(int quantidade) throws DadosInvalidosException {
+        if (quantidade < 0) {
+            throw new DadosInvalidosException("A quantidade do produto não pode ser negativa.");
+        }
         this.quantidade = quantidade;
     }
 }
