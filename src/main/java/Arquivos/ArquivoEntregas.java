@@ -1,4 +1,4 @@
-package Persistencia;
+package Arquivos;
 
 import Negocio.Entrega;
 import java.io.*;

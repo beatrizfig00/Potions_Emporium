@@ -1,5 +1,8 @@
 package Gui;
 
+import Arquivos.ArquivoCliente;
+import Exceptions.DadosInvalidosException;
+import Negocio.Cliente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -12,8 +15,6 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 
 public class TelaCadastroController {
@@ -35,6 +36,12 @@ public class TelaCadastroController {
     @FXML
     private Button botaoFechar;
 
+    private ArquivoCliente arquivoCliente;
+
+    public TelaCadastroController() {
+        this.arquivoCliente = new ArquivoCliente("clientes.csv");
+    }
+
     @FXML
     public void encerrarPrograma(ActionEvent evento) {
         Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
@@ -42,7 +49,7 @@ public class TelaCadastroController {
     }
 
     @FXML
-    public void salvarCadastro(ActionEvent evento) {
+    public void salvarCadastro(ActionEvent evento) throws DadosInvalidosException {
         String nome = nomeField.getText();
         String cidade = cidadeField.getText();
         String rua = ruaField.getText();
@@ -59,11 +66,13 @@ public class TelaCadastroController {
             alerta.showAndWait();
             return;
         }
-        // Substitua pelo caminho real do seu arquivo
-        String caminhoArquivo = "caminho/para/usuarios.txt";
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(caminhoArquivo, true))) {
-            writer.write(String.format("%s:%s%n", coruja, senha));
+        Cliente novoCliente = new Cliente(nome, coruja, flooPowder, senha);
+
+        try {
+            arquivoCliente.adicionarCliente(novoCliente);
+            arquivoCliente.salvarClientes();
+
             Alert alerta = new Alert(AlertType.INFORMATION);
             alerta.setTitle("Cadastro realizado");
             alerta.setHeaderText(null);

@@ -1,11 +1,11 @@
 package Gui;
 
+import Arquivos.ArquivoCliente;
+import Exceptions.DadosInvalidosException;
+import Negocio.Cliente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.scene.Node;
@@ -92,5 +92,93 @@ public class TelaCarrinhoController {
 
     public static void setProdutosNoCarrinho(List<String> produtos) {
         produtosNoCarrinho = produtos;
+    }
+
+    public static class TelaCadastroController {
+
+        @FXML
+        private TextField nomeField;
+        @FXML
+        private TextField cidadeField;
+        @FXML
+        private TextField ruaField;
+        @FXML
+        private TextField numeroField;
+        @FXML
+        private TextField corujaField;
+        @FXML
+        private TextField flooPowderField;
+        @FXML
+        private TextField senhaField;
+        @FXML
+        private Button botaoFechar;
+
+        private ArquivoCliente arquivoCliente;
+
+        public TelaCadastroController() {
+            this.arquivoCliente = new ArquivoCliente("clientes.csv");
+        }
+
+        @FXML
+        public void initialize() {
+            try {
+                arquivoCliente.carregarClientes();
+            } catch (IOException | DadosInvalidosException e) {
+                showAlert(Alert.AlertType.ERROR, "Erro ao carregar clientes", "Não foi possível carregar a lista de clientes.", e.getMessage());
+            }
+        }
+
+        @FXML
+        public void encerrarPrograma(ActionEvent evento) {
+            Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
+            janela.close();
+        }
+
+        @FXML
+        public void salvarCadastro(ActionEvent evento) throws DadosInvalidosException {
+            String nome = nomeField.getText();
+            String cidade = cidadeField.getText();
+            String rua = ruaField.getText();
+            String numero = numeroField.getText();
+            String coruja = corujaField.getText();
+            String flooPowder = flooPowderField.getText();
+            String senha = senhaField.getText();
+
+            if (nome.isEmpty() || cidade.isEmpty() || rua.isEmpty() || numero.isEmpty() || coruja.isEmpty() || flooPowder.isEmpty() || senha.isEmpty()) {
+                showAlert(Alert.AlertType.ERROR, "Erro de Cadastro", "Campos obrigatórios não preenchidos.", "Por favor, preencha todos os campos.");
+                return;
+            }
+
+            Cliente novoCliente = new Cliente(nome, coruja, flooPowder, senha);
+
+            try {
+                arquivoCliente.adicionarCliente(novoCliente);
+                arquivoCliente.salvarClientes();
+                showAlert(Alert.AlertType.INFORMATION, "Cadastro realizado", null, "Cadastro realizado com sucesso.");
+            } catch (IOException e) {
+                showAlert(Alert.AlertType.ERROR, "Erro de Cadastro", "Não foi possível salvar o cadastro.", "Por favor, tente novamente.");
+            }
+        }
+
+        @FXML
+        public void voltar(ActionEvent evento) {
+            try {
+                Parent telaCliente = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-principal-cliente.fxml"));
+                Scene cenaCliente = new Scene(telaCliente);
+                Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
+                janela.setScene(cenaCliente);
+                janela.show();
+            } catch (IOException e) {
+                showAlert(Alert.AlertType.ERROR, "Erro", "Não foi possível carregar a tela principal do cliente.", e.getMessage());
+            }
+        }
+
+        private void showAlert(Alert.AlertType type, String title, String header, String content) {
+            Alert alert = new Alert(type);
+            alert.setTitle(title);
+            alert.setHeaderText(header);
+            alert.setContentText(content);
+            alert.showAndWait();
+        }
     }
 }

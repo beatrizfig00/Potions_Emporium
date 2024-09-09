@@ -4,54 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Ajustes Pedido e Estoque">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/PotionsEmporiumApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaAdmClienteController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaAdmController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaAdmPrincipalController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaCadastroController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaCaixaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaCarrinhoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaEstoqueController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaFeedbackController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaInicialController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaPrincipalClienteController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaProdutosController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaRelatorioControler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/imagens/Potions_Emporium_icone.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-adm-cliente.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-adm-principal.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-adm.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-cadastro.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-caixa.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-carrinho.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-estoque.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-feedback.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-inicial.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-principal-cliente.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-produtos.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-relatorio.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Front e Atualizações">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoCliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoEstoque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoEstoque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoClientes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoEntregas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoEntregas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoFinanceiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoFinanceiro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Exceptions/ArquivoNaoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Exceptions/ArquivoNaoEncontradoException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Caixa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Caixa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Endereco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Endereco.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Estoque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Estoque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Loja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Loja.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Pagamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Pagamento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Promocao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Promocao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoAnimal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoAnimal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoIngrediente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoIngrediente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoLivro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoLivro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoPocao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoPocao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/potionsemporium/potions_emporium2/HelloApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/potionsemporium/potions_emporium2/HelloController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Gui/TelaAdmClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaAdmClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Gui/TelaCadastroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaCadastroController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Gui/TelaCarrinhoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaCarrinhoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Gui/TelaPrincipalClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaPrincipalClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Cliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/hello-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-cadastro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-cadastro.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +33,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "beatrizfig00"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/beatrizfig00/Potions_Emporium2.0.git",
+    "accountId": "edb8af32-300b-41ef-aa60-3e0d99a93b09"
+  }
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -88,7 +65,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.PotionsEmporiumApplication.executor": "Run",
+    "Application.PotionsEmporiumApplication.executor": "Debug",
     "Application.TesteHistoricoCompras.executor": "Debug",
     "Application.TesteMoeda.executor": "Run",
     "Application.TestePromocoes.executor": "Run",
@@ -99,14 +76,6 @@
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
-        <option value="jdk-22-openjdk-22-3183f394aec4-bad0321e" />
-      </set>
-    </attachedChunks>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -156,12 +125,29 @@
       <option name="project" value="LOCAL" />
       <updated>1725758838544</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Commit Front e Atualizações">
+      <option name="closed" value="true" />
+      <created>1725906596934</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1725906596934</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Commit Front e Atualizações">
+      <option name="closed" value="true" />
+      <created>1725906818436</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1725906818436</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Commit Produto e Herança" />
     <MESSAGE value="Commit Ajustes Pedido e Estoque" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit Ajustes Pedido e Estoque" />
+    <MESSAGE value="Commit Front e Atualizações" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit Front e Atualizações" />
   </component>
 </project>

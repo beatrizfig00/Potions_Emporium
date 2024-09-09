@@ -12,4 +12,6 @@ module com.potionsemporium.potions_emporium2 {
     opens com.potionsemporium.potions_emporium2 to javafx.fxml;
     exports Gui;
     opens Gui to javafx.fxml;
+    exports Negocio;
+    exports Arquivos;
 }

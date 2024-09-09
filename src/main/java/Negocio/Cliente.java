@@ -12,25 +12,23 @@ public class Cliente {
     private String flooPowder;
     private String senha;
     private List<Pedido> historicoCompras;
-    private List<Feedback> feedbacks;  // Nova lista para armazenar feedbacks
+    private List<Feedback> feedbacks;
 
-    public Cliente(String nome, String coruja, String flooPowder, String senha, List<Pedido> historicoCompras) throws DadosInvalidosException {
+    public Cliente(String nome, String coruja, String flooPowder, String senha) throws DadosInvalidosException {
         this.id = gerarId();
         this.nome = nome;
         this.coruja = coruja;
         this.flooPowder = flooPowder;
         this.senha = senha;
-        this.historicoCompras = historicoCompras;
-        this.feedbacks = new ArrayList<>();  // Inicializando a lista de feedbacks vazia
+        this.historicoCompras = new ArrayList<>();
+        this.feedbacks = new ArrayList<>();
     }
 
-    // Método para gerar um ID aleatório
     private int gerarId() {
         Random random = new Random();
         return random.nextInt(10000);
     }
 
-    // Getters e setters normais para os atributos existentes
     public int getId() {
         return id;
     }
@@ -75,7 +73,6 @@ public class Cliente {
         this.historicoCompras = historicoCompras;
     }
 
-    // Métodos para lidar com feedbacks
     public List<Feedback> getFeedbacks() {
         return feedbacks;
     }
