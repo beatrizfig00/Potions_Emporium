@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="700.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.TelaCarrinhoController.TelaCadastroController">
+<Pane prefHeight="700.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.TelaCadastroController">
    <children>
       <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="31.0" layoutY="465.0">
          <image>

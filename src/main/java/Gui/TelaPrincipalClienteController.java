@@ -10,10 +10,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.Node;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -57,10 +57,9 @@ public class TelaPrincipalClienteController {
     private void carregarUsuarios() {
         InputStream inputStream = getClass().getResourceAsStream("/com/potionsemporium/potions_emporium2/clientes.csv");
         if (inputStream == null) {
-            System.err.println("Arquivo clientes.txt não encontrado!");
+            System.err.println("Arquivo clientes.csv não encontrado!");
             return;
         }
-
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             String linha;
             while ((linha = reader.readLine()) != null) {
@@ -92,6 +91,11 @@ public class TelaPrincipalClienteController {
             janela.show();
         } catch (IOException e) {
             e.printStackTrace();
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Erro de Navegação");
+            alerta.setHeaderText(null);
+            alerta.setContentText("Não foi possível carregar a tela de cadastro.");
+            alerta.showAndWait();
         }
     }
 
@@ -105,6 +109,11 @@ public class TelaPrincipalClienteController {
             janela.show();
         } catch (IOException e) {
             e.printStackTrace();
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Erro de Navegação");
+            alerta.setHeaderText(null);
+            alerta.setContentText("Não foi possível carregar a tela inicial.");
+            alerta.showAndWait();
         }
     }
 
@@ -122,6 +131,11 @@ public class TelaPrincipalClienteController {
                 janela.show();
             } catch (IOException e) {
                 e.printStackTrace();
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("Erro de Login");
+                alerta.setHeaderText(null);
+                alerta.setContentText("Não foi possível carregar a tela de produtos.");
+                alerta.showAndWait();
             }
         } else {
             Alert alerta = new Alert(Alert.AlertType.ERROR);
