@@ -63,11 +63,11 @@ public class TelaPrincipalClienteController {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             String linha;
             while ((linha = reader.readLine()) != null) {
-                String[] partes = linha.split(":");
-                if (partes.length == 2) {
+                String[] partes = linha.split(",");
+                if (partes.length == 2) {  // Espera-se que o CSV tenha o formato: login,senha
                     String usuario = partes[0].trim();
                     String senha = partes[1].trim();
-                    usuarios.put(usuario, senha);
+                    usuarios.put(usuario, senha);  // Armazenar usuário e senha no mapa
                 }
             }
         } catch (IOException e) {

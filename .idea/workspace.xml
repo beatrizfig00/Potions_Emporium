@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Atualizações">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Gui/TelaCadastroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaCadastroController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Gui/TelaCarrinhoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaCarrinhoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Gui/TelaPrincipalClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaPrincipalClienteController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +138,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725912571926</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Commit Atualizações">
+      <option name="closed" value="true" />
+      <created>1725914605651</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1725914605651</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
