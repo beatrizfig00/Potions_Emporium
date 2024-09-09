@@ -1,4 +1,4 @@
-RelatoriosExceptionpackage Exceptions;
+package Exceptions;
 
 import java.io.IOException;
 
