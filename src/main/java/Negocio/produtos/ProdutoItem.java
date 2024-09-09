@@ -1,11 +1,12 @@
 package Negocio.produtos;
 
+import Exceptions.DadosInvalidosException;
 import Negocio.Produto;
 
 public class ProdutoItem extends Produto{
     private String poder;
 
-    public ProdutoItem(int id, String nome, String descricao, double preco, String categoria, String codigoBarra, int quantidade, String poder) {
+    public ProdutoItem(int id, String nome, String descricao, double preco, String categoria, String codigoBarra, int quantidade, String poder) throws DadosInvalidosException {
         super(id, nome, descricao, preco, categoria, codigoBarra, quantidade);
         this.poder = poder;
     }

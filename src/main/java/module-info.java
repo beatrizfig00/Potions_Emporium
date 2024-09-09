@@ -10,5 +10,6 @@ module com.potionsemporium.potions_emporium2 {
     requires eu.hansolo.tilesfx;
 
     opens com.potionsemporium.potions_emporium2 to javafx.fxml;
-    exports com.potionsemporium.potions_emporium2;
+    exports Gui;
+    opens Gui to javafx.fxml;
 }

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="700.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.TelaCadastroController">
+   <children>
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="31.0" layoutY="465.0">
+         <image>
+            <Image url="@imagens/pena.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="1222.0" layoutY="32.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="X" textFill="#ccb373" fx:id="botaoFechar" onAction="#encerrarPrograma">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="1052.0" layoutY="612.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="188.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Voltar" textFill="#ccb373" onAction="#voltar">
+         <font>
+            <Font name="Arial Black" size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="809.0" layoutY="612.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="188.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Salvar" textFill="#ccb373" onAction="#salvarCadastro">
+         <font>
+            <Font name="Arial Black" size="20.0" />
+         </font>
+      </Button>
+      <Label layoutX="160.0" layoutY="77.0" text="Nome" textFill="#ccb373">
+         <font>
+            <Font name="Arial Narrow" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="155.0" layoutY="175.0" text="Coruja" textFill="#ccb373">
+         <font>
+            <Font name="Arial Narrow" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="101.0" layoutY="277.0" text="Floo Powder" textFill="#ccb373">
+         <font>
+            <Font name="Arial Narrow" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="691.0" layoutY="389.0" text="Senha" textFill="#ccb373">
+         <font>
+            <Font name="Arial Narrow" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="704.0" layoutY="175.0" text="Rua" textFill="#ccb373">
+         <font>
+            <Font name="Arial Narrow" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="688.0" layoutY="76.0" text="Cidade" textFill="#ccb373">
+         <font>
+            <Font name="Arial Narrow" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="689.0" layoutY="277.0" text="Número" textFill="#ccb373">
+         <font>
+            <Font name="Arial Narrow" size="30.0" />
+         </font>
+      </Label>
+      <TextField layoutX="244.0" layoutY="84.0" style="-fx-border-color: #ccb373;" fx:id="nomeField" promptText="Digite seu nome"/>
+      <TextField layoutX="245.0" layoutY="181.0" style="-fx-border-color: #ccb373;" fx:id="corujaField" promptText="Digite a coruja"/>
+      <TextField layoutX="250.0" layoutY="283.0" style="-fx-border-color: #ccb373;" fx:id="flooPowderField" promptText="Digite o Floo Powder"/>
+      <TextField layoutX="791.0" layoutY="82.0" style="-fx-border-color: #ccb373;" fx:id="cidadeField" promptText="Digite a cidade"/>
+      <TextField layoutX="791.0" layoutY="181.0" style="-fx-border-color: #ccb373;" fx:id="ruaField" promptText="Digite a rua"/>
+      <TextField layoutX="791.0" layoutY="285.0" style="-fx-border-color: #ccb373;" fx:id="numeroField" promptText="Digite o número"/>
+      <TextField layoutX="791.0" layoutY="395.0" style="-fx-border-color: #ccb373;" fx:id="senhaField" promptText="Digite a senha"/>
+   </children>
+</Pane>

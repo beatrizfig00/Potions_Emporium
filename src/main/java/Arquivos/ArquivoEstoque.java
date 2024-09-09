@@ -35,7 +35,7 @@ public class ArquivoEstoque {
                     throw new FormatoArquivoException("Formato inválido no arquivo de estoque.");
                 }
 
-                try {
+              try {
                     int id = Integer.parseInt(partes[0]);
                     String nome = partes[1];
                     String descricao = partes[2];
@@ -46,11 +46,12 @@ public class ArquivoEstoque {
 
                     Produto produto = new Produto(id, nome, descricao, preco, categoria, codigoBarra, quantidade);
                     produtos.add(produto);
-                } catch (NumberFormatException | DadosInvalidosException e) {
+                    } catch (NumberFormatException | DadosInvalidosException e) {
                     throw new FormatoArquivoException("Erro ao formatar número no arquivo de estoque.");
-                }
+
             }
         }
         return produtos;
     }
+  }
 }

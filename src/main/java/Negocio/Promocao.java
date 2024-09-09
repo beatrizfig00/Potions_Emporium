@@ -36,6 +36,7 @@ public class Promocao {
     }
 
     public boolean validarPromocao() {
+
         return percentualDesconto > 0;
     }
 

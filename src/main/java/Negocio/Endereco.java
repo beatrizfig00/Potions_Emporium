@@ -35,8 +35,4 @@ public class Endereco {
         this.numero = numero;
     }
 
-    @Override
-    public String toString() {
-        return STR."Endereço: \{rua}, \{numero} - \{cidade}";
-    }
-}
+ }

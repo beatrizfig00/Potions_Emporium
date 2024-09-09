@@ -3,6 +3,8 @@ package Negocio;
 import Exceptions.PagamentoInvalidoException;
 import Exceptions.DadosInvalidosException;
 
+import static java.lang.StringTemplate.STR;
+
 public class Caixa {
     private Pedido pedido;
     private double total;
