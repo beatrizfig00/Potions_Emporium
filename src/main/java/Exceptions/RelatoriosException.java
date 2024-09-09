@@ -1,4 +1,6 @@
-package Exceptions;
+RelatoriosExceptionpackage Exceptions;
+
+import java.io.IOException;
 
 public class RelatoriosException extends IOException {
     public RelatoriosException(String mensagem) {
