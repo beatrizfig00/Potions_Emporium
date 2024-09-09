@@ -1,0 +1,254 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"aeee102f-3f0c-45cb-b45d-260ec393aab2\" name=\"Changes\" comment=\"Commit Ajustes Pedido e Estoque\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/Testes/TesteHistoricoCompras.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/Testes/TesteMoeda.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/Testes/TestePromocoes.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Negocio/Carrinho.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Negocio/Carrinho.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Negocio/Endereco.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Negocio/Endereco.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Negocio/Estoque.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Negocio/Estoque.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Negocio/Loja.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Negocio/Loja.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Negocio/Pedido.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Negocio/Pedido.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Negocio/Promocao.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Negocio/Promocao.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 1\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2lf3Cxku3uF0Nh3hlxEIB8n2rgD\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.TesteHistoricoCompras.executor\": \"Debug\",\r\n    \"Application.TesteMoeda.executor\": \"Run\",\r\n    \"Application.TestePromocoes.executor\": \"Run\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"kotlin-language-version-configured\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"f98de7f8-be93-41c1-8f8d-03c0cb9bcdc1\" name=\"Changes\" comment=\"\" />\r\n      <created>1725557183281</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1725557183281</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Commit Produto e Herança\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1725562188798</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1725562188798</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Commit Produto e Herança\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1725562247173</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1725562247173</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Commit Produto e Herança\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1725562350608</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1725562350608</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Commit Produto e Herança\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1725562362437</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1725562362437</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Commit Ajustes Pedido e Estoque\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1725758838544</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1725758838544</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"6\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Commit Produto e Herança\" />\r\n    <MESSAGE value=\"Commit Ajustes Pedido e Estoque\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Commit Ajustes Pedido e Estoque\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -4,17 +4,58 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Ajustes Pedido e Estoque">
+-      <change afterPath="$PROJECT_DIR$/src/main/java/Testes/TesteHistoricoCompras.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/Testes/TesteMoeda.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/Testes/TestePromocoes.java" afterDir="false" />
++    <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Produto">
++      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/PotionsEmporiumApplication.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaAdmClienteController.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaAdmController.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaAdmPrincipalController.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaCadastroController.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaCaixaController.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaCarrinhoController.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaEstoqueController.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaFeedbackController.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaInicialController.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaPrincipalClienteController.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaProdutosController.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaRelatorioControler.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/imagens/Potions_Emporium_icone.png" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-adm-cliente.fxml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-adm-principal.fxml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-adm.fxml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-cadastro.fxml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-caixa.fxml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-carrinho.fxml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-estoque.fxml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-feedback.fxml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-inicial.fxml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-principal-cliente.fxml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-produtos.fxml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-relatorio.fxml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Carrinho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Carrinho.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoCliente.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoEntregas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoEntregas.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoEstoque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoEstoque.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoFinanceiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoFinanceiro.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Exceptions/ArquivoNaoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Exceptions/ArquivoNaoEncontradoException.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Exceptions/RelatoriosException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Exceptions/RelatoriosException.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Caixa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Caixa.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Endereco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Endereco.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Estoque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Estoque.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Loja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Loja.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Pedido.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Pagamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Pagamento.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Promocao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Promocao.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Relatorio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Relatorio.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoAnimal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoAnimal.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoIngrediente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoIngrediente.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoItem.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoLivro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoLivro.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoPocao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoPocao.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/potionsemporium/potions_emporium2/HelloApplication.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/potionsemporium/potions_emporium2/HelloController.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/hello-view.fxml" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -24,13 +65,31 @@
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+       <list>
++        <option value="FxmlFile" />
+         <option value="Class" />
+       </list>
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="PREVIOUS_COMMIT_AUTHORS">
++      <list>
++        <option value="Wilber742 &lt;149113565+wilber742@users.noreply.github.com&gt;" />
++      </list>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
++  <component name="GitHubPullRequestSearchHistory">{
++  &quot;lastFilter&quot;: {
++    &quot;state&quot;: &quot;OPEN&quot;,
++    &quot;assignee&quot;: &quot;beatrizfig00&quot;
++  }
++}</component>
++  <component name="GithubPullRequestsUISettings">{
++  &quot;selectedUrlAndAccountId&quot;: {
++    &quot;url&quot;: &quot;https://github.com/beatrizfig00/Potions_Emporium2.0.git&quot;,
++    &quot;accountId&quot;: &quot;edb8af32-300b-41ef-aa60-3e0d99a93b09&quot;
++  }
++}</component>
+   <component name="MavenImportPreferences">
+     <option name="generalSettings">
+       <MavenGeneralSettings>
+@@ -42,34 +101,29 @@
+   &quot;associatedIndex&quot;: 1
+ }</component>
+   <component name="ProjectId" id="2lf3Cxku3uF0Nh3hlxEIB8n2rgD" />
+-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+-    <ConfirmationsSetting value="2" id="Add" />
+-  </component>
++  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Application.TesteHistoricoCompras.executor": "Debug",
+-    "Application.TesteMoeda.executor": "Run",
+-    "Application.TestePromocoes.executor": "Run",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "git-widget-placeholder": "master",
+-    "kotlin-language-version-configured": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;Application.PotionsEmporiumApplication.executor&quot;: &quot;Run&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
++    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+   }
+-}]]></component>
+-  <component name="SharedIndexes">
+-    <attachedChunks>
+-      <set>
+-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+-      </set>
+-    </attachedChunks>
++}</component>
++  <component name="RecentsManager">
++    <key name="MoveFile.RECENT_KEYS">
++      <recent name="C:\Users\Beatriz Figueiredo\IdeaProjects\Potions_Emporium2.0\src\main\resources\com\potionsemporium\potions_emporium2\imagens" />
++    </key>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+-      <changelist id="f98de7f8-be93-41c1-8f8d-03c0cb9bcdc1" name="Changes" comment="" />
++      <changelist id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Moeda" />
+       <created>1725557183281</created>
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+@@ -107,20 +161,69 @@
+       <option name="project" value="LOCAL" />
+       <updated>1725562362437</updated>
+     </task>
+-    <task id="LOCAL-00005" summary="Commit Ajustes Pedido e Estoque">
++    <task id="LOCAL-00005" summary="Commit Moeda e Pagamento">
+       <option name="closed" value="true" />
+-      <created>1725758838544</created>
++      <created>1725570390427</created>
+       <option name="number" value="00005" />
+       <option name="presentableId" value="LOCAL-00005" />
+       <option name="project" value="LOCAL" />
+-      <updated>1725758838544</updated>
++      <updated>1725570390427</updated>
+     </task>
+-    <option name="localTasksCounter" value="6" />
++    <task id="LOCAL-00006" summary="Correção">
++      <option name="closed" value="true" />
++      <created>1725570930214</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1725570930214</updated>
++    </task>
++    <task id="LOCAL-00007" summary="Commit Moeda">
++      <option name="closed" value="true" />
++      <created>1725570992243</created>
++      <option name="number" value="00007" />
++      <option name="presentableId" value="LOCAL-00007" />
++      <option name="project" value="LOCAL" />
++      <updated>1725570992243</updated>
++    </task>
++    <task id="LOCAL-00008" summary="Commit Pagamento">
++      <option name="closed" value="true" />
++      <created>1725901403771</created>
++      <option name="number" value="00008" />
++      <option name="presentableId" value="LOCAL-00008" />
++      <option name="project" value="LOCAL" />
++      <updated>1725901403771</updated>
++    </task>
++    <task id="LOCAL-00009" summary="Commit Produto">
++      <option name="closed" value="true" />
++      <created>1725901543092</created>
++      <option name="number" value="00009" />
++      <option name="presentableId" value="LOCAL-00009" />
++      <option name="project" value="LOCAL" />
++      <updated>1725901543092</updated>
++    </task>
++    <option name="localTasksCounter" value="10" />
+     <servers />
+   </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="Commit Produto e Herança" />
+-    <MESSAGE value="Commit Ajustes Pedido e Estoque" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Commit Ajustes Pedido e Estoque" />
++    <MESSAGE value="Commit Correção do pom" />
++    <MESSAGE value="Commit Relatorio" />
++    <MESSAGE value="Commit Moeda e Pagamento" />
++    <MESSAGE value="Correção" />
++    <MESSAGE value="Commit Moeda" />
++    <MESSAGE value="Commit Pagamento" />
++    <MESSAGE value="Commit Produto" />
++    <option name="LAST_COMMIT_MESSAGE" value="Commit Produto" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: src/main/java/Arquivos/ArquivoCliente.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Arquivos;\r\n\r\nimport Exceptions.DadosInvalidosException;\r\nimport Exceptions.PromoInvalidaException;\r\nimport Negocio.Cliente;\r\nimport Negocio.Pedido;\r\nimport Exceptions.ArquivoNaoEncontradoException;\r\nimport Exceptions.FormatoArquivoException;\r\nimport java.io.*;\r\nimport java.util.*;\r\n\r\npublic class ArquivoClientes {\r\n\r\n    private static final String ARQUIVO_CLIENTES = \"clientes.txt\";\r\n\r\n    public void salvarClientes(List<Cliente> clientes) throws IOException {\r\n        try (BufferedWriter writer = new BufferedWriter(new FileWriter(ARQUIVO_CLIENTES))) {\r\n            for (Cliente cliente : clientes) {\r\n                writer.write(STR.\"\\{cliente.getId()},\\{cliente.getNome()},\\{cliente.getCoruja()},\\{cliente.getFlooPowder()},\\{cliente.getSenha()}\");\r\n                writer.newLine();\r\n                for (Pedido pedido : cliente.getHistoricoCompras()) {\r\n                    writer.write(STR.\"Pedido:\\{pedido.getIdPedido()},\\{pedido.getTotal()},\\{pedido.getStatusPedido()}\");\r\n                    writer.newLine();\r\n                }\r\n            }\r\n        }\r\n    }\r\n\r\n    public List<Cliente> carregarClientes() throws IOException, FormatoArquivoException, DadosInvalidosException, PromoInvalidaException {\r\n        List<Cliente> clientes = new ArrayList<>();\r\n        File file = new File(ARQUIVO_CLIENTES);\r\n        if (!file.exists()) {\r\n            throw new ArquivoNaoEncontradoException(\"Arquivo de clientes não encontrado.\");\r\n        }\r\n\r\n        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {\r\n            String linha;\r\n            while ((linha = reader.readLine()) != null) {\r\n                String[] partes = linha.split(\",\");\r\n                if (partes.length < 5) {\r\n                    throw new FormatoArquivoException(\"Formato inválido no arquivo de clientes.\");\r\n                }\r\n\r\n                List<Pedido> historicoCompras = new ArrayList<>();\r\n                while ((linha = reader.readLine()) != null && linha.startsWith(\"Pedido:\")) {\r\n                    String[] partesPedido = linha.substring(7).split(\",\");\r\n                    if (partesPedido.length != 3) {\r\n                        throw new FormatoArquivoException(\"Formato inválido no histórico de compras.\");\r\n                    }\r\n                    Pedido pedido = new Pedido(Integer.parseInt(partesPedido[0]), null, null, partesPedido[2], null);\r\n                    pedido.setTotal(Double.parseDouble(partesPedido[1]));\r\n                    historicoCompras.add(pedido);\r\n                }\r\n\r\n                Cliente cliente = new Cliente(partes[1], partes[2], partes[3], partes[4], historicoCompras);\r\n                clientes.add(cliente);\r\n            }\r\n        }\r\n        return clientes;\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/Arquivos/ArquivoCliente.java b/src/main/java/Arquivos/ArquivoCliente.java
+--- a/src/main/java/Arquivos/ArquivoCliente.java	
++++ b/src/main/java/Arquivos/ArquivoCliente.java	
+@@ -1,5 +1,5 @@
+ package Arquivos;
+-
++/*
+ import Exceptions.DadosInvalidosException;
+ import Exceptions.PromoInvalidaException;
+ import Negocio.Cliente;
+@@ -59,3 +59,4 @@
+         return clientes;
+     }
+ }
++*/
+\ No newline at end of file

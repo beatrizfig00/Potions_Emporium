@@ -1,0 +1,350 @@
+Index: src/main/resources/com/potionsemporium/potions_emporium2/hello-view.fxml
+===================================================================
+diff --git a/src/main/resources/com/potionsemporium/potions_emporium2/hello-view.fxml b/src/main/resources/com/potionsemporium/potions_emporium2/hello-view.fxml
+deleted file mode 100644
+--- a/src/main/resources/com/potionsemporium/potions_emporium2/hello-view.fxml	(revision b2a96e51e9a149b8d92527c9ea5b0745ac7b2343)
++++ /dev/null	(revision b2a96e51e9a149b8d92527c9ea5b0745ac7b2343)
+@@ -1,16 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-
+-<?import javafx.geometry.Insets?>
+-<?import javafx.scene.control.Label?>
+-<?import javafx.scene.layout.VBox?>
+-
+-<?import javafx.scene.control.Button?>
+-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+-      fx:controller="com.potionsemporium.potions_emporium2.HelloController">
+-    <padding>
+-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+-    </padding>
+-
+-    <Label fx:id="welcomeText"/>
+-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+-</VBox>
+Index: src/main/java/com/potionsemporium/potions_emporium2/HelloController.java
+===================================================================
+diff --git a/src/main/java/com/potionsemporium/potions_emporium2/HelloController.java b/src/main/java/com/potionsemporium/potions_emporium2/HelloController.java
+deleted file mode 100644
+--- a/src/main/java/com/potionsemporium/potions_emporium2/HelloController.java	(revision b2a96e51e9a149b8d92527c9ea5b0745ac7b2343)
++++ /dev/null	(revision b2a96e51e9a149b8d92527c9ea5b0745ac7b2343)
+@@ -1,14 +0,0 @@
+-package com.potionsemporium.potions_emporium2;
+-
+-import javafx.fxml.FXML;
+-import javafx.scene.control.Label;
+-
+-public class HelloController {
+-    @FXML
+-    private Label welcomeText;
+-
+-    @FXML
+-    protected void onHelloButtonClick() {
+-        welcomeText.setText("Welcome to JavaFX Application!");
+-    }
+-}
+\ No newline at end of file
+Index: src/main/java/com/potionsemporium/potions_emporium2/HelloApplication.java
+===================================================================
+diff --git a/src/main/java/com/potionsemporium/potions_emporium2/HelloApplication.java b/src/main/java/com/potionsemporium/potions_emporium2/HelloApplication.java
+deleted file mode 100644
+--- a/src/main/java/com/potionsemporium/potions_emporium2/HelloApplication.java	(revision b2a96e51e9a149b8d92527c9ea5b0745ac7b2343)
++++ /dev/null	(revision b2a96e51e9a149b8d92527c9ea5b0745ac7b2343)
+@@ -1,23 +0,0 @@
+-package com.potionsemporium.potions_emporium2;
+-
+-import javafx.application.Application;
+-import javafx.fxml.FXMLLoader;
+-import javafx.scene.Scene;
+-import javafx.stage.Stage;
+-
+-import java.io.IOException;
+-
+-public class HelloApplication extends Application {
+-    @Override
+-    public void start(Stage stage) throws IOException {
+-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+-        stage.setTitle("Hello!");
+-        stage.setScene(scene);
+-        stage.show();
+-    }
+-
+-    public static void main(String[] args) {
+-        launch();
+-    }
+-}
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"aeee102f-3f0c-45cb-b45d-260ec393aab2\" name=\"Changes\" comment=\"Commit Moeda\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/Negocio/Entrega.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"PREVIOUS_COMMIT_AUTHORS\">\r\n      <list>\r\n        <option value=\"Wilber742 &lt;149113565+wilber742@users.noreply.github.com&gt;\" />\r\n      </list>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\"><![CDATA[{\r\n  \"lastFilter\": {\r\n    \"state\": \"OPEN\",\r\n    \"assignee\": \"beatrizfig00\"\r\n  }\r\n}]]></component>\r\n  <component name=\"GithubPullRequestsUISettings\"><![CDATA[{\r\n  \"selectedUrlAndAccountId\": {\r\n    \"url\": \"https://github.com/beatrizfig00/Potions_Emporium2.0.git\",\r\n    \"accountId\": \"edb8af32-300b-41ef-aa60-3e0d99a93b09\"\r\n  }\r\n}]]></component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 1\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2lf3Cxku3uF0Nh3hlxEIB8n2rgD\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"ignore.virus.scanning.warn.message\": \"true\",\r\n    \"kotlin-language-version-configured\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"f98de7f8-be93-41c1-8f8d-03c0cb9bcdc1\" name=\"Changes\" comment=\"\" />\r\n      <created>1725557183281</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1725557183281</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Commit Produto e Herança\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1725562188798</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1725562188798</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Commit Produto e Herança\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1725562247173</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1725562247173</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Commit Produto e Herança\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1725562350608</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1725562350608</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Commit Produto e Herança\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1725562362437</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1725562362437</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Commit Moeda e Pagamento\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1725570390427</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1725570390427</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Correção\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1725570930214</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1725570930214</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Commit Moeda\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1725570992243</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1725570992243</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"8\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Commit Produto e Herança\" />\r\n    <MESSAGE value=\"Commit Correção do pom\" />\r\n    <MESSAGE value=\"Commit Relatorio\" />\r\n    <MESSAGE value=\"Commit Moeda e Pagamento\" />\r\n    <MESSAGE value=\"Correção\" />\r\n    <MESSAGE value=\"Commit Moeda\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Commit Moeda\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision b2a96e51e9a149b8d92527c9ea5b0745ac7b2343)
++++ b/.idea/workspace.xml	(date 1725833928933)
+@@ -4,10 +4,18 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Moeda">
+-      <change afterPath="$PROJECT_DIR$/src/main/java/Negocio/Entrega.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++    <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Entrega">
++      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/PotionsEmporiumApplication.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaInicialController.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-inicial.fxml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Caixa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Caixa.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Pagamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Pagamento.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Promocao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Promocao.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/potionsemporium/potions_emporium2/HelloApplication.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/potionsemporium/potions_emporium2/HelloController.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/hello-view.fxml" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -17,7 +25,9 @@
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+       <list>
++        <option value="FxmlFile" />
+         <option value="Class" />
++        <option value="JavaFXApplication" />
+       </list>
+     </option>
+   </component>
+@@ -29,18 +39,18 @@
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+-  "lastFilter": {
+-    "state": "OPEN",
+-    "assignee": "beatrizfig00"
++  <component name="GitHubPullRequestSearchHistory">{
++  &quot;lastFilter&quot;: {
++    &quot;state&quot;: &quot;OPEN&quot;,
++    &quot;assignee&quot;: &quot;beatrizfig00&quot;
+   }
+-}]]></component>
+-  <component name="GithubPullRequestsUISettings"><![CDATA[{
+-  "selectedUrlAndAccountId": {
+-    "url": "https://github.com/beatrizfig00/Potions_Emporium2.0.git",
+-    "accountId": "edb8af32-300b-41ef-aa60-3e0d99a93b09"
++}</component>
++  <component name="GithubPullRequestsUISettings">{
++  &quot;selectedUrlAndAccountId&quot;: {
++    &quot;url&quot;: &quot;https://github.com/beatrizfig00/Potions_Emporium2.0.git&quot;,
++    &quot;accountId&quot;: &quot;edb8af32-300b-41ef-aa60-3e0d99a93b09&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="MavenImportPreferences">
+     <option name="generalSettings">
+       <MavenGeneralSettings>
+@@ -59,6 +69,8 @@
+   </component>
+   <component name="PropertiesComponent"><![CDATA[{
+   "keyToString": {
++    "Application.HelloApplication.executor": "Run",
++    "Application.PotionsEmporiumApplication.executor": "Run",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "git-widget-placeholder": "master",
+     "ignore.virus.scanning.warn.message": "true",
+@@ -68,7 +80,7 @@
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+-      <changelist id="f98de7f8-be93-41c1-8f8d-03c0cb9bcdc1" name="Changes" comment="" />
++      <changelist id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Entrega" />
+       <created>1725557183281</created>
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+@@ -130,7 +142,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1725570992243</updated>
+     </task>
+-    <option name="localTasksCounter" value="8" />
++    <task id="LOCAL-00008" summary="Commit Entrega">
++      <option name="closed" value="true" />
++      <created>1725633823035</created>
++      <option name="number" value="00008" />
++      <option name="presentableId" value="LOCAL-00008" />
++      <option name="project" value="LOCAL" />
++      <updated>1725633823035</updated>
++    </task>
++    <option name="localTasksCounter" value="9" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -151,6 +171,7 @@
+     <MESSAGE value="Commit Moeda e Pagamento" />
+     <MESSAGE value="Correção" />
+     <MESSAGE value="Commit Moeda" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Commit Moeda" />
++    <MESSAGE value="Commit Entrega" />
++    <option name="LAST_COMMIT_MESSAGE" value="Commit Entrega" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: src/main/resources/com/potionsemporium/potions_emporium2/tela-inicial.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/com/potionsemporium/potions_emporium2/tela-inicial.fxml b/src/main/resources/com/potionsemporium/potions_emporium2/tela-inicial.fxml
+new file mode 100644
+--- /dev/null	(date 1725760585510)
++++ b/src/main/resources/com/potionsemporium/potions_emporium2/tela-inicial.fxml	(date 1725760585510)
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="UTF-8"?>
++
++<?import java.lang.*?>
++<?import java.util.*?>
++<?import javafx.scene.*?>
++<?import javafx.scene.control.*?>
++<?import javafx.scene.layout.*?>
++
++<AnchorPane xmlns="http://javafx.com/javafx"
++            xmlns:fx="http://javafx.com/fxml"
++            fx:controller="Gui.TelaInicialController"
++            prefHeight="800.0" prefWidth="1000.0">
++
++</AnchorPane>
+Index: src/main/java/Negocio/Caixa.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Negocio;\r\n\r\npublic class Caixa {\r\n    private Pedido pedido;\r\n    private double total;\r\n\r\n    public Caixa(Pedido pedido) {\r\n        this.pedido = pedido;\r\n        this.total = 0.0;\r\n    }\r\n\r\n    public double calcularTotal() {\r\n        double totalProdutos = pedido.calcularTotal();\r\n        double valorPromocao = aplicarPromocao();\r\n        double taxaEntrega = calcularTaxaEntrega();\r\n        total = totalProdutos - valorPromocao + taxaEntrega;\r\n        return total;\r\n    }\r\n\r\n    private double calcularTaxaEntrega() {\r\n        Entrega entrega = pedido.getEntrega();\r\n        if (entrega != null) {\r\n            return entrega.getTaxaEntrega();\r\n        }\r\n        return 0.0;\r\n    }\r\n\r\n    private double aplicarPromocao() {\r\n        Promocao promocao = pedido.getPromocao();\r\n        Cliente cliente = pedido.getCliente();\r\n        if (promocao != null && cliente != null) {\r\n            return promocao.aplicarPromocao(pedido, cliente);\r\n        }\r\n        return 0.0;\r\n    }\r\n\r\n    public void processarPagamento(int galeoes, int sicles, int nuques) {\r\n        Pagamento pagamento = new Pagamento(1, pedido, (int) total); \r\n        if (pagamento.processarPagamento(galeoes, sicles, nuques)) {\r\n            System.out.println(\"Pagamento realizado com sucesso!\");\r\n        } else {\r\n            System.out.println(\"Falha no pagamento.\");\r\n        }\r\n    }\r\n\r\n    public double getTotal() {\r\n        return total;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Negocio/Caixa.java b/src/main/java/Negocio/Caixa.java
+--- a/src/main/java/Negocio/Caixa.java	(revision b2a96e51e9a149b8d92527c9ea5b0745ac7b2343)
++++ b/src/main/java/Negocio/Caixa.java	(date 1725760683881)
+@@ -1,5 +1,5 @@
+ package Negocio;
+-
++/*
+ public class Caixa {
+     private Pedido pedido;
+     private double total;
+@@ -47,3 +47,4 @@
+         return total;
+     }
+ }
++*/
+\ No newline at end of file
+Index: src/main/java/Negocio/Promocao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Negocio;\r\n\r\npublic class Promocao {\r\n    private int idPromocao;\r\n    private String descricao;\r\n    private double percentualDesconto;\r\n\r\n    public Promocao(int idPromocao, String descricao, double percentualDesconto) {\r\n        this.idPromocao = idPromocao;\r\n        this.descricao = descricao;\r\n        this.percentualDesconto = percentualDesconto;\r\n    }\r\n\r\n    public double aplicarPromocao(Pedido pedido, Cliente cliente) {\r\n        double desconto5Porcento = 0.0;\r\n        double desconto10Porcento = 0.0;\r\n\r\n        if (Moeda.nuquesParaGaleoes((int) pedido.getTotal()) >= 100) {\r\n            desconto5Porcento = pedido.getTotal() * 0.05;\r\n        }\r\n\r\n        if (cliente.getHistoricoCompras().size() >= 3) {\r\n            desconto10Porcento = pedido.getTotal() * 0.10;\r\n        }\r\n\r\n        if (desconto10Porcento > desconto5Porcento) {\r\n            return pedido.getTotal() - desconto10Porcento;\r\n        } else {\r\n            return pedido.getTotal() - desconto5Porcento;\r\n        }\r\n    }\r\n\r\n    public boolean validarPromocao() {\r\n        return percentualDesconto > 0;\r\n    }\r\n\r\n    // Getters e Setters\r\n    public int getIdPromocao() {\r\n        return idPromocao;\r\n    }\r\n\r\n    public void setIdPromocao(int idPromocao) {\r\n        this.idPromocao = idPromocao;\r\n    }\r\n\r\n    public String getDescricao() {\r\n        return descricao;\r\n    }\r\n\r\n    public void setDescricao(String descricao) {\r\n        this.descricao = descricao;\r\n    }\r\n\r\n    public double getPercentualDesconto() {\r\n        return percentualDesconto;\r\n    }\r\n\r\n    public void setPercentualDesconto(double percentualDesconto) {\r\n        this.percentualDesconto = percentualDesconto;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Negocio/Promocao.java b/src/main/java/Negocio/Promocao.java
+--- a/src/main/java/Negocio/Promocao.java	(revision b2a96e51e9a149b8d92527c9ea5b0745ac7b2343)
++++ b/src/main/java/Negocio/Promocao.java	(date 1725660659476)
+@@ -31,6 +31,7 @@
+     }
+ 
+     public boolean validarPromocao() {
++
+         return percentualDesconto > 0;
+     }
+ 
+Index: src/main/java/module-info.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>module com.potionsemporium.potions_emporium2 {\r\n    requires javafx.controls;\r\n    requires javafx.fxml;\r\n    requires javafx.web;\r\n\r\n    requires org.controlsfx.controls;\r\n    requires net.synedra.validatorfx;\r\n    requires org.kordamp.ikonli.javafx;\r\n    requires org.kordamp.bootstrapfx.core;\r\n    requires eu.hansolo.tilesfx;\r\n\r\n    opens com.potionsemporium.potions_emporium2 to javafx.fxml;\r\n    exports com.potionsemporium.potions_emporium2;\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/module-info.java b/src/main/java/module-info.java
+--- a/src/main/java/module-info.java	(revision b2a96e51e9a149b8d92527c9ea5b0745ac7b2343)
++++ b/src/main/java/module-info.java	(date 1725760640535)
+@@ -10,5 +10,6 @@
+     requires eu.hansolo.tilesfx;
+ 
+     opens com.potionsemporium.potions_emporium2 to javafx.fxml;
+-    exports com.potionsemporium.potions_emporium2;
++    exports Gui;
++    opens Gui to javafx.fxml;
+ }
+\ No newline at end of file
+Index: src/main/java/Gui/TelaInicialController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Gui/TelaInicialController.java b/src/main/java/Gui/TelaInicialController.java
+new file mode 100644
+--- /dev/null	(date 1725760096331)
++++ b/src/main/java/Gui/TelaInicialController.java	(date 1725760096331)
+@@ -0,0 +1,4 @@
++package Gui;
++
++public class TelaInicialController {
++}
+Index: src/main/java/Negocio/Pagamento.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Negocio;\r\n\r\npublic class Pagamento {\r\n\r\n    private int idPagamento;\r\n    private Pedido pedido;\r\n    private int valor;\r\n    private boolean pagamentoProcessado;\r\n\r\n    public Pagamento(int idPagamento, Pedido pedido, int valor) {\r\n        this.idPagamento = idPagamento;\r\n        this.pedido = pedido;\r\n        this.valor = valor;\r\n        this.pagamentoProcessado = false;\r\n    }\r\n\r\n    public boolean processarPagamento(int galeoes, int sicles, int nuques) {\r\n        int totalNuquesRecebidos = Moeda.galeoesParaNuques(galeoes)\r\n                + Moeda.siclesParaNuques(sicles)\r\n                + nuques;\r\n\r\n        if (totalNuquesRecebidos >= valor) {\r\n            pagamentoProcessado = true;\r\n            int troco = totalNuquesRecebidos - valor;\r\n            distribuirTroco(troco);\r\n            return true;\r\n        } else {\r\n            System.out.println(\"Pagamento insuficiente. Faltam \"\r\n                    + (valor - totalNuquesRecebidos) + \" Nuques.\");\r\n            return false;\r\n        }\r\n    }\r\n\r\n    public boolean validarPagamento() {\r\n        return pagamentoProcessado;\r\n    }\r\n\r\n    private void distribuirTroco(int troco) {\r\n        int galeoes = Moeda.nuquesParaGaleoes(troco);\r\n        int trocoRestante = troco - Moeda.galeoesParaNuques(galeoes);\r\n\r\n        int sicles = Moeda.nuquesParaSicles(trocoRestante);\r\n        trocoRestante -= Moeda.siclesParaNuques(sicles);\r\n\r\n        int nuques = trocoRestante;\r\n    }\r\n\r\n    public int getIdPagamento() {\r\n        return idPagamento;\r\n    }\r\n\r\n    public void setIdPagamento(int idPagamento) {\r\n        this.idPagamento = idPagamento;\r\n    }\r\n\r\n    public Pedido getPedido() {\r\n        return pedido;\r\n    }\r\n\r\n    public void setPedido(Pedido pedido) {\r\n        this.pedido = pedido;\r\n    }\r\n\r\n    public int getValor() {\r\n        return valor;\r\n    }\r\n\r\n    public void setValor(int valor) {\r\n        this.valor = valor;\r\n    }\r\n\r\n    public boolean isPagamentoProcessado() {\r\n        return pagamentoProcessado;\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Negocio/Pagamento.java b/src/main/java/Negocio/Pagamento.java
+--- a/src/main/java/Negocio/Pagamento.java	(revision b2a96e51e9a149b8d92527c9ea5b0745ac7b2343)
++++ b/src/main/java/Negocio/Pagamento.java	(date 1725661055939)
+@@ -43,6 +43,8 @@
+         trocoRestante -= Moeda.siclesParaNuques(sicles);
+ 
+         int nuques = trocoRestante;
++
++        System.out.println("Troco: " + galeoes + " Galeões, " + sicles + " Sicles, " + nuques + " Nuques.");
+     }
+ 
+     public int getIdPagamento() {
+@@ -73,4 +75,4 @@
+         return pagamentoProcessado;
+     }
+ 
+-}
+\ No newline at end of file
++}
+Index: src/main/java/Gui/PotionsEmporiumApplication.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Gui/PotionsEmporiumApplication.java b/src/main/java/Gui/PotionsEmporiumApplication.java
+new file mode 100644
+--- /dev/null	(date 1725834170921)
++++ b/src/main/java/Gui/PotionsEmporiumApplication.java	(date 1725834170921)
+@@ -0,0 +1,24 @@
++package Gui;
++
++import javafx.application.Application;
++import javafx.fxml.FXMLLoader;
++import javafx.scene.Scene;
++import javafx.stage.Stage;
++import java.io.IOException;
++
++public class PotionsEmporiumApplication extends Application {
++
++    public static void main(String[] args) {
++        launch(args);
++    }
++
++    @Override
++    public void start(Stage janelaPrincipal) throws IOException {
++        FXMLLoader carregarFXML = new FXMLLoader(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-inicial.fxml"));
++        Scene tela = new Scene(carregarFXML.load(), 320, 240);
++        janelaPrincipal.setTitle("Potions Emporium");
++        janelaPrincipal.setScene(tela);
++        janelaPrincipal.show();
++    }
++
++}

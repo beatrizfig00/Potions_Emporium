@@ -1,0 +1,2945 @@
+Index: src/main/resources/com/potionsemporium/potions_emporium2/hello-view.fxml
+===================================================================
+diff --git a/src/main/resources/com/potionsemporium/potions_emporium2/hello-view.fxml b/src/main/resources/com/potionsemporium/potions_emporium2/hello-view.fxml
+deleted file mode 100644
+--- a/src/main/resources/com/potionsemporium/potions_emporium2/hello-view.fxml	
++++ /dev/null	
+@@ -1,16 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-
+-<?import javafx.geometry.Insets?>
+-<?import javafx.scene.control.Label?>
+-<?import javafx.scene.layout.VBox?>
+-
+-<?import javafx.scene.control.Button?>
+-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+-      fx:controller="com.potionsemporium.potions_emporium2.HelloController">
+-    <padding>
+-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+-    </padding>
+-
+-    <Label fx:id="welcomeText"/>
+-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+-</VBox>
+Index: src/main/java/com/potionsemporium/potions_emporium2/HelloApplication.java
+===================================================================
+diff --git a/src/main/java/com/potionsemporium/potions_emporium2/HelloApplication.java b/src/main/java/com/potionsemporium/potions_emporium2/HelloApplication.java
+deleted file mode 100644
+--- a/src/main/java/com/potionsemporium/potions_emporium2/HelloApplication.java	
++++ /dev/null	
+@@ -1,23 +0,0 @@
+-package com.potionsemporium.potions_emporium2;
+-
+-import javafx.application.Application;
+-import javafx.fxml.FXMLLoader;
+-import javafx.scene.Scene;
+-import javafx.stage.Stage;
+-
+-import java.io.IOException;
+-
+-public class HelloApplication extends Application {
+-    @Override
+-    public void start(Stage stage) throws IOException {
+-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+-        stage.setTitle("Hello!");
+-        stage.setScene(scene);
+-        stage.show();
+-    }
+-
+-    public static void main(String[] args) {
+-        launch();
+-    }
+-}
+\ No newline at end of file
+Index: src/main/java/com/potionsemporium/potions_emporium2/HelloController.java
+===================================================================
+diff --git a/src/main/java/com/potionsemporium/potions_emporium2/HelloController.java b/src/main/java/com/potionsemporium/potions_emporium2/HelloController.java
+deleted file mode 100644
+--- a/src/main/java/com/potionsemporium/potions_emporium2/HelloController.java	
++++ /dev/null	
+@@ -1,14 +0,0 @@
+-package com.potionsemporium.potions_emporium2;
+-
+-import javafx.fxml.FXML;
+-import javafx.scene.control.Label;
+-
+-public class HelloController {
+-    @FXML
+-    private Label welcomeText;
+-
+-    @FXML
+-    protected void onHelloButtonClick() {
+-        welcomeText.setText("Welcome to JavaFX Application!");
+-    }
+-}
+\ No newline at end of file
+Index: src/main/java/Negocio/Endereco.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Negocio;\r\n\r\npublic class Endereco {\r\n    private String rua;\r\n    private String cidade;\r\n    private int numero;\r\n\r\n    public Endereco(String rua, String cidade, int numero) {\r\n        this.rua = rua;\r\n        this.cidade = cidade;\r\n        this.numero = numero;\r\n    }\r\n\r\n    public String getRua() {\r\n        return rua;\r\n    }\r\n\r\n    public void setRua(String rua) {\r\n        this.rua = rua;\r\n    }\r\n\r\n    public String getCidade() {\r\n        return cidade;\r\n    }\r\n\r\n    public void setCidade(String cidade) {\r\n        this.cidade = cidade;\r\n    }\r\n\r\n    public int getNumero() {\r\n        return numero;\r\n    }\r\n\r\n    public void setNumero(int numero) {\r\n        this.numero = numero;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return STR.\"Endereço: \\{rua}, \\{numero} - \\{cidade}\";\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Negocio/Endereco.java b/src/main/java/Negocio/Endereco.java
+--- a/src/main/java/Negocio/Endereco.java	
++++ b/src/main/java/Negocio/Endereco.java	
+@@ -35,8 +35,4 @@
+         this.numero = numero;
+     }
+ 
+-    @Override
+-    public String toString() {
+-        return STR."Endereço: \{rua}, \{numero} - \{cidade}";
+-    }
+-}
++ }
+Index: src/main/java/Negocio/Loja.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Negocio;\r\n\r\nimport Exceptions.DadosInvalidosException;\r\nimport Exceptions.ItemNaoEncontradoException;\r\n\r\nimport java.util.List;\r\nimport java.util.Map;\r\n\r\npublic class Loja {\r\n    private Estoque estoque;\r\n    private List<Pedido> pedidos;\r\n\r\n    public Loja(Estoque estoque, List<Pedido> pedidos) {\r\n        this.estoque = estoque;\r\n        this.pedidos = pedidos;\r\n    }\r\n\r\n    public void adicionarProdutoAoEstoque(Produto produto, int quantidade) throws DadosInvalidosException {\r\n        if (quantidade < 0) {\r\n            throw new DadosInvalidosException(\"A quantidade para adicionar ao estoque não pode ser negativa.\");\r\n        }\r\n        estoque.adicionarProduto(produto, quantidade);\r\n    }\r\n\r\n    public void removerProdutoDoEstoque(Produto produto, int quantidade) throws DadosInvalidosException, ItemNaoEncontradoException {\r\n        if (quantidade < 0) {\r\n            throw new DadosInvalidosException(\"A quantidade para remover do estoque não pode ser negativa.\");\r\n        }\r\n        estoque.removerProduto(produto, quantidade);\r\n    }\r\n\r\n    public int verificarEstoque(Produto produto) {\r\n        try {\r\n            return estoque.getQuantidade(produto);\r\n        } catch (ItemNaoEncontradoException e) {\r\n            return 0;\r\n        }\r\n    }\r\n\r\n    public void registrarPedido(Pedido pedido) throws DadosInvalidosException {\r\n        for (Map.Entry<Produto, Integer> entry : pedido.getItens().entrySet()) {\r\n            Produto produto = entry.getKey();\r\n            int quantidadeNoPedido = entry.getValue();\r\n            if (verificarEstoque(produto) < quantidadeNoPedido) {\r\n                throw new DadosInvalidosException(STR.\"Estoque insuficiente para o produto: \\{produto.getNome()}\");\r\n            }\r\n        }\r\n\r\n        for (Map.Entry<Produto, Integer> entry : pedido.getItens().entrySet()) {\r\n            Produto produto = entry.getKey();\r\n            int quantidade = entry.getValue();\r\n            try {\r\n                removerProdutoDoEstoque(produto, quantidade);\r\n            } catch (ItemNaoEncontradoException e) {\r\n                System.out.println(STR.\"Erro ao remover produto do estoque: \\{e.getMessage()}\");\r\n                throw new DadosInvalidosException(STR.\"Erro ao remover produto do estoque: \\{e.getMessage()}\");\r\n            }\r\n        }\r\n\r\n        pedidos.add(pedido);\r\n        System.out.println(STR.\"Pedido registrado com sucesso. Total com desconto: \\{pedido.getTotal()}\");\r\n    }\r\n\r\n    public List<Pedido> getHistoricoPedidos() {\r\n        return pedidos;\r\n    }\r\n\r\n    public Map<Produto, Integer> getEstoqueAtual() {\r\n        return estoque.getProdutos();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Negocio/Loja.java b/src/main/java/Negocio/Loja.java
+--- a/src/main/java/Negocio/Loja.java	
++++ b/src/main/java/Negocio/Loja.java	
+@@ -1,8 +1,5 @@
+ package Negocio;
+-
+-import Exceptions.DadosInvalidosException;
+-import Exceptions.ItemNaoEncontradoException;
+-
++/*
+ import java.util.List;
+ import java.util.Map;
+ 
+@@ -15,46 +12,31 @@
+         this.pedidos = pedidos;
+     }
+ 
+-    public void adicionarProdutoAoEstoque(Produto produto, int quantidade) throws DadosInvalidosException {
+-        if (quantidade < 0) {
+-            throw new DadosInvalidosException("A quantidade para adicionar ao estoque não pode ser negativa.");
+-        }
++    public void adicionarProdutoAoEstoque(Produto produto, int quantidade) {
+         estoque.adicionarProduto(produto, quantidade);
+     }
+ 
+-    public void removerProdutoDoEstoque(Produto produto, int quantidade) throws DadosInvalidosException, ItemNaoEncontradoException {
+-        if (quantidade < 0) {
+-            throw new DadosInvalidosException("A quantidade para remover do estoque não pode ser negativa.");
+-        }
++    public void removerProdutoDoEstoque(Produto produto, int quantidade) throws Exception {
+         estoque.removerProduto(produto, quantidade);
+     }
+ 
+     public int verificarEstoque(Produto produto) {
+-        try {
+-            return estoque.getQuantidade(produto);
+-        } catch (ItemNaoEncontradoException e) {
+-            return 0;
+-        }
++        return estoque.verificarDisponibilidade(produto);
+     }
+ 
+-    public void registrarPedido(Pedido pedido) throws DadosInvalidosException {
++    public void registrarPedido(Pedido pedido) throws Exception {
+         for (Map.Entry<Produto, Integer> entry : pedido.getItens().entrySet()) {
+             Produto produto = entry.getKey();
+             int quantidadeNoPedido = entry.getValue();
+             if (verificarEstoque(produto) < quantidadeNoPedido) {
+-                throw new DadosInvalidosException(STR."Estoque insuficiente para o produto: \{produto.getNome()}");
++                throw new Exception(STR."Estoque insuficiente para o produto: \{produto.getNome()}");
+             }
+         }
+ 
+         for (Map.Entry<Produto, Integer> entry : pedido.getItens().entrySet()) {
+             Produto produto = entry.getKey();
+             int quantidade = entry.getValue();
+-            try {
+-                removerProdutoDoEstoque(produto, quantidade);
+-            } catch (ItemNaoEncontradoException e) {
+-                System.out.println(STR."Erro ao remover produto do estoque: \{e.getMessage()}");
+-                throw new DadosInvalidosException(STR."Erro ao remover produto do estoque: \{e.getMessage()}");
+-            }
++            removerProdutoDoEstoque(produto, quantidade);
+         }
+ 
+         pedidos.add(pedido);
+@@ -69,3 +51,4 @@
+         return estoque.getProdutos();
+     }
+ }
++*/
+\ No newline at end of file
+Index: src/main/java/Negocio/Estoque.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Negocio;\r\n\r\nimport Exceptions.ItemNaoEncontradoException;\r\n\r\nimport java.util.HashMap;\r\nimport java.util.Map;\r\n\r\npublic class Estoque {\r\n    private final Map<Produto, Integer> produtos;\r\n\r\n    public Estoque() {\r\n        this.produtos = new HashMap<>();\r\n    }\r\n\r\n    public void adicionarProduto(Produto produto, int quantidade) {\r\n        produtos.put(produto, produtos.getOrDefault(produto, 0) + quantidade);\r\n        System.out.println(STR.\"Produto adicionado: \\{produto.getNome()} - Quantidade: \\{quantidade}\");\r\n    }\r\n\r\n    public void removerProduto(Produto produto, int quantidade) throws ItemNaoEncontradoException {\r\n        int quantidadeAtual = produtos.getOrDefault(produto, 0);\r\n        if (quantidadeAtual >= quantidade) {\r\n            if (quantidadeAtual == quantidade) {\r\n                produtos.remove(produto);\r\n                System.out.println(STR.\"Produto removido: \\{produto.getNome()}\");\r\n            } else {\r\n                produtos.put(produto, quantidadeAtual - quantidade);\r\n                System.out.println(STR.\"Produto atualizado: \\{produto.getNome()} - Quantidade restante: \\{quantidadeAtual - quantidade}\");\r\n            }\r\n        } else {\r\n            throw new ItemNaoEncontradoException(\"Quantidade insuficiente para remover.\");\r\n        }\r\n    }\r\n\r\n    public void listarProdutos() {\r\n        if (produtos.isEmpty()) {\r\n            System.out.println(\"O estoque está vazio.\");\r\n        } else {\r\n            System.out.println(\"Produtos no estoque:\");\r\n            for (Map.Entry<Produto, Integer> entry : produtos.entrySet()) {\r\n                Produto produto = entry.getKey();\r\n                Integer quantidade = entry.getValue();\r\n                System.out.println(STR.\"Produto: \\{produto.getNome()} - Quantidade: \\{quantidade}\");\r\n            }\r\n        }\r\n    }\r\n\r\n    public int getQuantidade(Produto produto) throws ItemNaoEncontradoException {\r\n        if (produtos.containsKey(produto)) {\r\n            return produtos.get(produto);\r\n        } else {\r\n            throw new ItemNaoEncontradoException(\"Produto não encontrado no estoque.\");\r\n        }\r\n    }\r\n\r\n    public Map<Produto, Integer> getProdutos() {\r\n        return new HashMap<>(produtos);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Negocio/Estoque.java b/src/main/java/Negocio/Estoque.java
+--- a/src/main/java/Negocio/Estoque.java	
++++ b/src/main/java/Negocio/Estoque.java	
+@@ -1,7 +1,5 @@
+ package Negocio;
+-
+-import Exceptions.ItemNaoEncontradoException;
+-
++/*
+ import java.util.HashMap;
+ import java.util.Map;
+ 
+@@ -17,7 +15,7 @@
+         System.out.println(STR."Produto adicionado: \{produto.getNome()} - Quantidade: \{quantidade}");
+     }
+ 
+-    public void removerProduto(Produto produto, int quantidade) throws ItemNaoEncontradoException {
++    public void removerProduto(Produto produto, int quantidade) throws Exception {
+         int quantidadeAtual = produtos.getOrDefault(produto, 0);
+         if (quantidadeAtual >= quantidade) {
+             if (quantidadeAtual == quantidade) {
+@@ -28,7 +26,7 @@
+                 System.out.println(STR."Produto atualizado: \{produto.getNome()} - Quantidade restante: \{quantidadeAtual - quantidade}");
+             }
+         } else {
+-            throw new ItemNaoEncontradoException("Quantidade insuficiente para remover.");
++            throw new Exception("Quantidade insuficiente para remover.");
+         }
+     }
+ 
+@@ -39,21 +37,18 @@
+             System.out.println("Produtos no estoque:");
+             for (Map.Entry<Produto, Integer> entry : produtos.entrySet()) {
+                 Produto produto = entry.getKey();
+-                Integer quantidade = entry.getValue();
+-                System.out.println(STR."Produto: \{produto.getNome()} - Quantidade: \{quantidade}");
++                int quantidade = entry.getValue();
++                System.out.println(STR."\{produto.getNome()} - Quantidade: \{quantidade}");
+             }
+         }
+     }
+ 
+-    public int getQuantidade(Produto produto) throws ItemNaoEncontradoException {
+-        if (produtos.containsKey(produto)) {
+-            return produtos.get(produto);
+-        } else {
+-            throw new ItemNaoEncontradoException("Produto não encontrado no estoque.");
+-        }
++    public int verificarDisponibilidade(Produto produto) {
++        return produtos.getOrDefault(produto, 0);
+     }
+ 
+     public Map<Produto, Integer> getProdutos() {
+-        return new HashMap<>(produtos);
++        return produtos;
+     }
+ }
++*/
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_X\" default=\"true\" project-jdk-name=\"openjdk-22\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	
++++ b/.idea/misc.xml	
+@@ -8,7 +8,7 @@
+       </list>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="openjdk-22" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_22" default="true" project-jdk-name="openjdk-22" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: src/main/resources/com/potionsemporium/potions_emporium2/tela-carrinho.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/com/potionsemporium/potions_emporium2/tela-carrinho.fxml b/src/main/resources/com/potionsemporium/potions_emporium2/tela-carrinho.fxml
+new file mode 100644
+--- /dev/null	
++++ b/src/main/resources/com/potionsemporium/potions_emporium2/tela-carrinho.fxml	
+@@ -0,0 +1,52 @@
++<?xml version="1.0" encoding="UTF-8"?>
++
++<?import javafx.scene.control.Button?>
++<?import javafx.scene.control.Label?>
++<?import javafx.scene.control.ListView?>
++<?import javafx.scene.image.Image?>
++<?import javafx.scene.image.ImageView?>
++<?import javafx.scene.layout.Pane?>
++<?import javafx.scene.text.Font?>
++
++
++<Pane prefHeight="700.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.TelaCarrinhoController">
++   <children>
++      <ImageView fitHeight="288.0" fitWidth="305.0" layoutX="494.0" layoutY="-33.0">
++         <image>
++            <Image url="@imagens/Potions_Emporium_icone.png" />
++         </image>
++      </ImageView>
++      <Button layoutX="1065.0" layoutY="26.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="188.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Voltar" textFill="#ccb373"  fx:id="botaoVoltar">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Label layoutX="494.0" layoutY="368.0" text="Total R$:" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Label>
++      <Label layoutX="610.0" layoutY="365.0" prefHeight="35.0" prefWidth="173.0" style="-fx-border-color: #ccb373;" textFill="WHITE" fx:id="totalLabel"/>
++      <Button layoutX="546.0" layoutY="621.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="188.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Caixa" textFill="#ccb373" fx:id="botaoCaixa" >
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Label layoutX="359.0" layoutY="629.0" text="Deseja ir para o" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Label>
++      <Label layoutX="177.0" layoutY="57.0" text="Produtos" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Label>
++      <ListView layoutX="46.0" layoutY="95.0" prefHeight="485.0" prefWidth="360.0" fx:id="carrinhoListView"/>
++      <ImageView fitHeight="345.0" fitWidth="367.0" layoutX="886.0" layoutY="330.0">
++         <image>
++            <Image url="@imagens/vassoura.png" />
++         </image>
++      </ImageView>
++   </children>
++</Pane>
+Index: src/main/java/Negocio/Relatorio.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Negocio;\r\n\r\nimport Exceptions.RelatoriosException;\r\n\r\nimport java.util.HashMap;\r\nimport java.util.List;\r\nimport java.util.Map;\r\n\r\npublic class Relatorio {\r\n    private List<Pedido> pedidos;\r\n    private double totalVendas;\r\n    private Map<Produto, Integer> produtosVendidos;\r\n\r\n    public Relatorio(List<Pedido> pedidos) throws RelatoriosException {\r\n        if (pedidos == null) {\r\n            throw new RelatoriosException(\"Lista de pedidos não pode ser nula.\");\r\n        }\r\n        this.pedidos = pedidos;\r\n        this.produtosVendidos = new HashMap<>();\r\n        this.totalVendas = calcularTotalVendas();\r\n    }\r\n\r\n    private double calcularTotalVendas() throws RelatoriosException {\r\n        double total = 0.0;\r\n\r\n        try {\r\n            for (Pedido pedido : pedidos) {\r\n                total += pedido.getTotal();\r\n\r\n                for (Map.Entry<Produto, Integer> item : pedido.getItens().entrySet()) {\r\n                    Produto produto = item.getKey();\r\n                    int quantidade = item.getValue();\r\n\r\n                    produtosVendidos.put(produto, produtosVendidos.getOrDefault(produto, 0) + quantidade);\r\n                }\r\n            }\r\n        } catch (Exception e) {\r\n            throw new RelatoriosException(STR.\"Erro ao calcular o total de vendas: \\{e.getMessage()}\");\r\n        }\r\n\r\n        return total;\r\n    }\r\n\r\n    public void gerarRelatorio() throws RelatoriosException {\r\n        if (pedidos == null || pedidos.isEmpty()) {\r\n            throw new RelatoriosException(\"Não há pedidos para gerar o relatório.\");\r\n        }\r\n\r\n        try {\r\n            System.out.println(\"----- Relatório de Vendas -----\");\r\n\r\n            for (Pedido pedido : pedidos) {\r\n                System.out.println(STR.\"Pedido ID: \\{pedido.getIdPedido()}\");\r\n                System.out.println(STR.\"Cliente: \\{pedido.getCliente().getNome()}\");\r\n                System.out.println(STR.\"Status do Pedido: \\{pedido.getStatusPedido()}\");\r\n\r\n                for (Map.Entry<Produto, Integer> item : pedido.getItens().entrySet()) {\r\n                    Produto produto = item.getKey();\r\n                    int quantidade = item.getValue();\r\n                    System.out.println(STR.\"Produto: \\{produto.getNome()} | Quantidade: \\{quantidade} | Preço: \\{produto.getPreco()}\");\r\n                }\r\n\r\n                System.out.println(STR.\"Total do Pedido: \\{pedido.getTotal()}\");\r\n                System.out.println(\"------------------------------\");\r\n            }\r\n\r\n            System.out.println(STR.\"Total Geral de Vendas: \\{totalVendas}\");\r\n\r\n            System.out.println(\"----- Produtos Vendidos -----\");\r\n            for (Map.Entry<Produto, Integer> entry : produtosVendidos.entrySet()) {\r\n                Produto produto = entry.getKey();\r\n                int quantidade = entry.getValue();\r\n                System.out.println(STR.\"Produto: \\{produto.getNome()} | Quantidade Total Vendida: \\{quantidade}\");\r\n            }\r\n            System.out.println(\"------------------------------\");\r\n        } catch (Exception e) {\r\n            throw new RelatoriosException(STR.\"Erro ao gerar o relatório: \\{e.getMessage()}\");\r\n        }\r\n    }\r\n\r\n    public double getTotalVendas() {\r\n        return totalVendas;\r\n    }\r\n\r\n    public Map<Produto, Integer> getProdutosVendidos() {\r\n        return produtosVendidos;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Negocio/Relatorio.java b/src/main/java/Negocio/Relatorio.java
+--- a/src/main/java/Negocio/Relatorio.java	
++++ b/src/main/java/Negocio/Relatorio.java	
+@@ -1,5 +1,5 @@
+ package Negocio;
+-
++/*
+ import Exceptions.RelatoriosException;
+ 
+ import java.util.HashMap;
+@@ -86,3 +86,4 @@
+         return produtosVendidos;
+     }
+ }
++*/
+\ No newline at end of file
+Index: src/main/resources/com/potionsemporium/potions_emporium2/tela-adm.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/com/potionsemporium/potions_emporium2/tela-adm.fxml b/src/main/resources/com/potionsemporium/potions_emporium2/tela-adm.fxml
+new file mode 100644
+--- /dev/null	
++++ b/src/main/resources/com/potionsemporium/potions_emporium2/tela-adm.fxml	
+@@ -0,0 +1,40 @@
++<?xml version="1.0" encoding="UTF-8"?>
++
++<?import javafx.scene.control.Button?>
++<?import javafx.scene.control.Label?>
++<?import javafx.scene.control.PasswordField?>
++<?import javafx.scene.image.Image?>
++<?import javafx.scene.image.ImageView?>
++<?import javafx.scene.layout.Pane?>
++<?import javafx.scene.text.Font?>
++
++<Pane prefHeight="700.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.TelaAdmController">
++   <children>
++      <Button layoutX="1075.0" layoutY="620.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="188.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Entrar" textFill="#ccb373" onAction="#entrar" fx:id="entrarButton">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Button layoutX="28.0" layoutY="32.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="309.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Voltar a Página Inicial" textFill="#ccb373" onAction="#voltarParaTelaPrincipal">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Label layoutX="380.0" layoutY="319.0" text="Digite sua senha de acesso!" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="30.0" />
++         </font>
++      </Label>
++      <PasswordField layoutX="473.0" layoutY="381.0" prefHeight="35.0" prefWidth="275.0" style="-fx-border-color: #ccb373;" fx:id="senhaField" />
++      <ImageView fitHeight="305.0" fitWidth="301.0" layoutX="987.0" layoutY="-37.0">
++         <image>
++            <Image url="@imagens/Potions_Emporium_icone.png" />
++         </image>
++      </ImageView>
++      <ImageView fitHeight="351.0" fitWidth="437.0" layoutX="7.0" layoutY="466.0">
++         <image>
++            <Image url="@imagens/castelo.png" />
++         </image>
++      </ImageView>
++   </children>
++</Pane>
+Index: src/main/java/Negocio/Promocao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Negocio;\r\n\r\nimport Exceptions.DadosInvalidosException;\r\n\r\npublic class Promocao {\r\n    private double percentualDesconto;\r\n\r\n    public Promocao(double percentualDesconto) throws DadosInvalidosException {\r\n        if (percentualDesconto < 0) {\r\n            throw new DadosInvalidosException(\"Percentual de desconto não pode ser negativo.\");\r\n        }\r\n        this.percentualDesconto = percentualDesconto;\r\n    }\r\n\r\n    public double calcularDesconto(double total) {\r\n        return total * percentualDesconto / 100;\r\n    }\r\n\r\n    public double aplicarPromocao(Pedido pedido) {\r\n        double total = pedido.getTotal();\r\n        Cliente cliente = pedido.getCliente();\r\n        double desconto = 0.0;\r\n\r\n        if (Moeda.nuquesParaGaleoes((int) total) >= 10) {\r\n            desconto = calcularDesconto(total);\r\n        }\r\n\r\n        if (cliente.getHistoricoCompras().size() >= 4) {\r\n            double descontoAdicional = total * 0.10;\r\n            if (descontoAdicional > desconto) {\r\n                desconto = descontoAdicional;\r\n            }\r\n        }\r\n\r\n        return desconto;\r\n    }\r\n\r\n    public boolean validarPromocao() {\r\n        return percentualDesconto > 0;\r\n    }\r\n\r\n    public double getPercentualDesconto() {\r\n        return percentualDesconto;\r\n    }\r\n\r\n    public void setPercentualDesconto(double percentualDesconto) throws DadosInvalidosException {\r\n        if (percentualDesconto < 0) {\r\n            throw new DadosInvalidosException(\"Percentual de desconto não pode ser negativo.\");\r\n        }\r\n        this.percentualDesconto = percentualDesconto;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Negocio/Promocao.java b/src/main/java/Negocio/Promocao.java
+--- a/src/main/java/Negocio/Promocao.java	
++++ b/src/main/java/Negocio/Promocao.java	
+@@ -36,6 +36,7 @@
+     }
+ 
+     public boolean validarPromocao() {
++
+         return percentualDesconto > 0;
+     }
+ 
+Index: src/main/java/Negocio/Pagamento.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Negocio;\r\n\r\nimport Exceptions.PagamentoInvalidoException;\r\nimport Exceptions.DadosInvalidosException;\r\n\r\npublic class Pagamento {\r\n\r\n    private int idPagamento;\r\n    private Pedido pedido;\r\n    private int valor;\r\n    private boolean pagamentoProcessado;\r\n\r\n    public Pagamento(int idPagamento, Pedido pedido, int valor) throws DadosInvalidosException, PagamentoInvalidoException {\r\n        if (pedido == null) {\r\n            throw new DadosInvalidosException(\"Pedido não pode ser nulo.\");\r\n        }\r\n        if (valor <= 0) {\r\n            throw new PagamentoInvalidoException(\"Valor do pagamento deve ser positivo.\");\r\n        }\r\n\r\n        this.idPagamento = idPagamento;\r\n        this.pedido = pedido;\r\n        this.valor = valor;\r\n        this.pagamentoProcessado = false;\r\n    }\r\n\r\n    public boolean processarPagamento(int galeoes, int sicles, int nuques) {\r\n        int totalNuquesRecebidos = Moeda.galeoesParaNuques(galeoes)\r\n                + Moeda.siclesParaNuques(sicles)\r\n                + nuques;\r\n\r\n        if (totalNuquesRecebidos >= valor) {\r\n            pagamentoProcessado = true;\r\n            int troco = totalNuquesRecebidos - valor;\r\n            distribuirTroco(troco);\r\n            return true;\r\n        } else {\r\n            System.out.println(STR.\"Pagamento insuficiente. Faltam \\{valor - totalNuquesRecebidos} Nuques.\");\r\n            return false;\r\n        }\r\n    }\r\n\r\n    public boolean validarPagamento() {\r\n        return pagamentoProcessado;\r\n    }\r\n\r\n    private void distribuirTroco(int troco) {\r\n        int galeoes = Moeda.nuquesParaGaleoes(troco);\r\n        int trocoRestante = troco - Moeda.galeoesParaNuques(galeoes);\r\n\r\n        int sicles = Moeda.nuquesParaSicles(trocoRestante);\r\n        trocoRestante -= Moeda.siclesParaNuques(sicles);\r\n\r\n        int nuques = trocoRestante;\r\n    }\r\n\r\n    public int getIdPagamento() {\r\n        return idPagamento;\r\n    }\r\n\r\n    public void setIdPagamento(int idPagamento) {\r\n        this.idPagamento = idPagamento;\r\n    }\r\n\r\n    public Pedido getPedido() {\r\n        return pedido;\r\n    }\r\n\r\n    public void setPedido(Pedido pedido) throws DadosInvalidosException {\r\n        if (pedido == null) {\r\n            throw new DadosInvalidosException(\"Pedido não pode ser nulo.\");\r\n        }\r\n        this.pedido = pedido;\r\n    }\r\n\r\n    public int getValor() {\r\n        return valor;\r\n    }\r\n\r\n    public void setValor(int valor) throws PagamentoInvalidoException {\r\n        if (valor <= 0) {\r\n            throw new PagamentoInvalidoException(\"Valor do pagamento deve ser positivo.\");\r\n        }\r\n        this.valor = valor;\r\n    }\r\n\r\n    public boolean isPagamentoProcessado() {\r\n        return pagamentoProcessado;\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Negocio/Pagamento.java b/src/main/java/Negocio/Pagamento.java
+--- a/src/main/java/Negocio/Pagamento.java	
++++ b/src/main/java/Negocio/Pagamento.java	
+@@ -35,7 +35,7 @@
+             distribuirTroco(troco);
+             return true;
+         } else {
+-            System.out.println(STR."Pagamento insuficiente. Faltam \{valor - totalNuquesRecebidos} Nuques.");
++     //       System.out.println(STR."Pagamento insuficiente. Faltam \{valor - totalNuquesRecebidos} Nuques.");
+             return false;
+         }
+     }
+Index: src/main/java/Gui/TelaCarrinhoController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Gui/TelaCarrinhoController.java b/src/main/java/Gui/TelaCarrinhoController.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Gui/TelaCarrinhoController.java	
+@@ -0,0 +1,96 @@
++package Gui;
++
++import javafx.event.ActionEvent;
++import javafx.fxml.FXML;
++import javafx.scene.control.Button;
++import javafx.scene.control.Label;
++import javafx.scene.control.ListView;
++import javafx.scene.control.Alert;
++import javafx.scene.Scene;
++import javafx.scene.Parent;
++import javafx.scene.Node;
++import javafx.stage.Stage;
++import javafx.fxml.FXMLLoader;
++
++import java.io.IOException;
++import java.util.List;
++
++public class TelaCarrinhoController {
++
++    @FXML
++    private ListView<String> carrinhoListView; // Exibe os produtos no carrinho
++    @FXML
++    private Button botaoCaixa; // Botão para ir à tela de caixa
++    @FXML
++    private Button botaoVoltar; // Botão para voltar
++    @FXML
++    private Label totalLabel; // Exibe o total do carrinho
++
++    private static List<String> produtosNoCarrinho; // Lista de produtos no carrinho (deve ser inicializada de outra forma no seu sistema)
++
++    @FXML
++    public void initialize() {
++        if (produtosNoCarrinho != null) {
++            carrinhoListView.getItems().addAll(produtosNoCarrinho);
++            atualizarTotal();
++        } else {
++            carrinhoListView.getItems().clear();
++            totalLabel.setText("R$ 0,00");
++        }
++    }
++
++    private void atualizarTotal() {
++        // Exemplo simples de cálculo do total, você deve adaptar conforme sua lógica de preços
++        double total = produtosNoCarrinho.stream()
++                .mapToDouble(produto -> obterPrecoProduto(produto))
++                .sum();
++
++        totalLabel.setText(String.format("R$ %.2f", total));
++    }
++
++    private double obterPrecoProduto(String produto) {
++        // Lógica para obter o preço de um produto. Deve ser adaptada conforme sua implementação.
++        // Exemplo fictício, substitua com a lógica real.
++        return 10.0; // Valor fixo para todos os produtos. Substitua com a lógica real.
++    }
++
++    @FXML
++    public void irParaCaixa(ActionEvent evento) {
++        try {
++            Parent telaCaixa = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-caixa.fxml"));
++            Scene cenaCaixa = new Scene(telaCaixa);
++            Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++            janela.setScene(cenaCaixa);
++            janela.show();
++        } catch (IOException e) {
++            e.printStackTrace();
++            Alert alerta = new Alert(Alert.AlertType.ERROR);
++            alerta.setTitle("Erro ao Ir para Caixa");
++            alerta.setHeaderText(null);
++            alerta.setContentText("Não foi possível carregar a tela de caixa.");
++            alerta.showAndWait();
++        }
++    }
++
++    @FXML
++    public void voltar(ActionEvent evento) {
++        try {
++            Parent telaProdutos = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-produtos.fxml"));
++            Scene cenaProdutos = new Scene(telaProdutos);
++            Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++            janela.setScene(cenaProdutos);
++            janela.show();
++        } catch (IOException e) {
++            e.printStackTrace();
++            Alert alerta = new Alert(Alert.AlertType.ERROR);
++            alerta.setTitle("Erro ao Voltar");
++            alerta.setHeaderText(null);
++            alerta.setContentText("Não foi possível carregar a tela de produtos.");
++            alerta.showAndWait();
++        }
++    }
++
++    public static void setProdutosNoCarrinho(List<String> produtos) {
++        produtosNoCarrinho = produtos;
++    }
++}
+Index: src/main/resources/com/potionsemporium/potions_emporium2/tela-adm-principal.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/com/potionsemporium/potions_emporium2/tela-adm-principal.fxml b/src/main/resources/com/potionsemporium/potions_emporium2/tela-adm-principal.fxml
+new file mode 100644
+--- /dev/null	
++++ b/src/main/resources/com/potionsemporium/potions_emporium2/tela-adm-principal.fxml	
+@@ -0,0 +1,48 @@
++<?xml version="1.0" encoding="UTF-8"?>
++
++<?import javafx.scene.control.Button?>
++<?import javafx.scene.control.Label?>
++<?import javafx.scene.image.Image?>
++<?import javafx.scene.image.ImageView?>
++<?import javafx.scene.layout.Pane?>
++<?import javafx.scene.text.Font?>
++
++<Pane prefHeight="700.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.TelaAdmPrincipalController">
++   <children>
++      <ImageView fitHeight="272.0" fitWidth="282.0" layoutX="16.0" layoutY="443.0">
++         <image>
++            <Image url="@imagens/chapeu.png" />
++         </image>
++      </ImageView>
++      <ImageView fitHeight="477.0" fitWidth="499.0" layoutX="167.0" layoutY="-21.0">
++         <image>
++            <Image url="@imagens/Potions_Emporium_icone.png" />
++         </image>
++      </ImageView>
++      <Button layoutX="560.0" layoutY="571.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="160.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Voltar" textFill="#ccb373" onAction="#voltarPaginaInicial">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Button layoutX="956.0" layoutY="195.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="206.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Estoque" textFill="#ccb373" onAction="#abrirEstoque">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Button layoutX="956.0" layoutY="457.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="206.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Clientes" textFill="#ccb373" onAction="#abrirClientes">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Button layoutX="956.0" layoutY="328.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="206.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Relatório" textFill="#ccb373" onAction="#abrirRelatorio">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Label layoutX="908.0" layoutY="96.0" text="Selecione a opção" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="30.0" />
++         </font>
++      </Label>
++   </children>
++</Pane>
+Index: src/main/java/Gui/TelaAdmController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Gui/TelaAdmController.java b/src/main/java/Gui/TelaAdmController.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Gui/TelaAdmController.java	
+@@ -0,0 +1,87 @@
++package Gui;
++
++import javafx.event.ActionEvent;
++import javafx.fxml.FXML;
++import javafx.fxml.FXMLLoader;
++import javafx.scene.Node;
++import javafx.scene.Parent;
++import javafx.scene.Scene;
++import javafx.scene.control.Alert;
++import javafx.scene.control.Button;
++import javafx.scene.control.Label;
++import javafx.scene.control.PasswordField;
++import javafx.scene.input.MouseEvent;
++import javafx.scene.layout.Pane;
++import javafx.stage.Stage;
++import java.io.IOException;
++
++public class TelaAdmController {
++
++    @FXML
++    private Button entrarButton;
++    @FXML
++    private Button voltarButton;
++    @FXML
++    private PasswordField senhaField;
++    @FXML
++    private Button botaoVoltar;
++
++    private static final String SENHA_CORRETA = "admin123";
++
++    @FXML
++    public void entrar(ActionEvent evento) {
++        String senha = senhaField.getText();
++        if (SENHA_CORRETA.equals(senha)) {
++            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
++            alerta.setTitle("Login Bem-Sucedido");
++            alerta.setHeaderText(null);
++            alerta.setContentText("Login realizado com sucesso!");
++            alerta.showAndWait();
++
++            try {
++                FXMLLoader carregarFXML = new FXMLLoader(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-adm-principal.fxml"));
++                Parent root = carregarFXML.load();
++                Stage janelaAtual  = (Stage) entrarButton.getScene().getWindow();
++
++                Stage novaJanela = new Stage();
++                novaJanela.setScene(new Scene(root));
++                novaJanela.setResizable(false);
++
++                novaJanela.show();
++                janelaAtual.close();
++            } catch (IOException e) {
++                e.printStackTrace();
++                Alert alertaErro = new Alert(Alert.AlertType.ERROR);
++                alertaErro.setTitle("Erro");
++                alertaErro.setHeaderText(null);
++                alertaErro.setContentText("Não foi possível carregar a tela principal.");
++                alertaErro.showAndWait();
++            }
++
++        } else {
++            Alert alerta = new Alert(Alert.AlertType.ERROR);
++            alerta.setTitle("Erro de Login");
++            alerta.setHeaderText(null);
++            alerta.setContentText("Senha incorreta. Tente novamente.");
++            alerta.showAndWait();
++        }
++    }
++
++    @FXML
++    public void voltarParaTelaPrincipal(ActionEvent evento) {
++        try {
++            Parent telaPrincipal = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-inicial.fxml"));
++            Stage janelaAtual = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++
++            Stage novaJanela = new Stage();
++            novaJanela.setScene(new Scene(telaPrincipal));
++            novaJanela.setResizable(false);
++
++            novaJanela.show();
++            janelaAtual.close();
++        } catch (IOException e) {
++            e.printStackTrace();
++        }
++    }
++
++}
+Index: src/main/resources/com/potionsemporium/potions_emporium2/tela-produtos.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/com/potionsemporium/potions_emporium2/tela-produtos.fxml b/src/main/resources/com/potionsemporium/potions_emporium2/tela-produtos.fxml
+new file mode 100644
+--- /dev/null	
++++ b/src/main/resources/com/potionsemporium/potions_emporium2/tela-produtos.fxml	
+@@ -0,0 +1,39 @@
++<?xml version="1.0" encoding="UTF-8"?>
++
++<?import javafx.scene.control.Button?>
++<?import javafx.scene.control.ListView?>
++<?import javafx.scene.image.Image?>
++<?import javafx.scene.image.ImageView?>
++<?import javafx.scene.layout.Pane?>
++<?import javafx.scene.text.Font?>
++
++<Pane prefHeight="700.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.TelaProdutosController">
++   <children>
++      <ImageView fitHeight="252.0" fitWidth="264.0" layoutX="-13.0" layoutY="-26.0">
++         <image>
++            <Image url="@imagens/Potions_Emporium_icone.png" />
++         </image>
++      </ImageView>
++      <Button layoutX="546.0" layoutY="605.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="188.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Voltar" textFill="#ccb373" fx:id="botaoVoltar" onAction="#voltar">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <ListView layoutX="274.0" layoutY="59.0" prefHeight="500.0" prefWidth="699.0" fx:id="produtosListView"/>
++      <ImageView fitHeight="252.0" fitWidth="252.0" layoutX="984.0" layoutY="448.0">
++         <image>
++            <Image url="@imagens/aros.png" />
++         </image>
++      </ImageView>
++      <Button layoutX="1226.0" layoutY="26.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="X" textFill="#ccb373" fx:id="botaoFechar" onAction="#encerrarPrograma">
++         <font>
++            <Font name="Arial Black" size="12.0" />
++         </font>
++      </Button>
++      <Button layoutX="26.0" layoutY="605.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="214.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Ir para Carrinho" textFill="#ccb373" fx:id="botaoIrParaCarrinho" onAction="#irParaCarrinho">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++   </children>
++</Pane>
+Index: src/main/java/Gui/TelaProdutosController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Gui/TelaProdutosController.java b/src/main/java/Gui/TelaProdutosController.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Gui/TelaProdutosController.java	
+@@ -0,0 +1,117 @@
++package Gui;
++
++import javafx.event.ActionEvent;
++import javafx.fxml.FXML;
++import javafx.scene.control.Alert;
++import javafx.scene.control.Button;
++import javafx.scene.control.ListView;
++import javafx.scene.control.SelectionMode;
++import javafx.scene.Scene;
++import javafx.scene.Parent;
++import javafx.scene.Node;
++import javafx.stage.Stage;
++import javafx.fxml.FXMLLoader;
++
++import java.io.BufferedReader;
++import java.io.FileReader;
++import java.io.IOException;
++import java.util.ArrayList;
++import java.util.List;
++
++public class TelaProdutosController {
++
++    @FXML
++    private ListView<String> produtosListView;
++    @FXML
++    private Button botaoIrParaCarrinho;
++    @FXML
++    private Button botaoVoltar;
++    @FXML
++    private Button botaoFechar;
++
++    private static final String ARQUIVO_PRODUTOS = "produtos.txt"; // Caminho para o arquivo de produtos
++
++    @FXML
++    public void initialize() {
++
++        produtosListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
++     //   carregarProdutosDoArquivo();
++        produtosListView.getItems().add("Poção de Cura");
++        produtosListView.getItems().add("vassoura");
++        produtosListView.getItems().add("bola");
++    }
++
++    private void carregarProdutosDoArquivo() {
++        List<String> produtos = new ArrayList<>();
++
++        try (BufferedReader reader = new BufferedReader(new FileReader(ARQUIVO_PRODUTOS))) {
++            String linha;
++            while ((linha = reader.readLine()) != null) {
++                produtos.add(linha);
++            }
++        } catch (IOException e) {
++            e.printStackTrace();
++            Alert alerta = new Alert(Alert.AlertType.ERROR);
++            alerta.setTitle("Erro ao Carregar Produtos");
++            alerta.setHeaderText(null);
++            alerta.setContentText("Não foi possível carregar os produtos. Verifique o arquivo.");
++            alerta.showAndWait();
++        }
++
++        produtosListView.getItems().addAll(produtos);
++    }
++
++    @FXML
++    public void irParaCarrinho(ActionEvent evento) {
++        List<String> produtosSelecionados = produtosListView.getSelectionModel().getSelectedItems();
++
++        if (produtosSelecionados.isEmpty()) {
++            Alert alerta = new Alert(Alert.AlertType.ERROR);
++            alerta.setTitle("Nenhum Produto Selecionado");
++            alerta.setHeaderText("Você não selecionou nenhum produto.");
++            alerta.setContentText("Por favor, selecione pelo menos um produto para adicionar ao carrinho.");
++            alerta.showAndWait();
++        } else {
++            // Lógica para adicionar os produtos ao carrinho
++            // Aqui, você pode adicionar os produtos à classe Carrinho e depois navegar para a tela do carrinho.
++
++            // Exemplo de adição de produtos ao carrinho (essa lógica pode variar conforme seu sistema)
++            // Aqui você pode integrar com o seu sistema de carrinho.
++
++            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
++            alerta.setTitle("Produtos Adicionados");
++            alerta.setHeaderText(null);
++            alerta.setContentText("Os produtos foram adicionados ao carrinho.");
++            alerta.showAndWait();
++
++            try {
++                Parent telaCarrinho = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-carrinho.fxml"));
++                Scene cenaCarrinho = new Scene(telaCarrinho);
++                Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++                janela.setScene(cenaCarrinho);
++                janela.show();
++            } catch (IOException e) {
++                e.printStackTrace();
++            }
++        }
++    }
++
++    @FXML
++    public void voltar(ActionEvent evento) {
++        try {
++            Parent telaInicial = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-inicial.fxml"));
++            Scene cenaInicial = new Scene(telaInicial);
++            Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++            janela.setScene(cenaInicial);
++            janela.show();
++        } catch (IOException e) {
++            e.printStackTrace();
++        }
++    }
++
++    @FXML
++    public void encerrarPrograma(ActionEvent evento) {
++        Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++        janela.close();
++    }
++}
+\ No newline at end of file
+Index: src/main/resources/com/potionsemporium/potions_emporium2/tela-estoque.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/com/potionsemporium/potions_emporium2/tela-estoque.fxml b/src/main/resources/com/potionsemporium/potions_emporium2/tela-estoque.fxml
+new file mode 100644
+--- /dev/null	
++++ b/src/main/resources/com/potionsemporium/potions_emporium2/tela-estoque.fxml	
+@@ -0,0 +1,55 @@
++<?xml version="1.0" encoding="UTF-8"?>
++
++<?import javafx.scene.control.Button?>
++<?import javafx.scene.control.Label?>
++<?import javafx.scene.control.ListView?>
++<?import javafx.scene.control.TextField?>
++<?import javafx.scene.image.Image?>
++<?import javafx.scene.image.ImageView?>
++<?import javafx.scene.layout.Pane?>
++<?import javafx.scene.text.Font?>
++
++
++<Pane prefHeight="700.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.TelaEstoqueController">
++   <children>
++      <ImageView fitHeight="151.0" fitWidth="174.0" layoutX="182.0" layoutY="-4.0">
++         <image>
++            <Image url="@imagens/oculos.png" />
++         </image>
++      </ImageView>
++      <Label layoutX="31.0" layoutY="36.0" text="Estoque" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="30.0" />
++         </font>
++      </Label>
++      <Button layoutX="1147.0" layoutY="616.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Voltar" textFill="#ccb373" onAction="#voltarPaginaInicial" fx:id="voltarButton" >
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Label layoutX="909.0" layoutY="50.0" text="Produtos" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="30.0" />
++         </font>
++      </Label>
++      <ListView layoutX="771.0" layoutY="125.0" prefHeight="411.0" prefWidth="422.0" fx:id="listaProdutos" />
++      <Button layoutX="50.0" layoutY="209.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Adicionar" textFill="#ccb373" onAction="#adicionarProduto" fx:id="adicionarButton" >
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Button layoutX="50.0" layoutY="308.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Atualizar" textFill="#ccb373" onAction="#atualizarProduto" fx:id="atualizarButton" >
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Button layoutX="50.0" layoutY="407.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Remover" textFill="#ccb373" onAction="#removerProduto" fx:id="removerButton" >
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <TextField layoutX="220.0" layoutY="209.0" prefHeight="44.0" prefWidth="197.0" style="-fx-border-color: #ccb373;" fx:id="campoAdicionar" />
++      <TextField layoutX="220.0" layoutY="309.0" prefHeight="44.0" prefWidth="197.0" style="-fx-border-color: #ccb373;" fx:id="campoAtualizar" />
++      <TextField layoutX="220.0" layoutY="408.0" prefHeight="44.0" prefWidth="197.0" style="-fx-border-color: #ccb373;" fx:id="campoRemover" />
++   </children>
++</Pane>
+Index: src/main/resources/com/potionsemporium/potions_emporium2/tela-relatorio.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/com/potionsemporium/potions_emporium2/tela-relatorio.fxml b/src/main/resources/com/potionsemporium/potions_emporium2/tela-relatorio.fxml
+new file mode 100644
+--- /dev/null	
++++ b/src/main/resources/com/potionsemporium/potions_emporium2/tela-relatorio.fxml	
+@@ -0,0 +1,51 @@
++<?xml version="1.0" encoding="UTF-8"?>
++
++<?import javafx.scene.control.Button?>
++<?import javafx.scene.control.Label?>
++<?import javafx.scene.control.ListView?>
++<?import javafx.scene.image.Image?>
++<?import javafx.scene.image.ImageView?>
++<?import javafx.scene.layout.Pane?>
++<?import javafx.scene.text.Font?>
++
++<Pane prefHeight="700.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.TelaRelatorioControler">
++   <children>
++      <Label fx:id="relatorioLabel" layoutX="41.0" layoutY="46.0" text="Relatório" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="30.0" />
++         </font>
++      </Label>
++      <ImageView fitHeight="131.0" fitWidth="134.0" layoutX="194.0" layoutY="6.0">
++         <image>
++            <Image url="@imagens/9 3-4.png" />
++         </image>
++      </ImageView>
++      <Label fx:id="produtosLabel" layoutX="919.0" layoutY="82.0" text="Produtos" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="30.0" />
++         </font>
++      </Label>
++      <ListView fx:id="listaProdutos" layoutX="781.0" layoutY="135.0" prefHeight="411.0" prefWidth="422.0" />
++      <Label fx:id="pedidosLabel" layoutX="180.0" layoutY="181.0" text="Pedidos" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="30.0" />
++         </font>
++      </Label>
++      <ListView fx:id="listaPedidos" layoutX="33.0" layoutY="232.0" prefHeight="411.0" prefWidth="422.0" />
++      <Label fx:id="totalLabel" layoutX="955.0" layoutY="591.0" text="valor" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="30.0" />
++         </font>
++      </Label>
++      <Button fx:id="voltarButton" layoutX="592.0" layoutY="626.0" mnemonicParsing="false" onAction="#voltarPaginaAnterior" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Voltar" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Label fx:id="produtosLabel1" layoutX="841.0" layoutY="591.0" text="Total:" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="30.0" />
++         </font>
++      </Label>
++   </children>
++</Pane>
+Index: src/main/java/Gui/TelaEstoqueController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Gui/TelaEstoqueController.java b/src/main/java/Gui/TelaEstoqueController.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Gui/TelaEstoqueController.java	
+@@ -0,0 +1,98 @@
++package Gui;
++
++import javafx.event.ActionEvent;
++import javafx.fxml.FXML;
++import javafx.scene.control.Button;
++import javafx.scene.control.ListView;
++import javafx.scene.control.TextField;
++import javafx.scene.control.Alert;
++import javafx.scene.control.Alert.AlertType;
++import javafx.scene.Node;
++import javafx.fxml.FXMLLoader;
++import javafx.scene.Parent;
++import javafx.scene.Scene;
++import javafx.stage.Stage;
++
++import java.io.IOException;
++
++public class TelaEstoqueController {
++
++    @FXML
++    private Button adicionarButton;
++    @FXML
++    private Button atualizarButton;
++    @FXML
++    private Button removerButton;
++    @FXML
++    private Button voltarButton;
++    @FXML
++    private ListView<String> listaProdutos;
++    @FXML
++    private TextField campoAdicionar;
++    @FXML
++    private TextField campoAtualizar;
++    @FXML
++    private TextField campoRemover;
++
++    @FXML
++    private void adicionarProduto(ActionEvent evento) {
++        String produto = campoAdicionar.getText();
++        if (produto != null && !produto.trim().isEmpty()) {
++            listaProdutos.getItems().add(produto);
++            campoAdicionar.clear();
++            showAlert(AlertType.INFORMATION, "Produto Adicionado", "O produto foi adicionado com sucesso!");
++        } else {
++            showAlert(AlertType.WARNING, "Entrada Inválida", "Por favor, insira um nome de produto.");
++        }
++    }
++
++    @FXML
++    private void atualizarProduto(ActionEvent evento) {
++        String novoProduto = campoAtualizar.getText();
++        String produtoSelecionado = listaProdutos.getSelectionModel().getSelectedItem();
++
++        if (produtoSelecionado != null && novoProduto != null && !novoProduto.trim().isEmpty()) {
++            int index = listaProdutos.getItems().indexOf(produtoSelecionado);
++            listaProdutos.getItems().set(index, novoProduto);
++            campoAtualizar.clear();
++            showAlert(AlertType.INFORMATION, "Produto Atualizado", "O produto foi atualizado com sucesso!");
++        } else {
++            showAlert(AlertType.WARNING, "Entrada Inválida", "Por favor, selecione um produto e insira o novo nome.");
++        }
++    }
++
++    @FXML
++    private void removerProduto(ActionEvent evento) {
++        String produtoSelecionado = listaProdutos.getSelectionModel().getSelectedItem();
++        if (produtoSelecionado != null) {
++            listaProdutos.getItems().remove(produtoSelecionado);
++            campoRemover.clear();
++            showAlert(AlertType.INFORMATION, "Produto Removido", "O produto foi removido com sucesso!");
++        } else {
++            showAlert(AlertType.WARNING, "Seleção Inválida", "Por favor, selecione um produto para remover.");
++        }
++    }
++
++    @FXML
++    private void voltarPaginaInicial(ActionEvent evento) {
++        try {
++            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-adm-principal.fxml"));
++            Parent root = loader.load();
++            Stage stage = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++            Scene scene = new Scene(root);
++            stage.setScene(scene);
++            stage.show();
++        } catch (IOException e) {
++            e.printStackTrace();
++            showAlert(AlertType.ERROR, "Erro", "Não foi possível retornar à página inicial.");
++        }
++    }
++
++    private void showAlert(AlertType type, String title, String content) {
++        Alert alert = new Alert(type);
++        alert.setTitle(title);
++        alert.setHeaderText(null);
++        alert.setContentText(content);
++        alert.showAndWait();
++    }
++}
+Index: src/main/java/Gui/TelaAdmPrincipalController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Gui/TelaAdmPrincipalController.java b/src/main/java/Gui/TelaAdmPrincipalController.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Gui/TelaAdmPrincipalController.java	
+@@ -0,0 +1,51 @@
++package Gui;
++
++import javafx.event.ActionEvent;
++import javafx.fxml.FXML;
++import javafx.scene.control.Button;
++import javafx.stage.Stage;
++import javafx.scene.Node;
++import javafx.fxml.FXMLLoader;
++import javafx.scene.Parent;
++import javafx.scene.Scene;
++import java.io.IOException;
++
++public class TelaAdmPrincipalController {
++
++    @FXML
++    private void abrirEstoque(ActionEvent evento) throws IOException {
++        Parent root = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-estoque.fxml"));
++        Stage stage = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++        stage.setScene(new Scene(root));
++        stage.show();
++    }
++
++    @FXML
++    private void abrirRelatorio(ActionEvent evento) throws IOException {
++        Parent root = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-relatorio.fxml"));
++        Stage stage = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++        stage.setScene(new Scene(root));
++        stage.show();
++    }
++
++    @FXML
++    private void abrirClientes(ActionEvent evento) throws IOException {
++        Parent root = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-adm-cliente.fxml"));
++        Stage stage = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++        stage.setScene(new Scene(root));
++        stage.show();
++    }
++
++    @FXML
++    private void voltarPaginaInicial(ActionEvent evento) throws IOException {
++        try {
++            Parent telaPrincipal = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-inicial.fxml"));
++            Scene cenaPrincipal = new Scene(telaPrincipal);
++            Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++            janela.setScene(cenaPrincipal);
++            janela.show();
++        } catch (IOException e) {
++            e.printStackTrace();
++        }
++    }
++}
+\ No newline at end of file
+Index: src/main/java/Gui/TelaAdmClienteController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Gui/TelaAdmClienteController.java b/src/main/java/Gui/TelaAdmClienteController.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Gui/TelaAdmClienteController.java	
+@@ -0,0 +1,95 @@
++package Gui;
++
++import javafx.event.ActionEvent;
++import javafx.fxml.FXML;
++import javafx.scene.control.Alert;
++import javafx.scene.control.Alert.AlertType;
++import javafx.scene.control.Button;
++import javafx.scene.control.ListView;
++import javafx.scene.control.TextField;
++import javafx.scene.control.Alert;
++import javafx.scene.Node;
++import javafx.fxml.FXMLLoader;
++import javafx.scene.Parent;
++import javafx.scene.Scene;
++import javafx.stage.Stage;
++
++import java.io.IOException;
++
++public class TelaAdmClienteController {
++
++    @FXML
++    private Button voltarButton;
++    @FXML
++    private Button removerButton;
++    @FXML
++    private Button atualizarButton;
++    @FXML
++    private Button okButton;
++    @FXML
++    private ListView<String> listaClientes;
++    @FXML
++    private TextField campoId;
++    @FXML
++    private TextField campoAtualizar;
++
++    @FXML
++    private void removerCliente(ActionEvent evento) {
++        String clienteSelecionado = listaClientes.getSelectionModel().getSelectedItem();
++        if (clienteSelecionado != null) {
++            listaClientes.getItems().remove(clienteSelecionado);
++            showAlert(AlertType.INFORMATION, "Cliente Removido", "O cliente foi removido com sucesso!");
++        } else {
++            showAlert(AlertType.WARNING, "Seleção Inválida", "Por favor, selecione um cliente para remover.");
++        }
++    }
++
++    @FXML
++    private void atualizarCliente(ActionEvent evento) {
++        String novoCliente = campoAtualizar.getText();
++        String clienteSelecionado = listaClientes.getSelectionModel().getSelectedItem();
++
++        if (clienteSelecionado != null && novoCliente != null && !novoCliente.trim().isEmpty()) {
++            int index = listaClientes.getItems().indexOf(clienteSelecionado);
++            listaClientes.getItems().set(index, novoCliente);
++            campoAtualizar.clear();
++            showAlert(AlertType.INFORMATION, "Cliente Atualizado", "O cliente foi atualizado com sucesso!");
++        } else {
++            showAlert(AlertType.WARNING, "Entrada Inválida", "Por favor, selecione um cliente e insira o novo nome.");
++        }
++    }
++
++    @FXML
++    private void confirmarId(ActionEvent evento) {
++        String id = campoId.getText();
++        if (id != null && !id.trim().isEmpty()) {
++            // Ação para confirmar o ID (por exemplo, pesquisa de cliente)
++            showAlert(AlertType.INFORMATION, "ID Confirmado", "O ID foi confirmado com sucesso!");
++        } else {
++            showAlert(AlertType.WARNING, "Entrada Inválida", "Por favor, insira um ID válido.");
++        }
++    }
++
++    @FXML
++    private void voltarPaginaInicial(ActionEvent evento) {
++        try {
++            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-adm-principal.fxml"));
++            Parent root = loader.load();
++            Stage stage = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++            Scene scene = new Scene(root);
++            stage.setScene(scene);
++            stage.show();
++        } catch (IOException e) {
++            e.printStackTrace();
++            showAlert(AlertType.ERROR, "Erro", "Não foi possível retornar à página inicial.");
++        }
++    }
++
++    private void showAlert(AlertType type, String title, String content) {
++        Alert alert = new Alert(type);
++        alert.setTitle(title);
++        alert.setHeaderText(null);
++        alert.setContentText(content);
++        alert.showAndWait();
++    }
++}
+Index: src/main/java/Gui/TelaInicialController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Gui/TelaInicialController.java b/src/main/java/Gui/TelaInicialController.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Gui/TelaInicialController.java	
+@@ -0,0 +1,55 @@
++package Gui;
++
++import javafx.event.ActionEvent;
++import javafx.fxml.FXML;
++import javafx.scene.control.Button;
++import javafx.stage.Stage;
++import javafx.scene.Node;
++import javafx.fxml.FXMLLoader;
++import javafx.scene.Parent;
++import javafx.scene.Scene;
++import java.io.IOException;
++
++public class TelaInicialController {
++
++    @FXML
++    private Button botaoFechar;
++
++    @FXML
++    private Button botaoAdm;
++
++    @FXML
++    private Button botaoCliente;
++
++    @FXML
++    public void encerrarPrograma(ActionEvent evento) {
++        Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++        janela.close();
++    }
++
++    @FXML
++    public void irParaAdm(ActionEvent evento) {
++        try {
++            Parent telaAdm = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-adm.fxml"));
++            Scene cenaAdm = new Scene(telaAdm);
++            Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++            janela.setScene(cenaAdm);
++            janela.show();
++        } catch (IOException e) {
++            e.printStackTrace();
++        }
++    }
++
++    @FXML
++    public void irParaCliente(ActionEvent event) {
++        try {
++            Parent telaCliente = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-principal-cliente.fxml"));
++            Scene cenaCliente = new Scene(telaCliente);
++            Stage janela = (Stage) ((Node) event.getSource()).getScene().getWindow();
++            janela.setScene(cenaCliente);
++            janela.show();
++        } catch (IOException e) {
++            e.printStackTrace();
++        }
++    }
++}
+Index: src/main/java/Gui/TelaRelatorioControler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Gui/TelaRelatorioControler.java b/src/main/java/Gui/TelaRelatorioControler.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Gui/TelaRelatorioControler.java	
+@@ -0,0 +1,61 @@
++package Gui;
++
++import javafx.event.ActionEvent;
++import javafx.fxml.FXML;
++import javafx.scene.control.Button;
++import javafx.scene.control.Label;
++import javafx.scene.control.ListView;
++import javafx.scene.image.Image;
++import javafx.scene.image.ImageView;
++import javafx.scene.control.Alert;
++import javafx.scene.control.Alert.AlertType;
++import javafx.scene.Node;
++import javafx.fxml.FXMLLoader;
++import javafx.scene.Parent;
++import javafx.scene.Scene;
++import javafx.stage.Stage;
++
++import java.io.IOException;
++
++public class TelaRelatorioControler {
++
++    @FXML
++    private Button voltarButton;
++    @FXML
++    private ListView<String> listaProdutos;
++    @FXML
++    private ListView<String> listaPedidos;
++    @FXML
++    private Label totalLabel;
++
++    @FXML
++    private void initialize() {
++        // Inicialize a ListView e Label com dados, se necessário
++        listaProdutos.getItems().addAll("Produto 1", "Produto 2"); // Exemplo
++        listaPedidos.getItems().addAll("Pedido 1", "Pedido 2");   // Exemplo
++        totalLabel.setText("R$ 100,00"); // Exemplo, substituir pelo valor real
++    }
++
++    @FXML
++    private void voltarPaginaAnterior(ActionEvent evento) {
++        try {
++            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-adm-principal.fxml"));
++            Parent root = loader.load();
++            Stage stage = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++            Scene scene = new Scene(root);
++            stage.setScene(scene);
++            stage.show();
++        } catch (IOException e) {
++            e.printStackTrace();
++            showAlert(AlertType.ERROR, "Erro", "Não foi possível retornar à página inicial.");
++        }
++    }
++
++    private void showAlert(AlertType type, String title, String content) {
++        Alert alert = new Alert(type);
++        alert.setTitle(title);
++        alert.setHeaderText(null);
++        alert.setContentText(content);
++        alert.showAndWait();
++    }
++}
+Index: src/main/java/Negocio/Caixa.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Negocio;\r\n\r\nimport Exceptions.PagamentoInvalidoException;\r\nimport Exceptions.DadosInvalidosException;\r\n\r\npublic class Caixa {\r\n    private Pedido pedido;\r\n    private double total;\r\n\r\n    public Caixa(Pedido pedido) {\r\n        this.pedido = pedido;\r\n        this.total = 0.0;\r\n    }\r\n\r\n    public double calcularTotal() {\r\n        try {\r\n            double totalProdutos = pedido.calcularTotal();\r\n            double valorPromocao = aplicarPromocao();\r\n            double taxaEntrega = calcularTaxaEntrega();\r\n            total = totalProdutos - valorPromocao + taxaEntrega;\r\n            return total;\r\n        } catch (DadosInvalidosException e) {\r\n            System.out.println(STR.\"Erro ao calcular o total: \\{e.getMessage()}\");\r\n            return 0.0;\r\n        }\r\n    }\r\n\r\n    private double calcularTaxaEntrega() {\r\n        Entrega entrega = pedido.getEntrega();\r\n        if (entrega != null) {\r\n            return entrega.getTaxaEntrega();\r\n        }\r\n        return 0.0;\r\n    }\r\n\r\n    private double aplicarPromocao() throws DadosInvalidosException {\r\n        Promocao promocao = pedido.getPromocao();\r\n        if (promocao != null) {\r\n            return promocao.aplicarPromocao(pedido);\r\n        }\r\n        return 0.0;\r\n    }\r\n\r\n    public void processarPagamento(int galeoes, int sicles, int nuques) throws PagamentoInvalidoException {\r\n        try {\r\n            Pagamento pagamento = new Pagamento(1, pedido, (int) total);\r\n            if (!pagamento.processarPagamento(galeoes, sicles, nuques)) {\r\n                throw new PagamentoInvalidoException(\"Falha no pagamento.\");\r\n            }\r\n            System.out.println(\"Pagamento realizado com sucesso!\");\r\n        } catch (PagamentoInvalidoException e) {\r\n            System.out.println(e.getMessage());\r\n        } catch (DadosInvalidosException e) {\r\n            throw new RuntimeException(e);\r\n        }\r\n    }\r\n\r\n    public double getTotal() {\r\n        return total;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Negocio/Caixa.java b/src/main/java/Negocio/Caixa.java
+--- a/src/main/java/Negocio/Caixa.java	
++++ b/src/main/java/Negocio/Caixa.java	
+@@ -2,7 +2,7 @@
+ 
+ import Exceptions.PagamentoInvalidoException;
+ import Exceptions.DadosInvalidosException;
+-
++/*
+ public class Caixa {
+     private Pedido pedido;
+     private double total;
+@@ -59,3 +59,4 @@
+         return total;
+     }
+ }
++*/
+\ No newline at end of file
+Index: src/main/resources/com/potionsemporium/potions_emporium2/tela-adm-cliente.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/com/potionsemporium/potions_emporium2/tela-adm-cliente.fxml b/src/main/resources/com/potionsemporium/potions_emporium2/tela-adm-cliente.fxml
+new file mode 100644
+--- /dev/null	
++++ b/src/main/resources/com/potionsemporium/potions_emporium2/tela-adm-cliente.fxml	
+@@ -0,0 +1,58 @@
++<?xml version="1.0" encoding="UTF-8"?>
++
++<?import javafx.scene.control.Button?>
++<?import javafx.scene.control.Label?>
++<?import javafx.scene.control.ListView?>
++<?import javafx.scene.control.TextField?>
++<?import javafx.scene.image.Image?>
++<?import javafx.scene.image.ImageView?>
++<?import javafx.scene.layout.Pane?>
++<?import javafx.scene.text.Font?>
++
++<Pane prefHeight="700.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.TelaAdmClienteController">
++   <children>
++      <Label layoutX="51.0" layoutY="56.0" text="Clientes" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="30.0" />
++         </font>
++      </Label>
++      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="188.0" layoutY="-3.0">
++         <image>
++            <Image url="@imagens/raio.png" />
++         </image>
++      </ImageView>
++      <ListView fx:id="listaClientes" layoutX="43.0" layoutY="232.0" prefHeight="411.0" prefWidth="422.0" />
++      <Label layoutX="190.0" layoutY="181.0" text="Pedidos" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="30.0" />
++         </font>
++      </Label>
++      <Button fx:id="voltarButton" layoutX="1120.0" layoutY="598.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Voltar" textFill="#ccb373" onAction="#voltarPaginaInicial">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Button fx:id="removerButton" layoutX="970.0" layoutY="203.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Remover" textFill="#ccb373" onAction="#removerCliente">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Button fx:id="atualizarButton" layoutX="1068.0" layoutY="350.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Atualizar" textFill="#ccb373" onAction="#atualizarCliente">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Button fx:id="okButton" layoutX="1154.0" layoutY="84.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="OK" textFill="#ccb373" onAction="#confirmarId">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <TextField fx:id="campoId" layoutX="934.0" layoutY="84.0" prefHeight="44.0" prefWidth="197.0" style="-fx-border-color: #ccb373;" />
++      <Label layoutX="869.0" layoutY="82.0" text="ID:" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="30.0" />
++         </font>
++      </Label>
++      <TextField fx:id="campoAtualizar" layoutX="835.0" layoutY="350.0" prefHeight="44.0" prefWidth="197.0" style="-fx-border-color: #ccb373;" />
++   </children>
++</Pane>
+Index: src/main/java/Gui/PotionsEmporiumApplication.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Gui/PotionsEmporiumApplication.java b/src/main/java/Gui/PotionsEmporiumApplication.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Gui/PotionsEmporiumApplication.java	
+@@ -0,0 +1,25 @@
++package Gui;
++
++import javafx.application.Application;
++import javafx.fxml.FXMLLoader;
++import javafx.scene.Scene;
++import javafx.stage.Stage;
++import java.io.IOException;
++
++public class PotionsEmporiumApplication extends Application {
++
++    public static void main(String[] args) {
++        launch(args);
++    }
++
++    @Override
++    public void start(Stage janelaPrincipal) throws IOException {
++        FXMLLoader carregarFXML = new FXMLLoader(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-inicial.fxml"));
++        Scene tela = new Scene(carregarFXML.load(), 1280, 700);
++        janelaPrincipal.setTitle("Potions Emporium");
++        janelaPrincipal.setScene(tela);
++        janelaPrincipal.setResizable(false);
++        janelaPrincipal.show();
++    }
++
++}
+Index: src/main/resources/com/potionsemporium/potions_emporium2/tela-inicial.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/com/potionsemporium/potions_emporium2/tela-inicial.fxml b/src/main/resources/com/potionsemporium/potions_emporium2/tela-inicial.fxml
+new file mode 100644
+--- /dev/null	
++++ b/src/main/resources/com/potionsemporium/potions_emporium2/tela-inicial.fxml	
+@@ -0,0 +1,78 @@
++<?xml version="1.0" encoding="UTF-8"?>
++
++<?import javafx.scene.control.Button?>
++<?import javafx.scene.control.Label?>
++<?import javafx.scene.image.Image?>
++<?import javafx.scene.image.ImageView?>
++<?import javafx.scene.layout.Pane?>
++<?import javafx.scene.text.Font?>
++
++<Pane prefHeight="700.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.TelaInicialController">
++   <children>
++      <ImageView fitHeight="330.0" fitWidth="318.0" layoutX="490.0" layoutY="-33.0">
++         <image>
++            <Image url="@imagens/Potions_Emporium_icone.png" />
++         </image>
++      </ImageView>
++      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="308.0" layoutY="-1.0">
++         <image>
++            <Image url="@imagens/bandeira azul.png" />
++         </image>
++      </ImageView>
++      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="14.0">
++         <image>
++            <Image url="@imagens/bandeira vermelha.png" />
++         </image>
++      </ImageView>
++      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="1077.0" layoutY="-2.0">
++         <image>
++            <Image url="@imagens/bandeira amarela.png" />
++         </image>
++      </ImageView>
++      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="843.0" layoutY="-3.0">
++         <image>
++            <Image url="@imagens/bandeira verde.png" />
++         </image>
++      </ImageView>
++      <Label layoutX="370.0" layoutY="317.0" text="Bem-vindo ao Potions Emporium!" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="30.0" />
++         </font>
++      </Label>
++      <Label layoutX="543.0" layoutY="469.0" text="Quem é você?" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="30.0" />
++         </font>
++      </Label>
++      <Label layoutX="281.0" layoutY="376.0" text="Prepare-se para explorar um mundo mágico de poções e ingredientes encantados." textFill="WHITE">
++         <font>
++            <Font name="Arial" size="20.0" />
++         </font>
++      </Label>
++      <Label layoutX="281.0" layoutY="399.0" text="Aqui, você encontrará tudo o que precisa para suas aventuras e criações mágicas." textFill="WHITE">
++         <font>
++            <Font name="Arial" size="20.0" />
++         </font>
++      </Label>
++      <Label layoutX="282.0" layoutY="422.0" prefHeight="23.0" prefWidth="736.0" text="                     Navegue, escolha suas poções, e deixe a magia fluir! " textAlignment="CENTER" textFill="WHITE">
++         <font>
++            <Font name="Arial" size="20.0" />
++         </font>
++      </Label>
++      <Button layoutX="1228.0" layoutY="22.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="X" textFill="#ccb373" onAction="#encerrarPrograma">
++         <font>
++            <Font name="Arial Black" size="12.0" />
++         </font>
++      </Button>
++      <Button layoutX="452.0" layoutY="541.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Administração" textFill="#ccb373" onAction="#irParaAdm">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Button layoutX="714.0" layoutY="541.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="188.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Cliente" textFill="#ccb373" onAction="#irParaCliente">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++   </children>
++</Pane>
+Index: src/main/resources/com/potionsemporium/potions_emporium2/tela-cadastro.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/com/potionsemporium/potions_emporium2/tela-cadastro.fxml b/src/main/resources/com/potionsemporium/potions_emporium2/tela-cadastro.fxml
+new file mode 100644
+--- /dev/null	
++++ b/src/main/resources/com/potionsemporium/potions_emporium2/tela-cadastro.fxml	
+@@ -0,0 +1,76 @@
++<?xml version="1.0" encoding="UTF-8"?>
++
++<?import javafx.scene.control.Button?>
++<?import javafx.scene.control.Label?>
++<?import javafx.scene.control.TextField?>
++<?import javafx.scene.image.Image?>
++<?import javafx.scene.image.ImageView?>
++<?import javafx.scene.layout.Pane?>
++<?import javafx.scene.text.Font?>
++
++<Pane prefHeight="700.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.TelaCadastroController">
++   <children>
++      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="31.0" layoutY="465.0">
++         <image>
++            <Image url="@imagens/pena.png" />
++         </image>
++      </ImageView>
++      <Button layoutX="1222.0" layoutY="32.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="X" textFill="#ccb373" fx:id="botaoFechar" onAction="#encerrarPrograma">
++         <font>
++            <Font name="Arial Black" size="12.0" />
++         </font>
++      </Button>
++      <Button layoutX="1052.0" layoutY="612.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="188.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Voltar" textFill="#ccb373" onAction="#voltar">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Button layoutX="809.0" layoutY="612.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="188.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Salvar" textFill="#ccb373" onAction="#salvarCadastro">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Label layoutX="160.0" layoutY="77.0" text="Nome" textFill="#ccb373">
++         <font>
++            <Font name="Arial Narrow" size="30.0" />
++         </font>
++      </Label>
++      <Label layoutX="155.0" layoutY="175.0" text="Coruja" textFill="#ccb373">
++         <font>
++            <Font name="Arial Narrow" size="30.0" />
++         </font>
++      </Label>
++      <Label layoutX="101.0" layoutY="277.0" text="Floo Powder" textFill="#ccb373">
++         <font>
++            <Font name="Arial Narrow" size="30.0" />
++         </font>
++      </Label>
++      <Label layoutX="691.0" layoutY="389.0" text="Senha" textFill="#ccb373">
++         <font>
++            <Font name="Arial Narrow" size="30.0" />
++         </font>
++      </Label>
++      <Label layoutX="704.0" layoutY="175.0" text="Rua" textFill="#ccb373">
++         <font>
++            <Font name="Arial Narrow" size="30.0" />
++         </font>
++      </Label>
++      <Label layoutX="688.0" layoutY="76.0" text="Cidade" textFill="#ccb373">
++         <font>
++            <Font name="Arial Narrow" size="30.0" />
++         </font>
++      </Label>
++      <Label layoutX="689.0" layoutY="277.0" text="Número" textFill="#ccb373">
++         <font>
++            <Font name="Arial Narrow" size="30.0" />
++         </font>
++      </Label>
++      <TextField layoutX="244.0" layoutY="84.0" style="-fx-border-color: #ccb373;" fx:id="nomeField" promptText="Digite seu nome"/>
++      <TextField layoutX="245.0" layoutY="181.0" style="-fx-border-color: #ccb373;" fx:id="corujaField" promptText="Digite a coruja"/>
++      <TextField layoutX="250.0" layoutY="283.0" style="-fx-border-color: #ccb373;" fx:id="flooPowderField" promptText="Digite o Floo Powder"/>
++      <TextField layoutX="791.0" layoutY="82.0" style="-fx-border-color: #ccb373;" fx:id="cidadeField" promptText="Digite a cidade"/>
++      <TextField layoutX="791.0" layoutY="181.0" style="-fx-border-color: #ccb373;" fx:id="ruaField" promptText="Digite a rua"/>
++      <TextField layoutX="791.0" layoutY="285.0" style="-fx-border-color: #ccb373;" fx:id="numeroField" promptText="Digite o número"/>
++      <TextField layoutX="791.0" layoutY="395.0" style="-fx-border-color: #ccb373;" fx:id="senhaField" promptText="Digite a senha"/>
++   </children>
++</Pane>
+Index: src/main/resources/com/potionsemporium/potions_emporium2/tela-principal-cliente.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/com/potionsemporium/potions_emporium2/tela-principal-cliente.fxml b/src/main/resources/com/potionsemporium/potions_emporium2/tela-principal-cliente.fxml
+new file mode 100644
+--- /dev/null	
++++ b/src/main/resources/com/potionsemporium/potions_emporium2/tela-principal-cliente.fxml	
+@@ -0,0 +1,67 @@
++<?xml version="1.0" encoding="UTF-8"?>
++
++<?import javafx.scene.control.Button?>
++<?import javafx.scene.control.Label?>
++<?import javafx.scene.control.PasswordField?>
++<?import javafx.scene.control.TextField?>
++<?import javafx.scene.image.Image?>
++<?import javafx.scene.image.ImageView?>
++<?import javafx.scene.layout.Pane?>
++<?import javafx.scene.text.Font?>
++
++<Pane prefHeight="700.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.TelaPrincipalClienteController">
++   <children>
++      <ImageView fitHeight="378.0" fitWidth="377.0" layoutX="915.0" layoutY="-32.0">
++         <image>
++            <Image url="@imagens/Potions_Emporium_icone.png" />
++         </image>
++      </ImageView>
++      <Button fx:id="botaoFechar" layoutX="1226.0" layoutY="28.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="X" textFill="#ccb373" onAction="#encerrarPrograma">
++         <font>
++            <Font name="Arial Black" size="12.0" />
++         </font>
++      </Button>
++      <Button fx:id="botaoVoltar" layoutX="1065.0" layoutY="610.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="188.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Voltar" textFill="#ccb373" onAction="#voltarParaTelaPrincipal">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Button fx:id="botaoCadastro" layoutX="40.0" layoutY="610.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="188.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Cadastro" textFill="#ccb373" onAction="#irParaCadastro">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Button fx:id="botaoAlohomora" layoutX="552.0" layoutY="444.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="188.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Alohomora" textFill="#ccb373" onAction="#realizarLogin">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Label layoutX="16.0" layoutY="546.0" text="Ainda não tem cadastro?" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Label>
++      <Label layoutX="58.0" layoutY="578.0" prefHeight="23.0" prefWidth="218.0" text="Clique no botão abaixo" textAlignment="CENTER" textFill="WHITE">
++         <font>
++            <Font name="Arial" size="15.0" />
++         </font>
++      </Label>
++      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="5.0" layoutY="3.0">
++         <image>
++            <Image url="@imagens/chave.png" />
++         </image>
++      </ImageView>
++      <TextField fx:id="loginField" layoutX="552.0" layoutY="237.0" prefHeight="46.0" prefWidth="188.0" style="-fx-border-color: #ccb373;" />
++      <PasswordField fx:id="senhaField" layoutX="552.0" layoutY="334.0" prefHeight="46.0" prefWidth="188.0" style="-fx-border-color: #ccb373;" />
++      <Label layoutX="464.0" layoutY="245.0" text="Login" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Label>
++      <Label layoutX="464.0" layoutY="342.0" text="Senha" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Label>
++   </children>
++</Pane>
+Index: src/main/java/Gui/TelaPrincipalClienteController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Gui/TelaPrincipalClienteController.java b/src/main/java/Gui/TelaPrincipalClienteController.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Gui/TelaPrincipalClienteController.java	
+@@ -0,0 +1,166 @@
++package Gui;
++
++import javafx.event.ActionEvent;
++import javafx.fxml.FXML;
++import javafx.fxml.FXMLLoader;
++import javafx.scene.Parent;
++import javafx.scene.Scene;
++import javafx.scene.control.Alert;
++import javafx.scene.control.Button;
++import javafx.scene.control.PasswordField;
++import javafx.scene.control.TextField;
++import javafx.scene.image.ImageView;
++import javafx.scene.input.MouseEvent;
++import javafx.scene.layout.Pane;
++import javafx.stage.Stage;
++import javafx.scene.Node;
++import java.io.BufferedReader;
++import java.io.FileReader;
++import java.io.IOException;
++//import java.util.HashMap;
++//import java.util.Map;
++
++public class TelaPrincipalClienteController {
++
++    @FXML
++    private TextField loginField;
++
++    @FXML
++    private PasswordField senhaField;
++
++    @FXML
++    private Button botaoFechar;
++
++    @FXML
++    private Button botaoVoltar;
++
++    @FXML
++    private Button botaoCadastro;
++
++    @FXML
++    private Button botaoAlohomora;
++
++    @FXML
++    private ImageView imagemChave;
++
++    @FXML
++    private Pane painelPrincipal;
++
++    // Lógica de arquivo comentada
++    // private Map<String, String> usuarios = new HashMap<>();
++
++    @FXML
++    public void encerrarPrograma(ActionEvent evento) {
++        Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++        janela.close();
++    }
++
++    @FXML
++    public void irParaCadastro(ActionEvent evento) {
++        try {
++            Parent telaCadastro = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-cadastro.fxml"));
++            Scene cenaCadastro = new Scene(telaCadastro);
++            Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++            janela.setScene(cenaCadastro);
++            janela.show();
++        } catch (IOException e) {
++            e.printStackTrace();
++        }
++    }
++
++    @FXML
++    public void voltarParaTelaPrincipal(ActionEvent evento) {
++        try {
++            Parent telaPrincipal = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-inicial.fxml"));
++            Scene cenaPrincipal = new Scene(telaPrincipal);
++            Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++            janela.setScene(cenaPrincipal);
++            janela.show();
++        } catch (IOException e) {
++            e.printStackTrace();
++        }
++    }
++
++    // Método de login com valores fixos para teste
++    @FXML
++    public void realizarLogin(ActionEvent evento) {
++        // Usuário e senha fixos para o teste
++        String usuarioTeste = "cliente";
++        String senhaTeste = "12345";
++
++        // Captura as entradas do usuário
++        String login = loginField.getText();
++        String senha = senhaField.getText();
++
++        // Verifica se o login e senha estão corretos
++        if (login.equals(usuarioTeste) && senha.equals(senhaTeste)) {
++            try {
++                // Carrega a tela de produtos ao realizar o login com sucesso
++                Parent telaProdutos = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-produtos.fxml"));
++                Scene cenaProdutos = new Scene(telaProdutos);
++                Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++                janela.setScene(cenaProdutos);
++                janela.show();
++            } catch (IOException e) {
++                e.printStackTrace();
++            }
++        } else {
++            // Exibe alerta de erro caso o login ou senha estejam incorretos
++            Alert alerta = new Alert(Alert.AlertType.ERROR);
++            alerta.setTitle("Erro de Login");
++            alerta.setHeaderText("Login ou senha incorretos.");
++            alerta.setContentText("Por favor, tente novamente.");
++            alerta.showAndWait();
++        }
++    }
++
++    // Lógica de login com arquivo comentada
++    /*
++    @FXML
++    public void initialize() {
++        carregarUsuarios();
++    }
++
++    private void carregarUsuarios() {
++        String caminhoArquivo = "caminho/para/usuarios.txt";
++
++        try (BufferedReader reader = new BufferedReader(new FileReader(caminhoArquivo))) {
++            String linha;
++            while ((linha = reader.readLine()) != null) {
++                String[] partes = linha.split(":");
++                if (partes.length == 2) {
++                    String usuario = partes[0].trim();
++                    String senha = partes[1].trim();
++                    usuarios.put(usuario, senha);
++                }
++            }
++        } catch (IOException e) {
++            e.printStackTrace();
++        }
++    }
++
++    @FXML
++    public void realizarLogin(ActionEvent evento) {
++        String login = loginField.getText();
++        String senha = senhaField.getText();
++
++        if (usuarios.containsKey(login) && usuarios.get(login).equals(senha)) {
++            try {
++                Parent telaProdutos = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-produtos.fxml"));
++                Scene cenaProdutos = new Scene(telaProdutos);
++                Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++                janela.setScene(cenaProdutos);
++                janela.show();
++            } catch (IOException e) {
++                e.printStackTrace();
++            }
++        } else {
++            Alert alerta = new Alert(Alert.AlertType.ERROR);
++            alerta.setTitle("Erro de Login");
++            alerta.setHeaderText("Login ou senha incorretos.");
++            alerta.setContentText("Por favor, tente novamente.");
++            alerta.showAndWait();
++        }
++    }
++    */
++}
+Index: src/main/java/Arquivos/ArquivoEstoque.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Arquivos;\r\n\r\nimport Exceptions.DadosInvalidosException;\r\nimport Negocio.Produto;\r\nimport Exceptions.ArquivoNaoEncontradoException;\r\nimport Exceptions.FormatoArquivoException;\r\nimport java.io.*;\r\nimport java.util.*;\r\n\r\npublic class ArquivoEstoque {\r\n\r\n    private static final String ARQUIVO_ESTOQUE = \"estoque.txt\";\r\n\r\n    public void salvarEstoque(List<Produto> produtos) throws IOException {\r\n        try (BufferedWriter writer = new BufferedWriter(new FileWriter(ARQUIVO_ESTOQUE))) {\r\n            for (Produto produto : produtos) {\r\n                writer.write(STR.\"\\{produto.getId()},\\{produto.getNome()},\\{produto.getDescricao()},\\{produto.getPreco()},\\{produto.getCategoria()},\\{produto.getCodigoBarra()},\\{produto.getQuantidade()}\");\r\n                writer.newLine();\r\n            }\r\n        }\r\n    }\r\n\r\n    public List<Produto> carregarEstoque() throws IOException, FormatoArquivoException {\r\n        List<Produto> produtos = new ArrayList<>();\r\n        File file = new File(ARQUIVO_ESTOQUE);\r\n        if (!file.exists()) {\r\n            throw new ArquivoNaoEncontradoException(\"Arquivo de estoque não encontrado.\");\r\n        }\r\n\r\n        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {\r\n            String linha;\r\n            while ((linha = reader.readLine()) != null) {\r\n                String[] partes = linha.split(\",\");\r\n                if (partes.length != 7) {\r\n                    throw new FormatoArquivoException(\"Formato inválido no arquivo de estoque.\");\r\n                }\r\n\r\n                try {\r\n                    int id = Integer.parseInt(partes[0]);\r\n                    String nome = partes[1];\r\n                    String descricao = partes[2];\r\n                    double preco = Double.parseDouble(partes[3]);\r\n                    String categoria = partes[4];\r\n                    String codigoBarra = partes[5];\r\n                    int quantidade = Integer.parseInt(partes[6]);\r\n\r\n                    Produto produto = new Produto(id, nome, descricao, preco, categoria, codigoBarra, quantidade);\r\n                    produtos.add(produto);\r\n                } catch (NumberFormatException | DadosInvalidosException e) {\r\n                    throw new FormatoArquivoException(\"Erro ao formatar número no arquivo de estoque.\");\r\n                }\r\n            }\r\n        }\r\n        return produtos;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Arquivos/ArquivoEstoque.java b/src/main/java/Arquivos/ArquivoEstoque.java
+--- a/src/main/java/Arquivos/ArquivoEstoque.java	
++++ b/src/main/java/Arquivos/ArquivoEstoque.java	
+@@ -1,8 +1,8 @@
+ package Arquivos;
+-
++/*
+ import Exceptions.DadosInvalidosException;
+ import Negocio.Produto;
+-import Exceptions.ArquivoNaoEncontradoException;
++//import Exceptions.ArquivoNaoEncontradoException;
+ import Exceptions.FormatoArquivoException;
+ import java.io.*;
+ import java.util.*;
+@@ -14,7 +14,7 @@
+     public void salvarEstoque(List<Produto> produtos) throws IOException {
+         try (BufferedWriter writer = new BufferedWriter(new FileWriter(ARQUIVO_ESTOQUE))) {
+             for (Produto produto : produtos) {
+-                writer.write(STR."\{produto.getId()},\{produto.getNome()},\{produto.getDescricao()},\{produto.getPreco()},\{produto.getCategoria()},\{produto.getCodigoBarra()},\{produto.getQuantidade()}");
++        //        writer.write(STR."\{produto.getId()},\{produto.getNome()},\{produto.getDescricao()},\{produto.getPreco()},\{produto.getCategoria()},\{produto.getCodigoBarra()},\{produto.getQuantidade()}");
+                 writer.newLine();
+             }
+         }
+@@ -24,7 +24,7 @@
+         List<Produto> produtos = new ArrayList<>();
+         File file = new File(ARQUIVO_ESTOQUE);
+         if (!file.exists()) {
+-            throw new ArquivoNaoEncontradoException("Arquivo de estoque não encontrado.");
++          //  throw new ArquivoNaoEncontradoException("Arquivo de estoque não encontrado.");
+         }
+ 
+         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+@@ -35,7 +35,7 @@
+                     throw new FormatoArquivoException("Formato inválido no arquivo de estoque.");
+                 }
+ 
+-                try {
++              try {
+                     int id = Integer.parseInt(partes[0]);
+                     String nome = partes[1];
+                     String descricao = partes[2];
+@@ -46,11 +46,12 @@
+ 
+                     Produto produto = new Produto(id, nome, descricao, preco, categoria, codigoBarra, quantidade);
+                     produtos.add(produto);
+-                } catch (NumberFormatException | DadosInvalidosException e) {
++                    } catch (NumberFormatException | DadosInvalidosException e) {
+                     throw new FormatoArquivoException("Erro ao formatar número no arquivo de estoque.");
+-                }
++
+             }
+         }
+         return produtos;
+     }
+ }
++*/
+\ No newline at end of file
+Index: src/main/java/Arquivos/ArquivoFinanceiro.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Arquivos;\r\n\r\nimport Exceptions.PagamentoInvalidoException;\r\nimport Negocio.Pagamento;\r\nimport Negocio.Pedido;\r\nimport Exceptions.ArquivoNaoEncontradoException;\r\nimport Exceptions.FormatoArquivoException;\r\nimport Exceptions.DadosInvalidosException;\r\nimport java.io.*;\r\nimport java.util.*;\r\n\r\npublic class ArquivoFinanceiro {\r\n\r\n    private static final String ARQUIVO_FINANCEIRO = \"financeiro.txt\";\r\n\r\n    public void salvarPagamentos(List<Pagamento> pagamentos) throws IOException {\r\n        try (BufferedWriter writer = new BufferedWriter(new FileWriter(ARQUIVO_FINANCEIRO))) {\r\n            for (Pagamento pagamento : pagamentos) {\r\n                writer.write(STR.\"\\{pagamento.getIdPagamento()},\\{pagamento.getPedido().getIdPedido()},\\{pagamento.getValor()},\\{pagamento.isPagamentoProcessado() ? \"1\" : \"0\"}\");\r\n                writer.newLine();\r\n            }\r\n        }\r\n    }\r\n\r\n    public List<Pagamento> carregarPagamentos(Map<Integer, Pedido> pedidos) throws IOException, FormatoArquivoException {\r\n        List<Pagamento> pagamentos = new ArrayList<>();\r\n        File file = new File(ARQUIVO_FINANCEIRO);\r\n        if (!file.exists()) {\r\n            throw new ArquivoNaoEncontradoException(\"Arquivo financeiro não encontrado.\");\r\n        }\r\n\r\n        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {\r\n            String linha;\r\n            while ((linha = reader.readLine()) != null) {\r\n                String[] partes = linha.split(\",\");\r\n                if (partes.length != 4) {\r\n                    throw new FormatoArquivoException(\"Formato inválido no arquivo financeiro.\");\r\n                }\r\n\r\n                try {\r\n                    int idPagamento = Integer.parseInt(partes[0]);\r\n                    int idPedido = Integer.parseInt(partes[1]);\r\n                    int valor = Integer.parseInt(partes[2]);\r\n                    boolean pagamentoProcessado = partes[3].equals(\"1\");\r\n\r\n                    Pedido pedido = pedidos.get(idPedido);\r\n                    if (pedido == null) {\r\n                        throw new FormatoArquivoException(\"Pedido não encontrado para o pagamento.\");\r\n                    }\r\n\r\n                    Pagamento pagamento = new Pagamento(idPagamento, pedido, valor);\r\n                    if (pagamentoProcessado) {\r\n                        pagamento.processarPagamento(0, 0, valor);\r\n                    }\r\n\r\n                    pagamentos.add(pagamento);\r\n                } catch (NumberFormatException e) {\r\n                    throw new FormatoArquivoException(\"Erro ao formatar número no arquivo financeiro.\");\r\n                } catch (DadosInvalidosException e) {\r\n                    throw new FormatoArquivoException(STR.\"Dados inválidos ao processar pagamento: \\{e.getMessage()}\");\r\n                } catch (PagamentoInvalidoException e) {\r\n                    throw new RuntimeException(e);\r\n                }\r\n            }\r\n        }\r\n        return pagamentos;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Arquivos/ArquivoFinanceiro.java b/src/main/java/Arquivos/ArquivoFinanceiro.java
+--- a/src/main/java/Arquivos/ArquivoFinanceiro.java	
++++ b/src/main/java/Arquivos/ArquivoFinanceiro.java	
+@@ -1,68 +1,68 @@
+-package Arquivos;
+-
+-import Exceptions.PagamentoInvalidoException;
++//package Persistencia;
++/*
+ import Negocio.Pagamento;
+-import Negocio.Pedido;
+-import Exceptions.ArquivoNaoEncontradoException;
+-import Exceptions.FormatoArquivoException;
+-import Exceptions.DadosInvalidosException;
++import Negocio.Relatorio;
+ import java.io.*;
+-import java.util.*;
++import Exceptions.*;
+ 
+ public class ArquivoFinanceiro {
+-
+-    private static final String ARQUIVO_FINANCEIRO = "financeiro.txt";
++    private static final String NOME_ARQUIVO_PAGAMENTOS = "pagamentos.csv";
++    private static final String NOME_ARQUIVO_RELATORIO = "relatorio.csv";
+ 
+-    public void salvarPagamentos(List<Pagamento> pagamentos) throws IOException {
+-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(ARQUIVO_FINANCEIRO))) {
+-            for (Pagamento pagamento : pagamentos) {
+-                writer.write(STR."\{pagamento.getIdPagamento()},\{pagamento.getPedido().getIdPedido()},\{pagamento.getValor()},\{pagamento.isPagamentoProcessado() ? "1" : "0"}");
+-                writer.newLine();
+-            }
++    public static void salvarPagamento(Pagamento pagamento) throws IOException {
++        try (FileWriter writer = new FileWriter(NOME_ARQUIVO_PAGAMENTOS, true)) {
++            writer.write(pagamento.getIdPagamento() + "," + pagamento.getValor() + "," + pagamento.validarPagamento() + "\n");
++        } catch (IOException e) {
++            throw new ArquivoNaoEncontradoException("Erro ao salvar o pagamento: arquivo não encontrado.");
+         }
+     }
+-
+-    public List<Pagamento> carregarPagamentos(Map<Integer, Pedido> pedidos) throws IOException, FormatoArquivoException {
+-        List<Pagamento> pagamentos = new ArrayList<>();
+-        File file = new File(ARQUIVO_FINANCEIRO);
+-        if (!file.exists()) {
+-            throw new ArquivoNaoEncontradoException("Arquivo financeiro não encontrado.");
+-        }
+ 
+-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
++    public static void carregarPagamentos() throws IOException, FormatoArquivoException {
++        try (BufferedReader reader = new BufferedReader(new FileReader(NOME_ARQUIVO_PAGAMENTOS))) {
+             String linha;
+             while ((linha = reader.readLine()) != null) {
+                 String[] partes = linha.split(",");
+-                if (partes.length != 4) {
+-                    throw new FormatoArquivoException("Formato inválido no arquivo financeiro.");
++                if (partes.length != 3) {
++                    throw new FormatoArquivoException("Erro no formato do arquivo de pagamentos.");
+                 }
+-
+-                try {
+-                    int idPagamento = Integer.parseInt(partes[0]);
+-                    int idPedido = Integer.parseInt(partes[1]);
+-                    int valor = Integer.parseInt(partes[2]);
+-                    boolean pagamentoProcessado = partes[3].equals("1");
+-
+-                    Pedido pedido = pedidos.get(idPedido);
+-                    if (pedido == null) {
+-                        throw new FormatoArquivoException("Pedido não encontrado para o pagamento.");
+-                    }
+-
+-                    Pagamento pagamento = new Pagamento(idPagamento, pedido, valor);
+-                    if (pagamentoProcessado) {
+-                        pagamento.processarPagamento(0, 0, valor);
+-                    }
++      
++                int idPagamento = Integer.parseInt(partes[0]);
++                double valor = Double.parseDouble(partes[1]);
++                boolean pago = Boolean.parseBoolean(partes[2]);
++                System.out.println("ID: " + idPagamento + " | Valor: " + valor + " | Pago: " + pago);
++            }
++        } catch (FileNotFoundException e) {
++            throw new ArquivoNaoEncontradoException("Arquivo de pagamentos não encontrado.");
++        }
++    }
+ 
+-                    pagamentos.add(pagamento);
+-                } catch (NumberFormatException e) {
+-                    throw new FormatoArquivoException("Erro ao formatar número no arquivo financeiro.");
+-                } catch (DadosInvalidosException e) {
+-                    throw new FormatoArquivoException(STR."Dados inválidos ao processar pagamento: \{e.getMessage()}");
+-                } catch (PagamentoInvalidoException e) {
++    public static void salvarRelatorio(Relatorio relatorio) throws IOException {
++        try (FileWriter writer = new FileWriter(NOME_ARQUIVO_RELATORIO)) {
++            writer.write("Total de Vendas: " + relatorio.getTotalVendas() + "\n");
++            writer.write("Produtos Vendidos:\n");
++            relatorio.getProdutosVendidos().forEach((produto, quantidade) -> {
++                try {
++                    writer.write(produto.getNome() + " - Quantidade: " + quantidade + "\n");
++                } catch (IOException e) {
+                     throw new RuntimeException(e);
+                 }
++            });
++        } catch (IOException e) {
++            throw new RelatoriosException("Erro ao salvar o relatório financeiro.");
++        }
++    }
++
++    public static void carregarRelatorio() throws IOException, FormatoArquivoException {
++        try (BufferedReader reader = new BufferedReader(new FileReader(NOME_ARQUIVO_RELATORIO))) {
++            String linha;
++            while ((linha = reader.readLine()) != null) {
++                System.out.println(linha);
+             }
++        } catch (FileNotFoundException e) {
++            throw new ArquivoNaoEncontradoException("Arquivo de relatórios não encontrado.");
++        } catch (IOException e) {
++            throw new FormatoArquivoException("Erro no formato do arquivo de relatórios.");
+         }
+-        return pagamentos;
+     }
+ }
++*/
+\ No newline at end of file
+Index: src/main/java/Gui/TelaCaixaController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Gui/TelaCaixaController.java b/src/main/java/Gui/TelaCaixaController.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Gui/TelaCaixaController.java	
+@@ -0,0 +1,145 @@
++package Gui;
++
++import javafx.event.ActionEvent;
++import javafx.fxml.FXML;
++import javafx.scene.control.Alert;
++import javafx.scene.control.Button;
++import javafx.scene.control.Label;
++import javafx.scene.control.TextField;
++import javafx.scene.control.ToggleButton;
++import javafx.fxml.FXMLLoader;
++import javafx.scene.input.MouseEvent;
++import javafx.scene.image.Image;
++import javafx.scene.image.ImageView;
++import javafx.scene.layout.Pane;
++import javafx.stage.Stage;
++import javafx.scene.Parent;
++import javafx.scene.Scene;
++import java.io.IOException;
++import javafx.scene.Node;
++
++import java.text.DecimalFormat;
++
++public class TelaCaixaController {
++
++    @FXML
++    private Button botaoVoltar;
++    @FXML
++    private Button botaofinalizarCompra;
++    @FXML
++    private ToggleButton botaocoruja;
++    @FXML
++    private ToggleButton botaoteletransporte;
++    @FXML
++    private TextField galeaoTextField;
++    @FXML
++    private TextField sicleTextField;
++    @FXML
++    private TextField nuqueTextField;
++    @FXML
++    private Label totalLabel;
++    @FXML
++    private Label descontoLabel;
++    @FXML
++    private Label trocoLabel;
++
++    private double total = 0.0; // Total da compra
++    private double desconto = 0.0; // Desconto aplicado
++    private double taxaEntrega = 0.0; // Taxa de entrega
++
++    private final DecimalFormat df = new DecimalFormat("0.00");
++
++    @FXML
++    public void initialize() {
++        // Inicialização dos valores
++        totalLabel.setText("R$ " + df.format(total));
++        descontoLabel.setText("R$ " + df.format(desconto));
++        atualizarTaxaEntrega();
++    }
++
++    private void atualizarTaxaEntrega() {
++        if (botaocoruja.isSelected()) {
++            taxaEntrega = 5.0; // Taxa para coruja
++        } else if (botaoteletransporte.isSelected()) {
++            taxaEntrega = 10.0; // Taxa para teletransporte
++        } else {
++            taxaEntrega = 0.0; // Sem taxa se nenhuma opção selecionada
++        }
++        atualizarTotalComTaxa();
++    }
++
++    private void atualizarTotalComTaxa() {
++        double totalComTaxa = total + taxaEntrega - desconto;
++        totalLabel.setText("R$ " + df.format(totalComTaxa));
++        calcularTroco();
++    }
++
++    private void calcularTroco() {
++        double galeao = Double.parseDouble(galeaoTextField.getText().isEmpty() ? "0" : galeaoTextField.getText());
++        double sicle = Double.parseDouble(sicleTextField.getText().isEmpty() ? "0" : sicleTextField.getText());
++        double nuque = Double.parseDouble(nuqueTextField.getText().isEmpty() ? "0" : nuqueTextField.getText());
++
++        double totalPago = galeao * 29.0 + sicle * 1.0 + nuque * 0.05;
++        double totalComTaxa = total + taxaEntrega - desconto;
++        double troco = totalPago - totalComTaxa;
++
++        trocoLabel.setText("R$ " + df.format(troco));
++    }
++
++    @FXML
++    public void selecionarCoruja(ActionEvent evento) {
++        atualizarTaxaEntrega();
++    }
++
++    @FXML
++    public void selecionarTeletransporte(ActionEvent evento) {
++        atualizarTaxaEntrega();
++    }
++
++    @FXML
++    public void voltar(ActionEvent evento) {
++        Stage stage = (Stage) botaoVoltar.getScene().getWindow();
++        stage.close();
++    }
++
++    @FXML
++    public void finalizarCompra(ActionEvent evento) {
++        // Lógica para finalizar a compra
++        if (Double.parseDouble(galeaoTextField.getText().isEmpty() ? "0" : galeaoTextField.getText()) +
++                Double.parseDouble(sicleTextField.getText().isEmpty() ? "0" : sicleTextField.getText()) +
++                Double.parseDouble(nuqueTextField.getText().isEmpty() ? "0" : nuqueTextField.getText()) < total + taxaEntrega - desconto) {
++            Alert alerta = new Alert(Alert.AlertType.ERROR);
++            alerta.setTitle("Erro na Compra");
++            alerta.setHeaderText(null);
++            alerta.setContentText("O valor pago é insuficiente para cobrir o total da compra.");
++            alerta.showAndWait();
++        } else {
++            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
++            alerta.setTitle("Compra Finalizada");
++            alerta.setHeaderText(null);
++            alerta.setContentText("Compra finalizada com sucesso!");
++            alerta.showAndWait();
++
++            try {
++                Parent telaFeedback = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-feedback.fxml"));
++                Scene cenaFeedback = new Scene(telaFeedback);
++                Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++                janela.setScene(cenaFeedback);
++                janela.show();
++            } catch (IOException e) {
++                e.printStackTrace();
++            }
++        }
++    }
++
++    public void setTotal(double total) {
++        this.total = total;
++        atualizarTotalComTaxa();
++    }
++
++    public void setDesconto(double desconto) {
++        this.desconto = desconto;
++        descontoLabel.setText("R$ " + df.format(desconto));
++        atualizarTotalComTaxa();
++    }
++}
+Index: src/main/java/Gui/TelaCadastroController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Gui/TelaCadastroController.java b/src/main/java/Gui/TelaCadastroController.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Gui/TelaCadastroController.java	
+@@ -0,0 +1,94 @@
++package Gui;
++
++import javafx.event.ActionEvent;
++import javafx.fxml.FXML;
++import javafx.scene.control.Alert;
++import javafx.scene.control.Button;
++import javafx.scene.control.TextField;
++import javafx.scene.control.Alert.AlertType;
++import javafx.scene.Scene;
++import javafx.scene.Parent;
++import javafx.scene.Node;
++import javafx.stage.Stage;
++import javafx.fxml.FXMLLoader;
++
++import java.io.BufferedWriter;
++import java.io.FileWriter;
++import java.io.IOException;
++
++public class TelaCadastroController {
++
++    @FXML
++    private TextField nomeField;
++    @FXML
++    private TextField cidadeField;
++    @FXML
++    private TextField ruaField;
++    @FXML
++    private TextField numeroField;
++    @FXML
++    private TextField corujaField;
++    @FXML
++    private TextField flooPowderField;
++    @FXML
++    private TextField senhaField;
++    @FXML
++    private Button botaoFechar;
++
++    @FXML
++    public void encerrarPrograma(ActionEvent evento) {
++        Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++        janela.close();
++    }
++
++    @FXML
++    public void salvarCadastro(ActionEvent evento) {
++        String nome = nomeField.getText();
++        String cidade = cidadeField.getText();
++        String rua = ruaField.getText();
++        String numero = numeroField.getText();
++        String coruja = corujaField.getText();
++        String flooPowder = flooPowderField.getText();
++        String senha = senhaField.getText();
++
++        if (nome.isEmpty() || cidade.isEmpty() || rua.isEmpty() || numero.isEmpty() || coruja.isEmpty() || flooPowder.isEmpty() || senha.isEmpty()) {
++            Alert alerta = new Alert(AlertType.ERROR);
++            alerta.setTitle("Erro de Cadastro");
++            alerta.setHeaderText("Campos obrigatórios não preenchidos.");
++            alerta.setContentText("Por favor, preencha todos os campos.");
++            alerta.showAndWait();
++            return;
++        }
++        // Substitua pelo caminho real do seu arquivo
++        String caminhoArquivo = "caminho/para/usuarios.txt";
++
++        try (BufferedWriter writer = new BufferedWriter(new FileWriter(caminhoArquivo, true))) {
++            writer.write(String.format("%s:%s%n", coruja, senha));
++            Alert alerta = new Alert(AlertType.INFORMATION);
++            alerta.setTitle("Cadastro realizado");
++            alerta.setHeaderText(null);
++            alerta.setContentText("Cadastro realizado com sucesso.");
++            alerta.showAndWait();
++        } catch (IOException e) {
++            e.printStackTrace();
++            Alert alerta = new Alert(AlertType.ERROR);
++            alerta.setTitle("Erro de Cadastro");
++            alerta.setHeaderText("Não foi possível salvar o cadastro.");
++            alerta.setContentText("Por favor, tente novamente.");
++            alerta.showAndWait();
++        }
++    }
++
++    @FXML
++    public void voltar(ActionEvent evento) {
++        try {
++            Parent telaCliente = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-principal-cliente.fxml"));
++            Scene cenaCliente = new Scene(telaCliente);
++            Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
++            janela.setScene(cenaCliente);
++            janela.show();
++        } catch (IOException e) {
++            e.printStackTrace();
++        }
++    }
++}
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\r\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n    <modelVersion>4.0.0</modelVersion>\r\n\r\n    <groupId>com.potionsemporium</groupId>\r\n    <artifactId>Potions_Emporium2</artifactId>\r\n    <version>1.0-SNAPSHOT</version>\r\n    <name>Potions_Emporium2.0</name>\r\n\r\n    <properties>\r\n        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\r\n        <junit.version>5.8.2</junit.version>\r\n    </properties>\r\n\r\n    <dependencies>\r\n        <dependency>\r\n            <groupId>org.openjfx</groupId>\r\n            <artifactId>javafx-controls</artifactId>\r\n            <version>22-ea+11</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.openjfx</groupId>\r\n            <artifactId>javafx-fxml</artifactId>\r\n            <version>22-ea+11</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.openjfx</groupId>\r\n            <artifactId>javafx-web</artifactId>\r\n            <version>22-ea+11</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.openjfx</groupId>\r\n            <artifactId>javafx-swing</artifactId>\r\n            <version>22-ea+11</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.controlsfx</groupId>\r\n            <artifactId>controlsfx</artifactId>\r\n            <version>11.1.2</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>net.synedra</groupId>\r\n            <artifactId>validatorfx</artifactId>\r\n            <version>0.4.0</version>\r\n            <exclusions>\r\n                <exclusion>\r\n                    <groupId>org.openjfx</groupId>\r\n                    <artifactId>*</artifactId>\r\n                </exclusion>\r\n            </exclusions>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.kordamp.ikonli</groupId>\r\n            <artifactId>ikonli-javafx</artifactId>\r\n            <version>12.3.1</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.kordamp.bootstrapfx</groupId>\r\n            <artifactId>bootstrapfx-core</artifactId>\r\n            <version>0.4.0</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>eu.hansolo</groupId>\r\n            <artifactId>tilesfx</artifactId>\r\n            <version>11.48</version>\r\n            <exclusions>\r\n                <exclusion>\r\n                    <groupId>org.openjfx</groupId>\r\n                    <artifactId>*</artifactId>\r\n                </exclusion>\r\n            </exclusions>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.junit.jupiter</groupId>\r\n            <artifactId>junit-jupiter-api</artifactId>\r\n            <version>${junit.version}</version>\r\n            <scope>test</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.junit.jupiter</groupId>\r\n            <artifactId>junit-jupiter-engine</artifactId>\r\n            <version>${junit.version}</version>\r\n            <scope>test</scope>\r\n        </dependency>\r\n    </dependencies>\r\n\r\n    <build>\r\n        <plugins>\r\n            <plugin>\r\n                <groupId>org.apache.maven.plugins</groupId>\r\n                <artifactId>maven-compiler-plugin</artifactId>\r\n                <version>3.11.0</version>\r\n                <configuration>\r\n                    <source>22</source>\r\n                    <target>22</target>\r\n                </configuration>\r\n            </plugin>\r\n            <plugin>\r\n                <groupId>org.openjfx</groupId>\r\n                <artifactId>javafx-maven-plugin</artifactId>\r\n                <version>0.0.8</version>\r\n                <executions>\r\n                    <execution>\r\n                        <id>default-cli</id>\r\n                        <goals>\r\n                            <goal>jlink</goal>\r\n                        </goals>\r\n                        <configuration>\r\n                            <launcher>app</launcher>\r\n                            <jlinkZipName>app</jlinkZipName>\r\n                            <jlinkImageName>app</jlinkImageName>\r\n                            <noManPages>true</noManPages>\r\n                            <stripDebug>true</stripDebug>\r\n                            <noHeaderFiles>true</noHeaderFiles>\r\n                        </configuration>\r\n                    </execution>\r\n                </executions>\r\n            </plugin>\r\n        </plugins>\r\n    </build>\r\n</project>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pom.xml b/pom.xml
+--- a/pom.xml	
++++ b/pom.xml	
+@@ -1,4 +1,3 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+ <project xmlns="http://maven.apache.org/POM/4.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+@@ -86,6 +85,13 @@
+         </dependency>
+     </dependencies>
+ 
++    <repositories>
++        <repository>
++            <id>gluon-releases</id>
++            <url>https://nexus.gluonhq.com/nexus/content/repositories/releases/</url>
++        </repository>
++    </repositories>
++
+     <build>
+         <plugins>
+             <plugin>
+Index: src/main/java/Arquivos/ArquivoEntregas.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Persistencia;\r\n\r\nimport Negocio.Entrega;\r\nimport java.io.*;\r\nimport Exceptions.*;\r\n\r\npublic class ArquivoEntregas {\r\n    private static final String NOME_ARQUIVO_ENTREGAS = \"entregas.csv\";\r\n\r\n    public static void salvarEntrega(Entrega entrega) throws IOException {\r\n        try (FileWriter writer = new FileWriter(NOME_ARQUIVO_ENTREGAS, true)) {\r\n            writer.write(entrega.getIdEntrega() + \",\" + entrega.getTipoEntrega() + \",\" + entrega.getTaxaEntrega() + \"\\n\");\r\n        } catch (IOException e) {\r\n            throw new ArquivoNaoEncontradoException(\"Erro ao salvar a entrega: arquivo não encontrado.\");\r\n        }\r\n    }\r\n\r\n    public static void carregarEntregas() throws IOException, FormatoArquivoException {\r\n        try (BufferedReader reader = new BufferedReader(new FileReader(NOME_ARQUIVO_ENTREGAS))) {\r\n            String linha;\r\n            while ((linha = reader.readLine()) != null) {\r\n                String[] partes = linha.split(\",\");\r\n                if (partes.length != 3) {\r\n                    throw new FormatoArquivoException(\"Erro no formato do arquivo de entregas.\");\r\n                }\r\n             \r\n                int idEntrega = Integer.parseInt(partes[0]);\r\n                String tipoEntrega = partes[1];\r\n                int taxa = Integer.parseInt(partes[2]);\r\n                System.out.println(\"ID: \" + idEntrega + \" | Tipo: \" + tipoEntrega + \" | Taxa: \" + taxa);\r\n            }\r\n        } catch (FileNotFoundException e) {\r\n            throw new ArquivoNaoEncontradoException(\"Arquivo de entregas não encontrado.\");\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Arquivos/ArquivoEntregas.java b/src/main/java/Arquivos/ArquivoEntregas.java
+--- a/src/main/java/Arquivos/ArquivoEntregas.java	
++++ b/src/main/java/Arquivos/ArquivoEntregas.java	
+@@ -1,4 +1,4 @@
+-package Persistencia;
++/*package Persistencia;
+ 
+ import Negocio.Entrega;
+ import java.io.*;
+@@ -34,3 +34,4 @@
+         }
+     }
+ }
++*/
+\ No newline at end of file
+Index: src/main/resources/com/potionsemporium/potions_emporium2/tela-caixa.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/com/potionsemporium/potions_emporium2/tela-caixa.fxml b/src/main/resources/com/potionsemporium/potions_emporium2/tela-caixa.fxml
+new file mode 100644
+--- /dev/null	
++++ b/src/main/resources/com/potionsemporium/potions_emporium2/tela-caixa.fxml	
+@@ -0,0 +1,138 @@
++<?xml version="1.0" encoding="UTF-8"?>
++
++<?import javafx.scene.control.*?>
++<?import javafx.scene.image.*?>
++<?import javafx.scene.layout.*?>
++<?import javafx.scene.text.*?>
++
++<Pane prefHeight="700.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.TelaCaixaController">
++   <children>
++      <Button layoutX="35.0" layoutY="28.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="188.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Voltar" textFill="#ccb373" onAction="#voltar"  fx:id="botaoVoltar">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Label layoutX="26.0" layoutY="122.0" text="Deseja que sua encomenda seja entregue?" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Label>
++      <Button layoutX="514.0" layoutY="114.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="188.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="SIM" textFill="#ccb373" fx:id="botaoSim" >
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Button layoutX="515.0" layoutY="215.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="188.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="NÃO" textFill="#ccb373"  fx:id="botaoNao">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Label layoutX="597.0" layoutY="178.0" prefHeight="23.0" prefWidth="23.0" text="ou" textAlignment="CENTER" textFill="WHITE">
++         <font>
++            <Font name="Arial" size="15.0" />
++         </font>
++      </Label>
++      <Label layoutX="731.0" layoutY="166.0" prefHeight="23.0" prefWidth="245.0" text="Selecione qual opção você deseja!" textAlignment="CENTER" textFill="WHITE">
++         <font>
++            <Font name="Arial" size="15.0" />
++         </font>
++      </Label>
++      <ToggleButton layoutX="742.0" layoutY="121.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="101.0" style="-fx-background-color: #ffffff;" text="Coruja" textFill="#ccb373" onAction="#selecionarCoruja" fx:id="botaocoruja" >
++         <font>
++            <Font size="15.0" />
++         </font>
++      </ToggleButton>
++      <ToggleButton layoutX="867.0" layoutY="121.0" mnemonicParsing="false" style="-fx-background-color: #ffffff;" text="Teletransporte" textFill="#ccb373" onAction="#selecionarTeletransporte"  fx:id="botaoteletransporte">
++         <font>
++            <Font name="Arial Black" size="15.0" />
++         </font>
++      </ToggleButton>
++      <ImageView fitHeight="58.0" fitWidth="68.0" layoutX="759.0" layoutY="67.0">
++         <image>
++            <Image url="@imagens/coruja.png" />
++         </image>
++      </ImageView>
++      <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="893.0" layoutY="72.0">
++         <image>
++            <Image url="@imagens/varinha.png" />
++         </image>
++      </ImageView>
++      <Label layoutX="26.0" layoutY="305.0" text="Total R$: " textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Label>
++      <Label layoutX="132.0" layoutY="301.0" prefHeight="37.0" prefWidth="146.0" style="-fx-border-color: #ccb373;" textFill="WHITE"  fx:id="totalLabel">
++         <font>
++            <Font name="Arial" size="20.0" />
++         </font>
++      </Label>
++      <Label layoutX="307.0" layoutY="305.0" text="Desconto" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Label>
++      <Label layoutX="422.0" layoutY="301.0" prefHeight="37.0" prefWidth="146.0" style="-fx-border-color: #ccb373;" textFill="WHITE"  fx:id="descontoLabel">
++         <font>
++            <Font name="Arial" size="20.0" />
++         </font>
++      </Label>
++      <Button layoutX="1007.0" layoutY="617.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="235.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Finalizar Compra" textFill="#ccb373" onAction="#finalizarCompra" fx:id="botaofinalizarCompra" >
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <ImageView fitHeight="45.0" fitWidth="48.0" layoutX="55.0" layoutY="422.0">
++         <image>
++            <Image url="@imagens/galeao.png" />
++         </image>
++      </ImageView>
++      <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="61.0" layoutY="520.0">
++         <image>
++            <Image url="@imagens/sicle.png" />
++         </image>
++      </ImageView>
++      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="65.0" layoutY="610.0">
++         <image>
++            <Image url="@imagens/nuque.png" />
++         </image>
++      </ImageView>
++      <Label layoutX="119.0" layoutY="430.0" text="Galeão" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Label>
++      <Label layoutX="119.0" layoutY="524.0" text="Sicle" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Label>
++      <Label layoutX="119.0" layoutY="611.0" text="Nuque" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Label>
++      <TextField layoutX="207.0" layoutY="413.0" prefHeight="45.0" prefWidth="54.0" style="-fx-background-color: #000000;" fx:id="galeaoTextField" />
++      <TextField layoutX="207.0" layoutY="516.0" prefHeight="45.0" prefWidth="54.0" style="-fx-background-color: #000000;"  fx:id="sicleTextField"/>
++      <TextField layoutX="207.0" layoutY="603.0" prefHeight="45.0" prefWidth="54.0" style="-fx-background-color: #000000;" fx:id="nuqueTextField" />
++      <Label layoutX="347.0" layoutY="539.0" text="Troco R$: " textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Label>
++      <Label layoutX="463.0" layoutY="535.0" prefHeight="37.0" prefWidth="146.0" style="-fx-border-color: #ccb373;" textFill="WHITE" fx:id="trocoLabel" >
++         <font>
++            <Font name="Arial" size="20.0" />
++         </font>
++      </Label>
++      <Button layoutX="1223.0" layoutY="28.0" mnemonicParsing="false" style="-fx-background-color: #000000;">
++         <graphic>
++            <ImageView fitHeight="45.0" fitWidth="45.0">
++               <image>
++                  <Image url="@imagens/pegadas.png" />
++               </image>
++            </ImageView>
++         </graphic>
++      </Button>
++   </children>
++</Pane>
+Index: src/main/java/Exceptions/RelatoriosException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Exceptions;\r\n\r\nimport java.io.IOException;\r\n\r\npublic class RelatoriosException extends IOException {\r\n    public RelatoriosException(String mensagem) {\r\n        super(mensagem);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Exceptions/RelatoriosException.java b/src/main/java/Exceptions/RelatoriosException.java
+--- a/src/main/java/Exceptions/RelatoriosException.java	
++++ b/src/main/java/Exceptions/RelatoriosException.java	
+@@ -2,8 +2,8 @@
+ 
+ import java.io.IOException;
+ 
+-public class RelatoriosException extends IOException {
+-    public RelatoriosException(String mensagem) {
+-        super(mensagem);
+-    }
+-}
++//public class RelatoriosException extends IOException {
++//    public RelatoriosException(String mensagem) {
++       // super(mensagem);
++ //   }
++//}
+Index: src/main/resources/com/potionsemporium/potions_emporium2/tela-feedback.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/com/potionsemporium/potions_emporium2/tela-feedback.fxml b/src/main/resources/com/potionsemporium/potions_emporium2/tela-feedback.fxml
+new file mode 100644
+--- /dev/null	
++++ b/src/main/resources/com/potionsemporium/potions_emporium2/tela-feedback.fxml	
+@@ -0,0 +1,69 @@
++<?xml version="1.0" encoding="UTF-8"?>
++
++<?import javafx.scene.control.Button?>
++<?import javafx.scene.control.Label?>
++<?import javafx.scene.control.ToggleButton?>
++<?import javafx.scene.image.Image?>
++<?import javafx.scene.image.ImageView?>
++<?import javafx.scene.text.Font?>
++<?import javafx.scene.layout.Pane?>
++
++<Pane prefHeight="700.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.TelaFeedbackController">
++   <children>
++      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0">
++         <image>
++            <Image url="@imagens/fenix.png" />
++         </image>
++      </ImageView>
++      <ImageView fitHeight="132.0" fitWidth="146.0" layoutX="1124.0" layoutY="26.0">
++         <image>
++            <Image url="@imagens/gravata.png" />
++         </image>
++      </ImageView>
++      <Label layoutX="560.0" layoutY="185.0" text="Feedback" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="30.0" />
++         </font>
++      </Label>
++      <Label layoutX="323.0" layoutY="258.0" prefHeight="23.0" prefWidth="633.0" text="Por favor, avalie sua experiência com nossa loja, dando nota de 1 a 5!" textAlignment="CENTER" textFill="WHITE">
++         <font>
++            <Font name="Arial" size="20.0" />
++         </font>
++      </Label>
++      <ToggleButton layoutX="323.0" layoutY="329.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="33.0" style="-fx-background-color: BF1508;" text="1" textFill="WHITE">
++         <font>
++            <Font name="Arial Black" size="15.0" />
++         </font>
++      </ToggleButton>
++      <ToggleButton layoutX="628.0" layoutY="329.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: #c0c0c0;" text="3" textFill="WHITE">
++         <font>
++            <Font name="Arial Black" size="15.0" />
++         </font>
++      </ToggleButton>
++      <ToggleButton layoutX="795.0" layoutY="328.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: #1848a0;" text="4" textFill="WHITE">
++         <font>
++            <Font name="Arial Black" size="15.0" />
++         </font>
++      </ToggleButton>
++      <ToggleButton layoutX="933.0" layoutY="328.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: #076556;" text="5" textFill="WHITE">
++         <font>
++            <Font name="Arial Bold" size="15.0" />
++         </font>
++      </ToggleButton>
++      <ToggleButton layoutX="469.0" layoutY="330.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: #fcb542;" text="2" textFill="WHITE">
++         <font>
++            <Font name="Arial Black" size="15.0" />
++         </font>
++      </ToggleButton>
++      <Button layoutX="551.0" layoutY="425.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="188.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Salvar" textFill="#ccb373">
++         <font>
++            <Font name="Arial Black" size="20.0" />
++         </font>
++      </Button>
++      <Label layoutX="403.0" layoutY="518.0" prefHeight="23.0" prefWidth="517.0" text="Malfeito, Feito! Até a próxima visita ao Potions Emporium!" textAlignment="CENTER" textFill="WHITE">
++         <font>
++            <Font name="Arial" size="20.0" />
++         </font>
++      </Label>
++   </children>
++</Pane>
+Index: src/main/java/Gui/TelaFeedbackController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Gui/TelaFeedbackController.java b/src/main/java/Gui/TelaFeedbackController.java
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/Gui/TelaFeedbackController.java	
+@@ -0,0 +1,48 @@
++package Gui;
++
++import javafx.event.ActionEvent;
++import javafx.fxml.FXML;
++import javafx.scene.control.Alert;
++import javafx.scene.control.ToggleButton;
++
++public class TelaFeedbackController {
++
++    @FXML
++    private ToggleButton toggleButton1;
++
++    @FXML
++    private ToggleButton toggleButton2;
++
++    @FXML
++    private ToggleButton toggleButton3;
++
++    @FXML
++    private ToggleButton toggleButton4;
++
++    @FXML
++    private ToggleButton toggleButton5;
++
++    @FXML
++    public void salvarFeedback(ActionEvent evento) {
++        String feedback = "";
++        if (toggleButton1.isSelected()) {
++            feedback = "1";
++        } else if (toggleButton2.isSelected()) {
++            feedback = "2";
++        } else if (toggleButton3.isSelected()) {
++            feedback = "3";
++        } else if (toggleButton4.isSelected()) {
++            feedback = "4";
++        } else if (toggleButton5.isSelected()) {
++            feedback = "5";
++        } else {
++            feedback = "Nenhuma nota selecionada";
++        }
++
++        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
++        alerta.setTitle("Feedback Recebido");
++        alerta.setHeaderText(null);
++        alerta.setContentText("Sua nota: " + feedback);
++        alerta.showAndWait();
++    }
++}
+Index: src/main/java/Negocio/produtos/ProdutoAnimal.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Negocio.produtos;\r\n\r\nimport Negocio.Produto;\r\n\r\npublic class ProdutoAnimal extends Produto{\r\n    private String habitat;\r\n\r\n    public ProdutoAnimal(int id, String nome, String descricao, double preco, String categoria, String codigoBarra,int quantidade, String habitat){\r\n        super(id,nome, descricao, preco, categoria, codigoBarra, quantidade);\r\n        this.habitat = this.habitat;\r\n    }\r\n\r\n    public String getHabitat() {\r\n        return habitat;\r\n    }\r\n    public void setHabitat(String habitat) {\r\n        this.habitat = habitat;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Negocio/produtos/ProdutoAnimal.java b/src/main/java/Negocio/produtos/ProdutoAnimal.java
+--- a/src/main/java/Negocio/produtos/ProdutoAnimal.java	
++++ b/src/main/java/Negocio/produtos/ProdutoAnimal.java	
+@@ -1,5 +1,5 @@
+ package Negocio.produtos;
+-
++/*
+ import Negocio.Produto;
+ 
+ public class ProdutoAnimal extends Produto{
+@@ -16,4 +16,4 @@
+     public void setHabitat(String habitat) {
+         this.habitat = habitat;
+     }
+-}
+\ No newline at end of file
++}*/
+\ No newline at end of file
+Index: src/main/java/Exceptions/ArquivoNaoEncontradoException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Exceptions;\r\n\r\nimport java.io.IOException;\r\n\r\npublic class ArquivoNaoEncontradoException extends IOException {\r\n    public ArquivoNaoEncontradoException(String mensagem) {\r\n        super(mensagem);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Exceptions/ArquivoNaoEncontradoException.java b/src/main/java/Exceptions/ArquivoNaoEncontradoException.java
+--- a/src/main/java/Exceptions/ArquivoNaoEncontradoException.java	
++++ b/src/main/java/Exceptions/ArquivoNaoEncontradoException.java	
+@@ -2,8 +2,8 @@
+ 
+ import java.io.IOException;
+ 
+-public class ArquivoNaoEncontradoException extends IOException {
+-    public ArquivoNaoEncontradoException(String mensagem) {
+-        super(mensagem);
+-    }
+-}
++//public class ArquivoNaoEncontradoException extends IOException {
++ //   public ArquivoNaoEncontradoException(String mensagem) {
++       // super(mensagem);
++ //   }
++//}
+Index: src/main/java/Negocio/produtos/ProdutoLivro.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Negocio.produtos;\r\n\r\nimport Negocio.Produto;\r\n\r\npublic class ProdutoLivro extends Produto{\r\n    private String autor;\r\n    private int numeroPaginas;\r\n\r\n    public ProdutoLivro(int id, String nome, String descricao, double preco, String categoria, String codigoBarra,int quantidade, String autor, int numeroPaginas){\r\n        super(id,nome, descricao, preco, categoria, codigoBarra, quantidade);\r\n        this.autor = autor;\r\n        this.numeroPaginas = numeroPaginas;\r\n    }\r\n\r\n    public String getAutor() {\r\n        return autor;\r\n    }\r\n    public void setAutor(String autor) {\r\n        this.autor = autor;\r\n    }\r\n\r\n    public int getNumeroPaginas() {\r\n        return numeroPaginas;\r\n    }\r\n    public void setNumeroPaginas(int numeroPaginas) {\r\n        this.numeroPaginas = numeroPaginas;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Negocio/produtos/ProdutoLivro.java b/src/main/java/Negocio/produtos/ProdutoLivro.java
+--- a/src/main/java/Negocio/produtos/ProdutoLivro.java	
++++ b/src/main/java/Negocio/produtos/ProdutoLivro.java	
+@@ -1,5 +1,5 @@
+ package Negocio.produtos;
+-
++/*
+ import Negocio.Produto;
+ 
+ public class ProdutoLivro extends Produto{
+@@ -25,4 +25,4 @@
+     public void setNumeroPaginas(int numeroPaginas) {
+         this.numeroPaginas = numeroPaginas;
+     }
+-}
+\ No newline at end of file
++}*/
+\ No newline at end of file
+Index: src/main/java/Negocio/produtos/ProdutoPocao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Negocio.produtos;\r\n\r\nimport Negocio.Produto;\r\n\r\npublic class ProdutoPocao extends Produto {\r\n    private String efeito;\r\n    private int tempoefeito;\r\n\r\n    public ProdutoPocao(int id, String nome, String descricao, double preco, String categoria, String codigoBarra, int quantidade, String efeito, int tempoefeito){\r\n        super(id,nome, descricao, preco, categoria, codigoBarra, quantidade);\r\n        this.efeito = efeito;\r\n        this.tempoefeito = tempoefeito;\r\n    }\r\n\r\n    public String getEfeito() {\r\n        return efeito;\r\n    }\r\n    public void setEfeito(String efeito) {\r\n        this.efeito = efeito;\r\n    }\r\n\r\n    public int getTempoefeito() {\r\n        return tempoefeito;\r\n    }\r\n\r\n    public void setTempoefeito(int tempoefeito) {\r\n        this.tempoefeito = tempoefeito;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Negocio/produtos/ProdutoPocao.java b/src/main/java/Negocio/produtos/ProdutoPocao.java
+--- a/src/main/java/Negocio/produtos/ProdutoPocao.java	
++++ b/src/main/java/Negocio/produtos/ProdutoPocao.java	
+@@ -1,5 +1,5 @@
+ package Negocio.produtos;
+-
++/*
+ import Negocio.Produto;
+ 
+ public class ProdutoPocao extends Produto {
+@@ -26,4 +26,4 @@
+     public void setTempoefeito(int tempoefeito) {
+         this.tempoefeito = tempoefeito;
+     }
+-}
+\ No newline at end of file
++}*/
+\ No newline at end of file
+Index: src/main/java/module-info.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>module com.potionsemporium.potions_emporium2 {\r\n    requires javafx.controls;\r\n    requires javafx.fxml;\r\n    requires javafx.web;\r\n\r\n    requires org.controlsfx.controls;\r\n    requires net.synedra.validatorfx;\r\n    requires org.kordamp.ikonli.javafx;\r\n    requires org.kordamp.bootstrapfx.core;\r\n    requires eu.hansolo.tilesfx;\r\n\r\n    opens com.potionsemporium.potions_emporium2 to javafx.fxml;\r\n    exports com.potionsemporium.potions_emporium2;\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/module-info.java b/src/main/java/module-info.java
+--- a/src/main/java/module-info.java	
++++ b/src/main/java/module-info.java	
+@@ -10,5 +10,6 @@
+     requires eu.hansolo.tilesfx;
+ 
+     opens com.potionsemporium.potions_emporium2 to javafx.fxml;
+-    exports com.potionsemporium.potions_emporium2;
++    exports Gui;
++    opens Gui to javafx.fxml;
+ }
+\ No newline at end of file
+Index: src/main/java/Negocio/produtos/ProdutoIngrediente.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Negocio.produtos;\r\n\r\nimport Negocio.Produto;\r\n\r\npublic class ProdutoIngrediente extends Produto{\r\n    private String origem;\r\n\r\n    public ProdutoIngrediente(int id, String nome, String descricao, double preco, String categoria, String codigoBarra, int quantidade, String origem){\r\n        super(id,nome, descricao, preco, categoria, codigoBarra, quantidade);\r\n        this.origem = origem;\r\n    }\r\n\r\n    public String getOrigem() {\r\n        return origem;\r\n    }\r\n    public void setOrigem(String origem) {\r\n        this.origem = origem;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Negocio/produtos/ProdutoIngrediente.java b/src/main/java/Negocio/produtos/ProdutoIngrediente.java
+--- a/src/main/java/Negocio/produtos/ProdutoIngrediente.java	
++++ b/src/main/java/Negocio/produtos/ProdutoIngrediente.java	
+@@ -1,7 +1,7 @@
+ package Negocio.produtos;
+ 
+ import Negocio.Produto;
+-
++/*
+ public class ProdutoIngrediente extends Produto{
+     private String origem;
+ 
+@@ -16,4 +16,4 @@
+     public void setOrigem(String origem) {
+         this.origem = origem;
+     }
+-}
+\ No newline at end of file
++}*/
+\ No newline at end of file
+Index: src/main/java/Negocio/produtos/ProdutoItem.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Negocio.produtos;\r\n\r\nimport Negocio.Produto;\r\n\r\npublic class ProdutoItem extends Produto{\r\n    private String poder;\r\n\r\n    public ProdutoItem(int id, String nome, String descricao, double preco, String categoria, String codigoBarra, int quantidade, String poder) {\r\n        super(id, nome, descricao, preco, categoria, codigoBarra, quantidade);\r\n        this.poder = poder;\r\n    }\r\n\r\n    public String getPoder() {\r\n        return poder;\r\n    }\r\n    public void setPoder(String poder) {\r\n        this.poder = poder;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Negocio/produtos/ProdutoItem.java b/src/main/java/Negocio/produtos/ProdutoItem.java
+--- a/src/main/java/Negocio/produtos/ProdutoItem.java	
++++ b/src/main/java/Negocio/produtos/ProdutoItem.java	
+@@ -1,5 +1,5 @@
+ package Negocio.produtos;
+-
++/*
+ import Negocio.Produto;
+ 
+ public class ProdutoItem extends Produto{
+@@ -16,4 +16,4 @@
+     public void setPoder(String poder) {
+         this.poder = poder;
+     }
+-}
+\ No newline at end of file
++}*/
+\ No newline at end of file
