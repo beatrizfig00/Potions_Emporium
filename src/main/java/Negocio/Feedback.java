@@ -9,8 +9,8 @@ public class Feedback {
     private int nota;
 
     public Feedback(int id, Cliente cliente, int nota) throws DadosInvalidosException {
-        if (nota < 0 || nota > 10) {
-            throw new DadosInvalidosException("Nota deve estar entre 0 e 10.");
+        if (nota < 0 || nota > 5) {
+            throw new DadosInvalidosException("Nota deve estar entre 0 e 5.");
         }
         this.id = id;
         this.cliente = cliente;
@@ -38,8 +38,8 @@ public class Feedback {
     }
 
     public void setNota(int nota) throws DadosInvalidosException, FeedbackException {
-        if (nota < 0 || nota > 10) {
-            throw new DadosInvalidosException("Nota deve estar entre 0 e 10.");
+        if (nota < 0 || nota > 5) {
+            throw new DadosInvalidosException("Nota deve estar entre 0 e 5.");
         }
         
         if (nota == 0) {
