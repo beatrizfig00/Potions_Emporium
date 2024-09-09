@@ -1,5 +1,7 @@
 package Negocio;
 
+import Exceptions.ItemNaoEncontradoException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +17,7 @@ public class Estoque {
         System.out.println(STR."Produto adicionado: \{produto.getNome()} - Quantidade: \{quantidade}");
     }
 
-    public void removerProduto(Produto produto, int quantidade) throws Exception {
+    public void removerProduto(Produto produto, int quantidade) throws ItemNaoEncontradoException {
         int quantidadeAtual = produtos.getOrDefault(produto, 0);
         if (quantidadeAtual >= quantidade) {
             if (quantidadeAtual == quantidade) {
@@ -26,7 +28,7 @@ public class Estoque {
                 System.out.println(STR."Produto atualizado: \{produto.getNome()} - Quantidade restante: \{quantidadeAtual - quantidade}");
             }
         } else {
-            throw new Exception("Quantidade insuficiente para remover.");
+            throw new ItemNaoEncontradoException("Quantidade insuficiente para remover.");
         }
     }
 
@@ -37,17 +39,21 @@ public class Estoque {
             System.out.println("Produtos no estoque:");
             for (Map.Entry<Produto, Integer> entry : produtos.entrySet()) {
                 Produto produto = entry.getKey();
-                int quantidade = entry.getValue();
-                System.out.println(STR."\{produto.getNome()} - Quantidade: \{quantidade}");
+                Integer quantidade = entry.getValue();
+                System.out.println(STR."Produto: \{produto.getNome()} - Quantidade: \{quantidade}");
             }
         }
     }
 
-    public int verificarDisponibilidade(Produto produto) {
-        return produtos.getOrDefault(produto, 0);
+    public int getQuantidade(Produto produto) throws ItemNaoEncontradoException {
+        if (produtos.containsKey(produto)) {
+            return produtos.get(produto);
+        } else {
+            throw new ItemNaoEncontradoException("Produto não encontrado no estoque.");
+        }
     }
 
     public Map<Produto, Integer> getProdutos() {
-        return produtos;
+        return new HashMap<>(produtos);
     }
 }

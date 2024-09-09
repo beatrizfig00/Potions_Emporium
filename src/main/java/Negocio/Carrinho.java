@@ -1,70 +1,50 @@
 package Negocio;
 
+import Exceptions.DadosInvalidosException;
+import Exceptions.ItemNaoEncontradoException;
+import Exceptions.PromoInvalidaException;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Carrinho {
-    private List<Produto> itens;
-    private Map<Produto, Integer> quantidade;
-    private double desconto;
+    private final List<ItemCarrinho> itens;
+    private double total;
 
     public Carrinho() {
         this.itens = new ArrayList<>();
-        this.quantidade = new HashMap<>();
-        this.desconto = 0.0;
+        this.total = 0.0;
     }
 
-    public void adicionarProduto(Produto produto, int qtd) {
-        if (quantidade.containsKey(produto)) {
-            quantidade.put(produto, quantidade.get(produto) + qtd);
-        } else {
-            itens.add(produto);
-            quantidade.put(produto, qtd);
+    public void adicionarItem(Produto produto, int quantidade, double preco) throws DadosInvalidosException {
+        if (produto == null || quantidade <= 0 || preco <= 0) {
+            throw new DadosInvalidosException("Dados do item inválidos.");
         }
+        this.itens.add(new ItemCarrinho(produto, quantidade, preco));
+        this.total += quantidade * preco;
     }
 
-    public void removerProduto(Produto produto, int qtd) {
-        if (quantidade.containsKey(produto)) {
-            int quantidadeAtual = quantidade.get(produto);
-            if (quantidadeAtual > qtd) {
-                quantidade.put(produto, quantidadeAtual - qtd);
-            } else {
-                itens.remove(produto);
-                quantidade.remove(produto);
-            }
-        } else {
-            System.out.println("Produto não encontrado no carrinho.");
-        }
+    public void removerItem(Produto produto) throws ItemNaoEncontradoException {
+        ItemCarrinho item = this.itens.stream()
+                .filter(i -> i.produto().equals(produto))
+                .findFirst()
+                .orElseThrow(() -> new ItemNaoEncontradoException("Item não encontrado no carrinho."));
+
+        this.itens.remove(item);
+        this.total -= item.quantidade() * item.preco();
     }
 
     public double calculaTotal() {
-        double total = 0.0;
-        for (Produto produto : itens) {
-            total += produto.getPreco() * quantidade.get(produto);
+        return this.total;
+    }
+
+    public void aplicarDesconto(double percentual) throws PromoInvalidaException {
+        if (percentual < 0 || percentual > 100) {
+            throw new PromoInvalidaException("Percentual de desconto inválido.");
         }
-        total -= desconto;
-        return total;
+        this.total -= this.total * (percentual / 100);
     }
 
-    public void aplicarDesconto(double desconto) {
-        this.desconto = desconto;
-    }
-
-    public List<Produto> getItens() {
-        return itens;
-    }
-
-    public Map<Produto, Integer> getQuantidade() {
-        return quantidade;
-    }
-
-    public void setItens(List<Produto> itens) {
-        this.itens = itens;
-    }
-
-    public void setQuantidade(Map<Produto, Integer> quantidade) {
-        this.quantidade = quantidade;
+        private record ItemCarrinho(Produto produto, int quantidade, double preco) {
     }
 }

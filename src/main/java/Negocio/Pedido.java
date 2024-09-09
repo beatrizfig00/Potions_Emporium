@@ -1,5 +1,9 @@
 package Negocio;
 
+import Exceptions.DadosInvalidosException;
+import Exceptions.ItemNaoEncontradoException;
+import Exceptions.PromoInvalidaException;
+
 import java.util.Map;
 
 public class Pedido {
@@ -11,7 +15,18 @@ public class Pedido {
     private Promocao promocao;
     private Entrega entrega;
 
-    public Pedido(int idPedido, Cliente cliente, Map<Produto, Integer> itens, String statusPedido, Promocao promocao) {
+    public Pedido(int idPedido, Cliente cliente, Map<Produto, Integer> itens, String statusPedido, Promocao promocao)
+            throws DadosInvalidosException, PromoInvalidaException {
+        if (cliente == null) {
+            throw new DadosInvalidosException("Cliente não pode ser nulo.");
+        }
+        if (itens == null || itens.isEmpty()) {
+            throw new DadosInvalidosException("Itens não podem ser nulos ou vazios.");
+        }
+        if (statusPedido == null || statusPedido.isEmpty()) {
+            throw new DadosInvalidosException("Status do pedido não pode ser nulo ou vazio.");
+        }
+
         this.idPedido = idPedido;
         this.cliente = cliente;
         this.itens = itens;
@@ -31,17 +46,22 @@ public class Pedido {
         return total;
     }
 
-    public void aplicarPromocao() {
-        if (promocao != null && promocao.validarPromocao()) {
+    public void aplicarPromocao() throws PromoInvalidaException {
+        if (promocao != null) {
+            if (!promocao.validarPromocao()) {
+                throw new PromoInvalidaException("Promoção inválida.");
+            }
             double desconto = promocao.aplicarPromocao(this);
             this.total -= desconto;
         }
     }
 
-    public void atualizarStatus(String novoStatus) {
+    public void atualizarStatus(String novoStatus) throws DadosInvalidosException {
+        if (novoStatus == null || novoStatus.isEmpty()) {
+            throw new DadosInvalidosException("Novo status não pode ser nulo ou vazio.");
+        }
         this.statusPedido = novoStatus;
     }
-
 
     public int getIdPedido() {
         return idPedido;
@@ -55,7 +75,10 @@ public class Pedido {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(Cliente cliente) throws DadosInvalidosException, PromoInvalidaException {
+        if (cliente == null) {
+            throw new DadosInvalidosException("Cliente não pode ser nulo.");
+        }
         this.cliente = cliente;
         aplicarPromocao();
     }
@@ -64,7 +87,10 @@ public class Pedido {
         return itens;
     }
 
-    public void setItens(Map<Produto, Integer> itens) {
+    public void setItens(Map<Produto, Integer> itens) throws DadosInvalidosException, PromoInvalidaException {
+        if (itens == null || itens.isEmpty()) {
+            throw new DadosInvalidosException("Itens não podem ser nulos ou vazios.");
+        }
         this.itens = itens;
         this.total = calcularTotal();
         aplicarPromocao();
@@ -78,7 +104,10 @@ public class Pedido {
         return statusPedido;
     }
 
-    public void setStatusPedido(String statusPedido) {
+    public void setStatusPedido(String statusPedido) throws DadosInvalidosException {
+        if (statusPedido == null || statusPedido.isEmpty()) {
+            throw new DadosInvalidosException("Status do pedido não pode ser nulo ou vazio.");
+        }
         this.statusPedido = statusPedido;
     }
 
@@ -86,7 +115,10 @@ public class Pedido {
         return promocao;
     }
 
-    public void setPromocao(Promocao promocao) {
+    public void setPromocao(Promocao promocao) throws PromoInvalidaException {
+        if (promocao != null && !promocao.validarPromocao()) {
+            throw new PromoInvalidaException("Promoção inválida.");
+        }
         this.promocao = promocao;
         aplicarPromocao();
     }
@@ -99,8 +131,11 @@ public class Pedido {
         this.entrega = entrega;
     }
 
-    public int getQuantidade(Produto produto) {
-        return itens.getOrDefault(produto, 0);
+    public int getQuantidade(Produto produto) throws ItemNaoEncontradoException {
+        if (!itens.containsKey(produto)) {
+            throw new ItemNaoEncontradoException("Produto não encontrado no pedido.");
+        }
+        return itens.get(produto);
     }
 
     public void setTotal(double total) {
