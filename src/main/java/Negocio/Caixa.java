@@ -1,5 +1,8 @@
 package Negocio;
 
+import Exceptions.PagamentoInvalidoException;
+import Exceptions.DadosInvalidosException;
+
 public class Caixa {
     private Pedido pedido;
     private double total;
@@ -10,11 +13,16 @@ public class Caixa {
     }
 
     public double calcularTotal() {
-        double totalProdutos = pedido.calcularTotal();
-        double valorPromocao = aplicarPromocao();
-        double taxaEntrega = calcularTaxaEntrega();
-        total = totalProdutos - valorPromocao + taxaEntrega;
-        return total;
+        try {
+            double totalProdutos = pedido.calcularTotal();
+            double valorPromocao = aplicarPromocao();
+            double taxaEntrega = calcularTaxaEntrega();
+            total = totalProdutos - valorPromocao + taxaEntrega;
+            return total;
+        } catch (DadosInvalidosException e) {
+            System.out.println(STR."Erro ao calcular o total: \{e.getMessage()}");
+            return 0.0;
+        }
     }
 
     private double calcularTaxaEntrega() {
@@ -25,7 +33,7 @@ public class Caixa {
         return 0.0;
     }
 
-    private double aplicarPromocao() {
+    private double aplicarPromocao() throws DadosInvalidosException {
         Promocao promocao = pedido.getPromocao();
         if (promocao != null) {
             return promocao.aplicarPromocao(pedido);
@@ -33,12 +41,17 @@ public class Caixa {
         return 0.0;
     }
 
-    public void processarPagamento(int galeoes, int sicles, int nuques) {
-        Pagamento pagamento = new Pagamento(1, pedido, (int) total); 
-        if (pagamento.processarPagamento(galeoes, sicles, nuques)) {
+    public void processarPagamento(int galeoes, int sicles, int nuques) throws PagamentoInvalidoException {
+        try {
+            Pagamento pagamento = new Pagamento(1, pedido, (int) total);
+            if (!pagamento.processarPagamento(galeoes, sicles, nuques)) {
+                throw new PagamentoInvalidoException("Falha no pagamento.");
+            }
             System.out.println("Pagamento realizado com sucesso!");
-        } else {
-            System.out.println("Falha no pagamento.");
+        } catch (PagamentoInvalidoException e) {
+            System.out.println(e.getMessage());
+        } catch (DadosInvalidosException e) {
+            throw new RuntimeException(e);
         }
     }
 
