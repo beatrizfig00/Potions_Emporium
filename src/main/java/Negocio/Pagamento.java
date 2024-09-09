@@ -1,5 +1,8 @@
 package Negocio;
 
+import Exceptions.PagamentoInvalidoException;
+import Exceptions.DadosInvalidosException;
+
 public class Pagamento {
 
     private int idPagamento;
@@ -7,7 +10,14 @@ public class Pagamento {
     private int valor;
     private boolean pagamentoProcessado;
 
-    public Pagamento(int idPagamento, Pedido pedido, int valor) {
+    public Pagamento(int idPagamento, Pedido pedido, int valor) throws DadosInvalidosException, PagamentoInvalidoException {
+        if (pedido == null) {
+            throw new DadosInvalidosException("Pedido não pode ser nulo.");
+        }
+        if (valor <= 0) {
+            throw new PagamentoInvalidoException("Valor do pagamento deve ser positivo.");
+        }
+
         this.idPagamento = idPagamento;
         this.pedido = pedido;
         this.valor = valor;
@@ -25,8 +35,7 @@ public class Pagamento {
             distribuirTroco(troco);
             return true;
         } else {
-            System.out.println("Pagamento insuficiente. Faltam "
-                    + (valor - totalNuquesRecebidos) + " Nuques.");
+            System.out.println(STR."Pagamento insuficiente. Faltam \{valor - totalNuquesRecebidos} Nuques.");
             return false;
         }
     }
@@ -57,7 +66,10 @@ public class Pagamento {
         return pedido;
     }
 
-    public void setPedido(Pedido pedido) {
+    public void setPedido(Pedido pedido) throws DadosInvalidosException {
+        if (pedido == null) {
+            throw new DadosInvalidosException("Pedido não pode ser nulo.");
+        }
         this.pedido = pedido;
     }
 
@@ -65,7 +77,10 @@ public class Pagamento {
         return valor;
     }
 
-    public void setValor(int valor) {
+    public void setValor(int valor) throws PagamentoInvalidoException {
+        if (valor <= 0) {
+            throw new PagamentoInvalidoException("Valor do pagamento deve ser positivo.");
+        }
         this.valor = valor;
     }
 
