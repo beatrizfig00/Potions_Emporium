@@ -5,16 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Ajustes Pedido e Estoque">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Testes/TesteHistoricoCompras.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Testes/TesteMoeda.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Testes/TestePromocoes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoClientes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Carrinho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Carrinho.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Endereco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Endereco.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Estoque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Estoque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Loja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Loja.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Pedido.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Promocao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Promocao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoCliente.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Caixa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Caixa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Cliente.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,27 +44,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.TesteHistoricoCompras.executor": "Debug",
-    "Application.TesteMoeda.executor": "Run",
-    "Application.TestePromocoes.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.TesteHistoricoCompras.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.TesteMoeda.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TestePromocoes.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
         <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+        <option value="jdk-22-openjdk-22-3183f394aec4-bad0321e" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f98de7f8-be93-41c1-8f8d-03c0cb9bcdc1" name="Changes" comment="" />
+      <changelist id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Ajustes Pedido e Estoque" />
       <created>1725557183281</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />

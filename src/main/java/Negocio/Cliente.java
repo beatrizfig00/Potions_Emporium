@@ -1,8 +1,8 @@
 package Negocio;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import Exceptions.DadosInvalidosException;
 
 public class Cliente {
@@ -12,6 +12,7 @@ public class Cliente {
     private String flooPowder;
     private String senha;
     private List<Pedido> historicoCompras;
+    private List<Feedback> feedbacks;  // Nova lista para armazenar feedbacks
 
     public Cliente(String nome, String coruja, String flooPowder, String senha, List<Pedido> historicoCompras) throws DadosInvalidosException {
         this.id = gerarId();
@@ -20,13 +21,16 @@ public class Cliente {
         this.flooPowder = flooPowder;
         this.senha = senha;
         this.historicoCompras = historicoCompras;
+        this.feedbacks = new ArrayList<>();  // Inicializando a lista de feedbacks vazia
     }
 
+    // Método para gerar um ID aleatório
     private int gerarId() {
         Random random = new Random();
         return random.nextInt(10000);
     }
 
+    // Getters e setters normais para os atributos existentes
     public int getId() {
         return id;
     }
@@ -69,5 +73,18 @@ public class Cliente {
 
     public void setHistoricoCompras(List<Pedido> historicoCompras) {
         this.historicoCompras = historicoCompras;
+    }
+
+    // Métodos para lidar com feedbacks
+    public List<Feedback> getFeedbacks() {
+        return feedbacks;
+    }
+
+    public void setFeedbacks(List<Feedback> feedbacks) {
+        this.feedbacks = feedbacks;
+    }
+
+    public void adicionarFeedback(Feedback feedback) {
+        this.feedbacks.add(feedback);
     }
 }
