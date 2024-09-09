@@ -3,6 +3,8 @@ package Negocio;
 import java.util.List;
 import java.util.Random;
 
+import Exceptions.DadosInvalidosException;
+
 public class Cliente {
     private int id;
     private String nome;
@@ -10,19 +12,19 @@ public class Cliente {
     private String flooPowder;
     private String senha;
     private List<Pedido> historicoCompras;
-    
-    public Cliente(String nome, String coruja, String flooPowder, String senha, List<Pedido> historicoCompras) {
-        this.id = gerarId(); 
+
+    public Cliente(String nome, String coruja, String flooPowder, String senha, List<Pedido> historicoCompras) throws DadosInvalidosException {
+        this.id = gerarId();
         this.nome = nome;
         this.coruja = coruja;
         this.flooPowder = flooPowder;
-        this.senha = senha; 
+        this.senha = senha;
         this.historicoCompras = historicoCompras;
     }
 
     private int gerarId() {
         Random random = new Random();
-        return random.nextInt(10000); 
+        return random.nextInt(10000);
     }
 
     public int getId() {
