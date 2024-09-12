@@ -3,8 +3,6 @@ package Negocio;
 import Exceptions.PagamentoInvalidoException;
 import Exceptions.DadosInvalidosException;
 
-import static java.lang.StringTemplate.STR;
-
 public class Caixa {
     private Pedido pedido;
     private double total;
@@ -22,7 +20,7 @@ public class Caixa {
             total = totalProdutos - valorPromocao + taxaEntrega;
             return total;
         } catch (DadosInvalidosException e) {
-            System.out.println(STR."Erro ao calcular o total: \{e.getMessage()}");
+            System.out.println("Erro ao calcular o total: " + e.getMessage());
             return 0.0;
         }
     }
@@ -42,6 +40,7 @@ public class Caixa {
         }
         return 0.0;
     }
+
 
     public void processarPagamento(int galeoes, int sicles, int nuques) throws PagamentoInvalidoException {
         try {

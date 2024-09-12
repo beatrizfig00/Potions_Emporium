@@ -46,13 +46,13 @@ public class Pedido {
         return total;
     }
 
-    public void aplicarPromocao() throws PromoInvalidaException {
+    public void aplicarPromocao() throws PromoInvalidaException, DadosInvalidosException {
         if (promocao != null) {
             if (!promocao.validarPromocao()) {
                 throw new PromoInvalidaException("Promoção inválida.");
             }
             double desconto = promocao.aplicarPromocao(this);
-            this.total -= desconto;
+            this.total = calcularTotal() - desconto;
         }
     }
 
@@ -96,8 +96,8 @@ public class Pedido {
         aplicarPromocao();
     }
 
-    public int getTotal() {
-        return (int) total;
+    public double getTotal() {
+        return total;
     }
 
     public String getStatusPedido() {
@@ -115,7 +115,7 @@ public class Pedido {
         return promocao;
     }
 
-    public void setPromocao(Promocao promocao) throws PromoInvalidaException {
+    public void setPromocao(Promocao promocao) throws PromoInvalidaException, DadosInvalidosException {
         if (promocao != null && !promocao.validarPromocao()) {
             throw new PromoInvalidaException("Promoção inválida.");
         }

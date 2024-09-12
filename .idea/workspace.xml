@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Ajustes Tela Clientes/Cadastro">
-      <change afterPath="$PROJECT_DIR$/clientes.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Classe Main e ajustes gerais">
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_09_2024_15_48__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_09_2024_15_48__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_09_2024_16_46__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_09_2024_16_46__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_09_2024_09_06__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_09_2024_09_06__Changes_.xml" afterDir="false" />
@@ -17,11 +15,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_09_2024_14_30__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_09_2024_14_30__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_09_2024_14_30__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_09_2024_14_30__Changes_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Carrinho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Carrinho.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Caixa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Caixa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Cliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Estoque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Estoque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Loja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Loja.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Pedido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Promocao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Promocao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +186,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726147605786</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Commit Classe Main e ajustes gerais">
+      <option name="closed" value="true" />
+      <created>1726169993618</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1726169993618</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -198,6 +205,7 @@
     <MESSAGE value="Commit Arquivos Ajustados" />
     <MESSAGE value="Commit Produtos e Estoque" />
     <MESSAGE value="Commit Ajustes Tela Clientes/Cadastro" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit Ajustes Tela Clientes/Cadastro" />
+    <MESSAGE value="Commit Classe Main e ajustes gerais" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit Classe Main e ajustes gerais" />
   </component>
 </project>
