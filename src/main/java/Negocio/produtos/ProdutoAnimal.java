@@ -8,6 +8,7 @@ public class ProdutoAnimal extends Produto{
 
     public ProdutoAnimal(int id, String nome, String descricao, double preco, String codigoBarra, int quantidade, String habitat) throws DadosInvalidosException {
         super(id,nome, descricao, preco, codigoBarra, quantidade);
+        this.habitat = habitat;
     }
 
     public String getHabitat() {
