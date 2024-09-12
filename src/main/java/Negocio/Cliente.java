@@ -94,4 +94,11 @@ public class Cliente {
     public void adicionarFeedback(Feedback feedback) {
         this.feedbacks.add(feedback);
     }
+
+    public void adicionarPedido(Pedido pedido) throws DadosInvalidosException {
+        if (pedido == null) {
+            throw new DadosInvalidosException("Pedido não pode ser nulo.");
+        }
+        this.historicoCompras.add(pedido);
+    }
 }

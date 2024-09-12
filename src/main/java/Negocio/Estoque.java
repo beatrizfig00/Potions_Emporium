@@ -18,7 +18,7 @@ public class Estoque {
         if (quantidadeAtual >= quantidade) {
             if (quantidadeAtual == quantidade) {
                 produtos.remove(produto);
-                System.out.println("Produto removido: " + produto.getNome());
+                System.out.println("Produto removido do estoque: " + produto.getNome());
             } else {
                 produtos.put(produto, quantidadeAtual - quantidade);
                 System.out.println("Produto atualizado: " + produto.getNome() + " - Quantidade restante: " + (quantidadeAtual - quantidade));
