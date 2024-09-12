@@ -96,8 +96,8 @@ public class Pedido {
         aplicarPromocao();
     }
 
-    public double getTotal() {
-        return total;
+    public int getTotal() {
+        return (int) total;
     }
 
     public String getStatusPedido() {

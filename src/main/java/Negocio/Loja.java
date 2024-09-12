@@ -21,7 +21,7 @@ public class Loja {
     }
 
     public int verificarEstoque(Produto produto) {
-        return estoque.verificarDisponibilidade(produto);
+        return estoque.getQuantidadeProduto(produto);
     }
 
     public void registrarPedido(Pedido pedido) throws Exception {

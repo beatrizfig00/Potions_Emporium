@@ -1,6 +1,8 @@
 package Negocio;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 import Exceptions.DadosInvalidosException;
 
@@ -19,10 +21,13 @@ public class Carrinho {
     }
 
     public void removerItem(Produto produto, int quantidade) throws DadosInvalidosException {
-        if (produto == null || quantidade <= 0 || !produtos.containsKey(produto)) {
-            throw new DadosInvalidosException("Produto ou quantidade inválidos.");
+        if (produto == null || !produtos.containsKey(produto)) {
+            throw new DadosInvalidosException("Produto não encontrado no carrinho.");
         }
         int quantidadeAtual = produtos.get(produto);
+        if (quantidade <= 0) {
+            throw new DadosInvalidosException("Quantidade inválida para remoção.");
+        }
         if (quantidadeAtual <= quantidade) {
             produtos.remove(produto);
         } else {
@@ -32,6 +37,17 @@ public class Carrinho {
 
     public Map<Produto, Integer> getProdutos() {
         return produtos;
+    }
+
+    public List<ItemCarrinho> getItens() {
+        List<ItemCarrinho> itens = new ArrayList<>();
+        for (Map.Entry<Produto, Integer> entry : produtos.entrySet()) {
+            Produto produto = entry.getKey();
+            int quantidade = entry.getValue();
+            double preco = produto.getPreco();
+            itens.add(new ItemCarrinho(produto, quantidade, preco));
+        }
+        return itens;
     }
 
     public static class ItemCarrinho {
