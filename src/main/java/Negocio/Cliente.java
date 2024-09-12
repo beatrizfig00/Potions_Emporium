@@ -24,6 +24,16 @@ public class Cliente {
         this.feedbacks = new ArrayList<>();
     }
 
+    public Cliente(int id, String nome, String coruja, String flooPowder, String senha) throws DadosInvalidosException {
+        this.id = id;
+        this.nome = nome;
+        this.coruja = coruja;
+        this.flooPowder = flooPowder;
+        this.senha = senha;
+        this.historicoCompras = new ArrayList<>();
+        this.feedbacks = new ArrayList<>();
+    }
+
     private int gerarId() {
         Random random = new Random();
         return random.nextInt(10000);

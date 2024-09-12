@@ -36,14 +36,21 @@ public class ArquivoFinanceiro {
                 }
 
                 int idPagamento = Integer.parseInt(partes[0]);
-                double valor = Double.parseDouble(partes[1]);
+                int valor = Integer.parseInt(partes[1]);
                 boolean pago = Boolean.parseBoolean(partes[2]);
 
-                Pagamento pagamento = new Pagamento(idPagamento, valor, pago);
+                Pagamento pagamento = new Pagamento(idPagamento, null, valor);
+                if (pago) {
+                    pagamento.processarPagamento(0, 0, 0);
+                }
                 pagamentos.put(idPagamento, pagamento);
             }
         } catch (FileNotFoundException e) {
             throw new ArquivoNaoEncontradoException("Arquivo de pagamentos não encontrado.");
+        } catch (PagamentoInvalidoException e) {
+            throw new RuntimeException(e);
+        } catch (DadosInvalidosException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -73,7 +80,7 @@ public class ArquivoFinanceiro {
     }
 
     private static String organizarLinhaPagamento(Pagamento pagamento) {
-        return String.format("%d,%f,%b",
+        return String.format("%d,%d,%b",
                 pagamento.getIdPagamento(), pagamento.getValor(), pagamento.validarPagamento());
     }
 }

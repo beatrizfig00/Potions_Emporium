@@ -35,7 +35,7 @@ public class Pagamento {
             distribuirTroco(troco);
             return true;
         } else {
-     //       System.out.println(STR."Pagamento insuficiente. Faltam \{valor - totalNuquesRecebidos} Nuques.");
+            System.out.printf("Pagamento insuficiente. Faltam %d Nuques.%n", valor - totalNuquesRecebidos);
             return false;
         }
     }
@@ -87,5 +87,4 @@ public class Pagamento {
     public boolean isPagamentoProcessado() {
         return pagamentoProcessado;
     }
-
 }

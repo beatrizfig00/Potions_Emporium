@@ -64,8 +64,8 @@ public class ArquivoCliente {
         if (atributos.length != 5) {
             throw new DadosInvalidosException("Dados inválidos para criar um cliente.");
         }
-        return new Cliente(
-                atributos[1], atributos[2], atributos[3], atributos[4]
-        );
+        int id = Integer.parseInt(atributos[0]);
+        return new Cliente(id, atributos[1], atributos[2], atributos[3], atributos[4]);
     }
+
 }
