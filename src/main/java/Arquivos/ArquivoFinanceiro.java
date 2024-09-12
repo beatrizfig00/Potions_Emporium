@@ -2,6 +2,7 @@ package Arquivos;
 
 import Negocio.Pagamento;
 import Negocio.Relatorio;
+import Negocio.Pedido; 
 import Exceptions.*;
 
 import java.io.*;
@@ -25,7 +26,7 @@ public class ArquivoFinanceiro {
         }
     }
 
-    public void carregarPagamentos() throws IOException, FormatoArquivoException {
+    public void carregarPagamentos(Map<Integer, Pedido> pedidos) throws IOException, FormatoArquivoException {
         Map<Integer, Pagamento> pagamentos = new HashMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(arquivoPagamentos))) {
             String linha;
@@ -39,18 +40,23 @@ public class ArquivoFinanceiro {
                 int valor = Integer.parseInt(partes[1]);
                 boolean pago = Boolean.parseBoolean(partes[2]);
 
-                Pagamento pagamento = new Pagamento(idPagamento, null, valor);
+                Pedido pedido = pedidos.get(idPagamento);
+                if (pedido == null) {
+                    throw new DadosInvalidosException("Pedido não encontrado para o pagamento: " + idPagamento);
+                }
+
+                Pagamento pagamento = new Pagamento(idPagamento, pedido, valor);
                 if (pago) {
-                    pagamento.processarPagamento(0, 0, 0);
+                    pagamento.processarPagamento(pedido.getTotal(), 0, 0); 
                 }
                 pagamentos.put(idPagamento, pagamento);
             }
         } catch (FileNotFoundException e) {
             throw new ArquivoNaoEncontradoException("Arquivo de pagamentos não encontrado.");
         } catch (PagamentoInvalidoException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Erro ao processar o pagamento: " + e.getMessage(), e);
         } catch (DadosInvalidosException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Erro ao carregar o pagamento: " + e.getMessage(), e);
         }
     }
 
@@ -69,7 +75,12 @@ public class ArquivoFinanceiro {
     public void carregarRelatorio() throws IOException, FormatoArquivoException {
         try (BufferedReader reader = new BufferedReader(new FileReader(arquivoRelatorios))) {
             String linha;
+            int linhaAtual = 0;
             while ((linha = reader.readLine()) != null) {
+                linhaAtual++;
+                if (!validarFormatoRelatorio(linha)) { 
+                    throw new FormatoArquivoException("Erro no formato do relatório na linha: " + linhaAtual);
+                }
                 System.out.println(linha);
             }
         } catch (FileNotFoundException e) {
@@ -82,5 +93,9 @@ public class ArquivoFinanceiro {
     private static String organizarLinhaPagamento(Pagamento pagamento) {
         return String.format("%d,%d,%b",
                 pagamento.getIdPagamento(), pagamento.getValor(), pagamento.validarPagamento());
+    }
+
+    private boolean validarFormatoRelatorio(String linha) {
+        return linha != null && !linha.trim().isEmpty();
     }
 }
