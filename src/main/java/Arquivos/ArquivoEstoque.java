@@ -12,8 +12,30 @@ public class ArquivoEstoque {
     private final String arquivoCSV;
 
     public ArquivoEstoque(String arquivoCSV) {
-        this.estoque = new HashMap<>();
         this.arquivoCSV = arquivoCSV;
+        this.estoque = new HashMap<>();
+        File arquivo = new File(arquivoCSV);
+
+        if (!arquivo.exists()) {
+            try {
+                arquivo.createNewFile();
+                inicializarCabecalho();
+            } catch (IOException e) {
+                System.err.println("Erro ao criar o arquivo: " + e.getMessage());
+            }
+        }
+
+        try {
+            carregarProdutos();
+        } catch (IOException | DadosInvalidosException e) {
+            System.err.println("Erro ao carregar produtos: " + e.getMessage());
+        }
+    }
+
+    private void inicializarCabecalho() throws IOException {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(arquivoCSV))) {
+            writer.println("ID,Nome,Descricao,Preco,CodigoBarra,Quantidade,TipoProduto,DetalhesEspecificos");
+        }
     }
 
     public void adicionarProduto(Produto produto, int quantidade) {
@@ -39,6 +61,7 @@ public class ArquivoEstoque {
 
     public void salvarProdutos() throws IOException {
         try (PrintWriter writer = new PrintWriter(new FileWriter(arquivoCSV, false))) {
+            writer.println("ID,Nome,Descricao,Preco,CodigoBarra,Quantidade,TipoProduto,DetalhesEspecificos");
             for (Map.Entry<Produto, Integer> entry : estoque.entrySet()) {
                 writer.println(organizarLinhas(entry.getKey(), entry.getValue()));
             }
@@ -50,77 +73,101 @@ public class ArquivoEstoque {
         try (BufferedReader reader = new BufferedReader(new FileReader(arquivoCSV))) {
             String linha;
             reader.readLine();
-
             while ((linha = reader.readLine()) != null) {
-                Produto produto = criarProduto(linha);
-                int quantidade = parseIntSafe(linha.split(",")[6], "Quantidade");
-                estoque.put(produto, quantidade);
+                String[] atributos = linha.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
+                if (atributos.length >= 8) {
+                    Produto produto = criarProduto(atributos);
+                    String quantidadeStr = atributos[5].trim(); // Corrige o índice e o espaçamento
+                    int quantidade = parseIntSafe(quantidadeStr, "Quantidade");
+                    estoque.put(produto, quantidade);
+                } else {
+                    System.err.println("Linha com dados insuficientes: " + linha);
+                }
             }
         }
-        return new HashMap<>(estoque);
+        return estoque;
     }
 
-    private static String organizarLinhas(Produto produto, int quantidade) {
-        String tipoProduto = "N/A";
-        String detalhesEspecificos = "";
+    private String organizarLinhas(Produto produto, int quantidade) {
+        String tipoProduto = determinarTipoProduto(produto);
+        String detalhesEspecificos = obterDetalhesEspecificos(produto);
 
+        return String.format("%d,%s,%s,%.0f,%s,%d,%s,%s",
+                produto.getId(), produto.getNome(), produto.getDescricao(), produto.getPreco(),
+                produto.getCodigoBarra(), quantidade, tipoProduto, detalhesEspecificos);
+    }
+
+    public String determinarTipoProduto(Produto produto) {
         if (produto instanceof ProdutoAnimal) {
-            tipoProduto = "Animal";
-            detalhesEspecificos = ((ProdutoAnimal) produto).getHabitat();
+            return "Animal";
         } else if (produto instanceof ProdutoIngrediente) {
-            tipoProduto = "Ingrediente";
-            detalhesEspecificos = ((ProdutoIngrediente) produto).getOrigem();
+            return "Ingrediente";
         } else if (produto instanceof ProdutoItem) {
-            tipoProduto = "Item";
-            detalhesEspecificos = ((ProdutoItem) produto).getPoder();
+            return "Item";
+        } else if (produto instanceof ProdutoLivro) {
+            return "Livro";
+        } else if (produto instanceof ProdutoPocao) {
+            return "Pocao";
+        } else {
+            return "Desconhecido";
+        }
+    }
+
+    public String obterDetalhesEspecificos(Produto produto) {
+        if (produto instanceof ProdutoAnimal) {
+            return ((ProdutoAnimal) produto).getHabitat();
+        } else if (produto instanceof ProdutoIngrediente) {
+            return ((ProdutoIngrediente) produto).getOrigem();
+        } else if (produto instanceof ProdutoItem) {
+            return ((ProdutoItem) produto).getPoder();
         } else if (produto instanceof ProdutoLivro) {
             ProdutoLivro livro = (ProdutoLivro) produto;
-            tipoProduto = "Livro";
-            detalhesEspecificos = livro.getAutor() + "," + livro.getNumeroPaginas();
+            return livro.getAutor() + "," + livro.getNumeroPaginas();
         } else if (produto instanceof ProdutoPocao) {
             ProdutoPocao pocao = (ProdutoPocao) produto;
-            tipoProduto = "Pocao";
-            detalhesEspecificos = pocao.getEfeito() + "," + pocao.getTempoefeito();
+            return pocao.getEfeito() + "," + pocao.getTempoEfeito();
+        } else {
+            return "";
         }
-
-        return String.format("%d,%s,%s,%.2f,%s,%s,%d,%s,%s",
-                produto.getId(), produto.getNome(), produto.getDescricao(), produto.getPreco(),
-                produto.getCategoria(), produto.getCodigoBarra(), quantidade, tipoProduto, detalhesEspecificos);
     }
 
-    private static Produto criarProduto(String linha) throws DadosInvalidosException {
-        String[] atributos = linha.split(",");
-        if (atributos.length < 8) {
+    private Produto criarProduto(String[] atributos) throws DadosInvalidosException {
+        if (atributos.length < 7) {
             throw new DadosInvalidosException("Dados inválidos para criar um produto.");
         }
 
-        int id = parseIntSafe(atributos[0], "ID");
-        String nome = atributos[1];
-        String descricao = atributos[2];
-        double preco = parseDoubleSafe(atributos[3], "Preço");
-        String categoria = atributos[4];
-        String codigoBarra = atributos[5];
-        int quantidade = parseIntSafe(atributos[6], "Quantidade");
-        String tipoProduto = atributos[7];
+        int id = parseIntSafe(atributos[0].trim(), "ID");
+        String nome = atributos[1].trim();
+        String descricao = atributos[2].trim();
+        double preco = parseDoubleSafe(atributos[3].trim(), "Preço");
+        String codigoBarra = atributos[4].trim();
+        int quantidade = parseIntSafe(atributos[5].trim(), "Quantidade");
+        String tipoProduto = atributos[6].trim();
+
+        String detalhesEspecificos = atributos.length > 7 ? atributos[7].trim() : "Detalhe não disponível";
 
         switch (tipoProduto) {
             case "Animal":
-                String habitat = atributos[8];
-                return new ProdutoAnimal(id, nome, descricao, preco, categoria, codigoBarra, quantidade, habitat);
+                return new ProdutoAnimal(id, nome, descricao, preco, codigoBarra, quantidade, detalhesEspecificos);
+
             case "Ingrediente":
-                String origem = atributos[8];
-                return new ProdutoIngrediente(id, nome, descricao, preco, categoria, codigoBarra, quantidade, origem);
+                return new ProdutoIngrediente(id, nome, descricao, preco, codigoBarra, quantidade, detalhesEspecificos);
+
             case "Item":
-                String poder = atributos[8];
-                return new ProdutoItem(id, nome, descricao, preco, categoria, codigoBarra, quantidade, poder);
+                return new ProdutoItem(id, nome, descricao, preco, codigoBarra, quantidade, detalhesEspecificos);
+
             case "Livro":
-                String autor = atributos[8];
-                int numeroPaginas = parseIntSafe(atributos[9], "Número de Páginas");
-                return new ProdutoLivro(id, nome, descricao, preco, categoria, codigoBarra, quantidade, autor, numeroPaginas);
+                String[] livroDetalhes = detalhesEspecificos.split(",");
+                String autor = livroDetalhes.length > 0 ? livroDetalhes[0] : "Autor Desconhecido";
+                int numeroPaginas = livroDetalhes.length > 1 ? parseIntSafe(livroDetalhes[1], "Número de Páginas") : 0;
+                return new ProdutoLivro(id, nome, descricao, preco, codigoBarra, quantidade, autor, numeroPaginas);
+
             case "Pocao":
-                String efeito = atributos[8];
-                int tempoefeito = parseIntSafe(atributos[9], "Tempo de Efeito");
-                return new ProdutoPocao(id, nome, descricao, preco, categoria, codigoBarra, quantidade, efeito, tempoefeito);
+                String[] pocaoDetalhes = detalhesEspecificos.split(",");
+                String efeito = pocaoDetalhes.length > 0 ? pocaoDetalhes[0] : "Efeito Desconhecido";
+                int tempoEfeito = pocaoDetalhes.length > 1 ? parseIntSafe(pocaoDetalhes[1], "Tempo de Efeito") : 0;
+                return new ProdutoPocao(id, nome, descricao, preco, codigoBarra, quantidade, efeito, tempoEfeito);
+
             default:
                 throw new DadosInvalidosException("Tipo de produto desconhecido: " + tipoProduto);
         }

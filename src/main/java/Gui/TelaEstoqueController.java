@@ -1,5 +1,6 @@
 package Gui;
 
+import Arquivos.ArquivoEstoque;
 import Exceptions.DadosInvalidosException;
 import Negocio.Produto;
 import Negocio.produtos.*;
@@ -18,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class TelaEstoqueController {
 
@@ -37,8 +39,6 @@ public class TelaEstoqueController {
     private TextField campoDescricao;
     @FXML
     private TextField campoPreco;
-    @FXML
-    private TextField campoCategoria;
     @FXML
     private TextField campoCodigoBarra;
     @FXML
@@ -60,6 +60,8 @@ public class TelaEstoqueController {
     @FXML
     private ComboBox<String> comboTipoProduto;
 
+    private ArquivoEstoque arquivoEstoque;
+
     @FXML
     private void initialize() {
         comboTipoProduto.getItems().addAll(
@@ -69,224 +71,126 @@ public class TelaEstoqueController {
                 "Produto Livro",
                 "Produto Poção"
         );
+
+        arquivoEstoque = new ArquivoEstoque("estoque.csv");
+
+        carregarProdutosNoListView();
     }
 
     @FXML
     private void adicionarProduto(ActionEvent evento) {
-        String tipoProduto = comboTipoProduto.getValue();
-        String nome = campoNome.getText();
-        String descricao = campoDescricao.getText();
-        String precoTexto = campoPreco.getText();
-        String categoria = campoCategoria.getText();
-        String codigoBarra = campoCodigoBarra.getText();
-        String quantidadeTexto = campoQuantidade.getText();
-
-        if (nome == null || nome.trim().isEmpty() ||
-                descricao == null || descricao.trim().isEmpty() ||
-                precoTexto == null || precoTexto.trim().isEmpty() ||
-                categoria == null || categoria.trim().isEmpty() ||
-                codigoBarra == null || codigoBarra.trim().isEmpty() ||
-                quantidadeTexto == null || quantidadeTexto.trim().isEmpty() ||
-                tipoProduto == null || tipoProduto.trim().isEmpty()) {
-            showAlert(AlertType.WARNING, "Entrada Inválida", "Por favor, preencha todos os campos obrigatórios.");
-            return;
-        }
-
-        double preco;
-        int quantidade;
         try {
-            preco = Double.parseDouble(precoTexto);
-            quantidade = Integer.parseInt(quantidadeTexto);
-        } catch (NumberFormatException e) {
-            showAlert(AlertType.WARNING, "Entrada Inválida", "Preço ou quantidade inválidos.");
-            return;
-        }
+            String nome = campoNome.getText();
+            String descricao = campoDescricao.getText();
+            double preco = Double.parseDouble(campoPreco.getText());
+            String codigoBarra = campoCodigoBarra.getText();
+            int quantidade = Integer.parseInt(campoQuantidade.getText());
+            String tipoProduto = comboTipoProduto.getValue();
 
-        Produto produto = null;
-        try {
+            Produto produto = null;
+
             switch (tipoProduto) {
                 case "Produto Animal":
                     String habitat = campoHabitat.getText();
-                    if (habitat == null || habitat.trim().isEmpty()) {
-                        showAlert(AlertType.WARNING, "Entrada Inválida", "Por favor, insira o habitat.");
-                        return;
-                    }
-                    produto = new ProdutoAnimal(0, nome, descricao, preco, categoria, codigoBarra, quantidade, habitat);
+                    produto = new ProdutoAnimal(0, nome, descricao, preco, codigoBarra, quantidade, habitat);
                     break;
                 case "Produto Ingrediente":
                     String origem = campoOrigem.getText();
-                    if (origem == null || origem.trim().isEmpty()) {
-                        showAlert(AlertType.WARNING, "Entrada Inválida", "Por favor, insira a origem.");
-                        return;
-                    }
-                    produto = new ProdutoIngrediente(0, nome, descricao, preco, categoria, codigoBarra, quantidade, origem);
+                    produto = new ProdutoIngrediente(0, nome, descricao, preco, codigoBarra, quantidade, origem);
                     break;
                 case "Produto Item":
                     String poder = campoPoder.getText();
-                    if (poder == null || poder.trim().isEmpty()) {
-                        showAlert(AlertType.WARNING, "Entrada Inválida", "Por favor, insira o poder.");
-                        return;
-                    }
-                    produto = new ProdutoItem(0, nome, descricao, preco, categoria, codigoBarra, quantidade, poder);
+                    produto = new ProdutoItem(0, nome, descricao, preco, codigoBarra, quantidade, poder);
                     break;
                 case "Produto Livro":
                     String autor = campoAutor.getText();
-                    String numeroPaginasTexto = campoNumeroPaginas.getText();
-                    if (autor == null || autor.trim().isEmpty() || numeroPaginasTexto == null || numeroPaginasTexto.trim().isEmpty()) {
-                        showAlert(AlertType.WARNING, "Entrada Inválida", "Por favor, insira o autor e o número de páginas.");
-                        return;
-                    }
-                    int numeroPaginas;
-                    try {
-                        numeroPaginas = Integer.parseInt(numeroPaginasTexto);
-                    } catch (NumberFormatException e) {
-                        showAlert(AlertType.WARNING, "Entrada Inválida", "Número de páginas inválido.");
-                        return;
-                    }
-                    produto = new ProdutoLivro(0, nome, descricao, preco, categoria, codigoBarra, quantidade, autor, numeroPaginas);
+                    int numeroPaginas = Integer.parseInt(campoNumeroPaginas.getText());
+                    produto = new ProdutoLivro(0, nome, descricao, preco, codigoBarra, quantidade, autor, numeroPaginas);
                     break;
                 case "Produto Poção":
                     String efeito = campoEfeito.getText();
-                    String tempoEfeitoTexto = campoTempoEfeito.getText();
-                    if (efeito == null || efeito.trim().isEmpty() || tempoEfeitoTexto == null || tempoEfeitoTexto.trim().isEmpty()) {
-                        showAlert(AlertType.WARNING, "Entrada Inválida", "Por favor, insira o efeito e o tempo de efeito.");
-                        return;
-                    }
-                    int tempoEfeito;
-                    try {
-                        tempoEfeito = Integer.parseInt(tempoEfeitoTexto);
-                    } catch (NumberFormatException e) {
-                        showAlert(AlertType.WARNING, "Entrada Inválida", "Tempo de efeito inválido.");
-                        return;
-                    }
-                    produto = new ProdutoPocao(0, nome, descricao, preco, categoria, codigoBarra, quantidade, efeito, tempoEfeito);
+                    int tempoEfeito = Integer.parseInt(campoTempoEfeito.getText());
+                    produto = new ProdutoPocao(0, nome, descricao, preco, codigoBarra, quantidade, efeito, tempoEfeito);
                     break;
-                default:
-                    showAlert(AlertType.WARNING, "Tipo de Produto Inválido", "Tipo de produto selecionado é inválido.");
-                    return;
             }
 
-            listaProdutos.getItems().add(produto.toString());
+            arquivoEstoque.adicionarProduto(produto, quantidade);
+            salvarProdutos();
+            carregarProdutosNoListView();
+
             limparCampos();
             showAlert(AlertType.INFORMATION, "Produto Adicionado", "O produto foi adicionado com sucesso!");
 
+        } catch (NumberFormatException e) {
+            showAlert(AlertType.WARNING, "Entrada Inválida", "Preço ou quantidade inválidos.");
         } catch (DadosInvalidosException e) {
             showAlert(AlertType.WARNING, "Dados Inválidos", e.getMessage());
         }
     }
 
-    private void limparCampos() {
-        campoNome.clear();
-        campoDescricao.clear();
-        campoPreco.clear();
-        campoCategoria.clear();
-        campoCodigoBarra.clear();
-        campoQuantidade.clear();
-        campoHabitat.clear();
-        campoOrigem.clear();
-        campoPoder.clear();
-        campoAutor.clear();
-        campoNumeroPaginas.clear();
-        campoEfeito.clear();
-        campoTempoEfeito.clear();
-        comboTipoProduto.setValue(null);
-    }
-
-
     @FXML
     private void atualizarProduto(ActionEvent evento) {
-        String tipoProduto = comboTipoProduto.getValue();
-        String nome = campoNome.getText();
-        String descricao = campoDescricao.getText();
-        String precoTexto = campoPreco.getText();
-        String categoria = campoCategoria.getText();
-        String codigoBarra = campoCodigoBarra.getText();
-        String quantidadeTexto = campoQuantidade.getText();
-
-        String campoEspecifico = null;
-        if (tipoProduto != null) {
-            switch (tipoProduto) {
-                case "Produto Animal":
-                    campoEspecifico = campoHabitat.getText();
-                    break;
-                case "Produto Ingrediente":
-                    campoEspecifico = campoOrigem.getText();
-                    break;
-                case "Produto Item":
-                    campoEspecifico = campoPoder.getText();
-                    break;
-                case "Produto Livro":
-                    campoEspecifico = campoAutor.getText() + "," + campoNumeroPaginas.getText();
-                    break;
-                case "Produto Poção":
-                    campoEspecifico = campoEfeito.getText() + "," + campoTempoEfeito.getText();
-                    break;
-            }
-        }
-
         String produtoSelecionado = listaProdutos.getSelectionModel().getSelectedItem();
         if (produtoSelecionado == null) {
             showAlert(AlertType.WARNING, "Seleção Inválida", "Por favor, selecione um produto para atualizar.");
             return;
         }
 
-        if (nome == null || nome.trim().isEmpty() ||
-                descricao == null || descricao.trim().isEmpty() ||
-                precoTexto == null || precoTexto.trim().isEmpty() ||
-                categoria == null || categoria.trim().isEmpty() ||
-                codigoBarra == null || codigoBarra.trim().isEmpty() ||
-                quantidadeTexto == null || quantidadeTexto.trim().isEmpty() ||
-                tipoProduto == null || tipoProduto.trim().isEmpty() ||
-                campoEspecifico == null || campoEspecifico.trim().isEmpty()) {
-            showAlert(AlertType.WARNING, "Entrada Inválida", "Por favor, preencha todos os campos obrigatórios.");
-            return;
-        }
-
-        double preco;
-        int quantidade;
         try {
-            preco = Double.parseDouble(precoTexto);
-            quantidade = Integer.parseInt(quantidadeTexto);
-        } catch (NumberFormatException e) {
-            showAlert(AlertType.WARNING, "Entrada Inválida", "Preço ou quantidade inválidos.");
-            return;
-        }
+            Produto produtoExistente = arquivoEstoque.getProdutoPorNome(produtoSelecionado);
+            if (produtoExistente == null) {
+                showAlert(AlertType.WARNING, "Produto Não Encontrado", "O produto selecionado não foi encontrado no estoque.");
+                return;
+            }
 
-        Produto produtoAtualizado = null;
-        try {
+            String nome = campoNome.getText();
+            String descricao = campoDescricao.getText();
+            double preco = Double.parseDouble(campoPreco.getText());
+            String codigoBarra = campoCodigoBarra.getText();
+            int quantidade = Integer.parseInt(campoQuantidade.getText());
+            String tipoProduto = comboTipoProduto.getValue();
+
+            produtoExistente.setNome(nome);
+            produtoExistente.setDescricao(descricao);
+            produtoExistente.setPreco(preco);
+            produtoExistente.setCodigoBarra(codigoBarra);
+            produtoExistente.setQuantidade(quantidade);
+
             switch (tipoProduto) {
                 case "Produto Animal":
-                    produtoAtualizado = new ProdutoAnimal(0, nome, descricao, preco, categoria, codigoBarra, quantidade, campoEspecifico);
+                    String habitat = campoHabitat.getText();
+                    ((ProdutoAnimal) produtoExistente).setHabitat(habitat);
                     break;
                 case "Produto Ingrediente":
-                    produtoAtualizado = new ProdutoIngrediente(0, nome, descricao, preco, categoria, codigoBarra, quantidade, campoEspecifico);
+                    String origem = campoOrigem.getText();
+                    ((ProdutoIngrediente) produtoExistente).setOrigem(origem);
                     break;
                 case "Produto Item":
-                    produtoAtualizado = new ProdutoItem(0, nome, descricao, preco, categoria, codigoBarra, quantidade, campoEspecifico);
+                    String poder = campoPoder.getText();
+                    ((ProdutoItem) produtoExistente).setPoder(poder);
                     break;
                 case "Produto Livro":
-                    String[] autorPaginas = campoEspecifico.split(",");
-                    if (autorPaginas.length != 2) {
-                        showAlert(AlertType.WARNING, "Entrada Inválida", "Por favor, insira o autor e o número de páginas.");
-                        return;
-                    }
-                    produtoAtualizado = new ProdutoLivro(0, nome, descricao, preco, categoria, codigoBarra, quantidade, autorPaginas[0], Integer.parseInt(autorPaginas[1]));
+                    String autor = campoAutor.getText();
+                    int numeroPaginas = Integer.parseInt(campoNumeroPaginas.getText());
+                    ((ProdutoLivro) produtoExistente).setAutor(autor);
+                    ((ProdutoLivro) produtoExistente).setNumeroPaginas(numeroPaginas);
                     break;
                 case "Produto Poção":
-                    String[] efeitoTempo = campoEspecifico.split(",");
-                    if (efeitoTempo.length != 2) {
-                        showAlert(AlertType.WARNING, "Entrada Inválida", "Por favor, insira o efeito e o tempo de efeito.");
-                        return;
-                    }
-                    produtoAtualizado = new ProdutoPocao(0, nome, descricao, preco, categoria, codigoBarra, quantidade, efeitoTempo[0], Integer.parseInt(efeitoTempo[1]));
+                    String efeito = campoEfeito.getText();
+                    int tempoEfeito = Integer.parseInt(campoTempoEfeito.getText());
+                    ((ProdutoPocao) produtoExistente).setEfeito(efeito);
+                    ((ProdutoPocao) produtoExistente).setTempoEfeito(tempoEfeito);
                     break;
             }
 
-            int index = listaProdutos.getSelectionModel().getSelectedIndex();
-            listaProdutos.getItems().set(index, produtoAtualizado.toString());
+            salvarProdutos();
+            carregarProdutosNoListView();
+
             limparCampos();
             showAlert(AlertType.INFORMATION, "Produto Atualizado", "O produto foi atualizado com sucesso!");
 
+        } catch (NumberFormatException e) {
+            showAlert(AlertType.WARNING, "Entrada Inválida", "Preço ou quantidade inválidos.");
         } catch (DadosInvalidosException e) {
             showAlert(AlertType.WARNING, "Dados Inválidos", e.getMessage());
         }
@@ -296,12 +200,30 @@ public class TelaEstoqueController {
     private void removerProduto(ActionEvent evento) {
         String produtoSelecionado = listaProdutos.getSelectionModel().getSelectedItem();
         if (produtoSelecionado != null) {
-            listaProdutos.getItems().remove(produtoSelecionado);
-            showAlert(AlertType.INFORMATION, "Produto Removido", "O produto foi removido com sucesso!");
+            String nomeProduto = extrairNomeDoProduto(produtoSelecionado);
+
+            Produto produto = arquivoEstoque.getProdutoPorNome(nomeProduto);
+            if (produto != null) {
+                arquivoEstoque.removerProduto(produto);
+                salvarProdutos();
+                carregarProdutosNoListView();
+                showAlert(AlertType.INFORMATION, "Produto Removido", "O produto foi removido com sucesso!");
+            } else {
+                showAlert(AlertType.WARNING, "Produto Não Encontrado", "O produto selecionado não foi encontrado no estoque.");
+            }
         } else {
             showAlert(AlertType.WARNING, "Seleção Inválida", "Por favor, selecione um produto para remover.");
         }
     }
+
+    private String extrairNomeDoProduto(String detalhesProduto) {
+        String[] partes = detalhesProduto.split(", ");
+        if (partes.length > 0) {
+            return partes[0].replace("Nome: ", "");
+        }
+        return "";
+    }
+
 
     @FXML
     private void voltarPaginaInicial(ActionEvent evento) {
@@ -318,11 +240,62 @@ public class TelaEstoqueController {
         }
     }
 
-    private void showAlert(AlertType type, String title, String content) {
-        Alert alert = new Alert(type);
+    private void carregarProdutosNoListView() {
+        listaProdutos.getItems().clear();
+        Map<Produto, Integer> produtos = arquivoEstoque.getAllProdutos();
+
+        for (Map.Entry<Produto, Integer> entry : produtos.entrySet()) {
+            Produto produto = entry.getKey();
+            int quantidade = entry.getValue();
+
+            String tipoProduto = arquivoEstoque.determinarTipoProduto(produto);
+
+            String detalhesEspecificos = "";
+            try {
+                detalhesEspecificos = arquivoEstoque.obterDetalhesEspecificos(produto);
+            } catch (Exception e) {
+                detalhesEspecificos = "Detalhes não disponíveis";
+            }
+
+            String detalhesProduto = String.format(
+                    "Nome: %s, Descrição: %s, Preço: %.2f, Código de Barra: %s, Quantidade: %d, Tipo: %s, Detalhes: %s",
+                    produto.getNome(), produto.getDescricao(), produto.getPreco(),
+                    produto.getCodigoBarra(), quantidade, tipoProduto, detalhesEspecificos);
+
+            listaProdutos.getItems().add(detalhesProduto);
+        }
+    }
+
+
+    private void salvarProdutos() {
+        try {
+            arquivoEstoque.salvarProdutos();
+        } catch (IOException e) {
+            showAlert(AlertType.ERROR, "Erro", "Não foi possível salvar os produtos no arquivo.");
+        }
+    }
+
+    private void limparCampos() {
+        campoNome.clear();
+        campoDescricao.clear();
+        campoPreco.clear();
+        campoCodigoBarra.clear();
+        campoQuantidade.clear();
+        campoHabitat.clear();
+        campoOrigem.clear();
+        campoPoder.clear();
+        campoAutor.clear();
+        campoNumeroPaginas.clear();
+        campoEfeito.clear();
+        campoTempoEfeito.clear();
+        comboTipoProduto.setValue(null);
+    }
+
+    private void showAlert(AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
-        alert.setContentText(content);
+        alert.setContentText(message);
         alert.showAndWait();
     }
 }

@@ -1,35 +1,53 @@
 package Negocio;
 
 import Exceptions.DadosInvalidosException;
+import java.util.Objects;
+import java.util.Random;
 
 public class Produto {
     private int id;
     private String nome;
     private String descricao;
     private double preco;
-    private String categoria;
     private String codigoBarra;
     private int quantidade;
 
-    public Produto(int id, String nome, String descricao, double preco, String categoria, String codigoBarra, int quantidade) throws DadosInvalidosException {
+    public Produto(int id, String nome, String descricao, double preco, String codigoBarra, int quantidade) throws DadosInvalidosException {
         if (preco < 0) {
             throw new DadosInvalidosException("O preço do produto não pode ser negativo.");
         }
         if (quantidade < 0) {
             throw new DadosInvalidosException("A quantidade do produto não pode ser negativa.");
         }
-        this.id = id;
+        this.id = gerarId();
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
-        this.categoria = categoria;
         this.codigoBarra = codigoBarra;
         this.quantidade = quantidade;
+    }
+    private int gerarId() {
+        Random random = new Random();
+        return random.nextInt(1000000);
     }
 
     public int getId() {
         return id;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Produto produto = (Produto) o;
+        return id == produto.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -58,13 +76,6 @@ public class Produto {
         this.preco = preco;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
     public String getCodigoBarra() {
         return codigoBarra;
     }
@@ -81,4 +92,5 @@ public class Produto {
         }
         this.quantidade = quantidade;
     }
+
 }
