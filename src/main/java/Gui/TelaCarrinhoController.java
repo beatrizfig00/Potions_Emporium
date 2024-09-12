@@ -1,8 +1,5 @@
 package Gui;
 
-import Arquivos.ArquivoCliente;
-import Exceptions.DadosInvalidosException;
-import Negocio.Cliente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -54,7 +51,8 @@ public class TelaCarrinhoController {
     @FXML
     public void irParaCaixa(ActionEvent evento) {
         try {
-            Parent telaCaixa = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-caixa.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/tela-caixa.fxml"));
+            Parent telaCaixa = loader.load();
             Scene cenaCaixa = new Scene(telaCaixa);
             Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
             janela.setScene(cenaCaixa);
@@ -65,24 +63,6 @@ public class TelaCarrinhoController {
             alerta.setTitle("Erro ao Ir para Caixa");
             alerta.setHeaderText(null);
             alerta.setContentText("Não foi possível carregar a tela de caixa.");
-            alerta.showAndWait();
-        }
-    }
-
-    @FXML
-    public void voltar(ActionEvent evento) {
-        try {
-            Parent telaProdutos = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-produtos.fxml"));
-            Scene cenaProdutos = new Scene(telaProdutos);
-            Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
-            janela.setScene(cenaProdutos);
-            janela.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Erro ao Voltar");
-            alerta.setHeaderText(null);
-            alerta.setContentText("Não foi possível carregar a tela de produtos.");
             alerta.showAndWait();
         }
     }

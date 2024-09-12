@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Ajustes Tela Clientes/Cadastro">
-      <change afterPath="$PROJECT_DIR$/clientes.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_09_2024_15_48__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_09_2024_15_48__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_09_2024_16_46__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_09_2024_16_46__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_09_2024_16_46_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_09_2024_16_46__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_09_2024_09_06__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_09_2024_09_06__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_09_2024_18_54__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_09_2024_18_54__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_09_2024_19_35__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_09_2024_19_35__Changes_.xml" afterDir="false" />
@@ -17,11 +17,14 @@
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_09_2024_14_30__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_09_2024_14_30__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_09_2024_14_30__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_09_2024_14_30__Changes_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Carrinho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Carrinho.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Estoque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Estoque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Loja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Loja.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Pedido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/clientes.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoEstoque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoEstoque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Gui/TelaCarrinhoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaCarrinhoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Gui/TelaPrincipalClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaPrincipalClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Gui/TelaProdutosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaProdutosController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-carrinho.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-carrinho.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-principal-cliente.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-principal-cliente.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-produtos.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-produtos.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,20 +71,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Debug",
-    "Application.PotionsEmporiumApplication.executor": "Debug",
-    "Application.TesteHistoricoCompras.executor": "Debug",
-    "Application.TesteMoeda.executor": "Run",
-    "Application.TestePromocoes.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.PotionsEmporiumApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TesteHistoricoCompras.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.TesteMoeda.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TestePromocoes.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

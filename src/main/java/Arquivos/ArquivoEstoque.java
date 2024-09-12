@@ -77,7 +77,7 @@ public class ArquivoEstoque {
                 String[] atributos = linha.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
                 if (atributos.length >= 8) {
                     Produto produto = criarProduto(atributos);
-                    String quantidadeStr = atributos[5].trim();
+                    String quantidadeStr = atributos[5].trim(); // Corrige o índice e o espaçamento
                     int quantidade = parseIntSafe(quantidadeStr, "Quantidade");
                     estoque.put(produto, quantidade);
                 } else {
@@ -187,5 +187,23 @@ public class ArquivoEstoque {
         } catch (NumberFormatException e) {
             throw new DadosInvalidosException("Formato inválido para o campo " + nomeCampo + ": " + valor);
         }
+    }
+
+    public void atualizarQuantidade(Produto produto, int novaQuantidade) {
+        if (estoque.containsKey(produto)) {
+            estoque.put(produto, novaQuantidade);
+            try {
+                salvarProdutos();
+            } catch (IOException e) {
+                System.err.println("Erro ao salvar as alterações: " + e.getMessage());
+            }
+        } else {
+            System.err.println("Produto não encontrado no estoque.");
+        }
+    }
+
+    public int getQuantidadeProduto(Produto produto) {
+        return estoque.getOrDefault(produto, 0);
+
     }
 }

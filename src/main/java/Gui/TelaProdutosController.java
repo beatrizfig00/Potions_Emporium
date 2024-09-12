@@ -2,14 +2,10 @@ package Gui;
 
 import Arquivos.ArquivoEstoque;
 import Negocio.Produto;
-import Negocio.produtos.*;
 import Exceptions.DadosInvalidosException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
+import javafx.scene.control.*;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.scene.Node;
@@ -31,81 +27,167 @@ public class TelaProdutosController {
     private Button botaoVoltar;
     @FXML
     private Button botaoFechar;
+    @FXML
+    private TextField quantidadeTextField;
 
-    private static final String ARQUIVO_PRODUTOS = "produtos.csv";
+    private static final String ARQUIVO_ESTOQUE = "estoque.csv";
     private ArquivoEstoque arquivoEstoque;
+    private List<Produto> produtosSelecionados;
 
     @FXML
     public void initialize() {
         produtosListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        arquivoEstoque = new ArquivoEstoque(ARQUIVO_PRODUTOS);
+        arquivoEstoque = new ArquivoEstoque(ARQUIVO_ESTOQUE);
+        produtosSelecionados = new ArrayList<>();
         carregarProdutosDoArquivo();
     }
 
     private void carregarProdutosDoArquivo() {
-        try {
-            Map<Produto, Integer> produtos = arquivoEstoque.carregarProdutos();
-            List<String> listaProdutos = new ArrayList<>();
-            for (Map.Entry<Produto, Integer> entry : produtos.entrySet()) {
-                Produto produto = entry.getKey();
-                Integer quantidade = entry.getValue();
-                listaProdutos.add(String.format("%s (Quantidade: %d)", produto.getNome(), quantidade));
-            }
-            produtosListView.getItems().addAll(listaProdutos);
-        } catch (IOException | DadosInvalidosException e) {
-            e.printStackTrace();
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Erro ao Carregar Produtos");
-            alerta.setHeaderText(null);
-            alerta.setContentText("Não foi possível carregar os produtos. Verifique o arquivo.");
-            alerta.showAndWait();
+        Map<Produto, Integer> produtos = arquivoEstoque.getAllProdutos();
+        List<String> listaProdutos = new ArrayList<>();
+        for (Map.Entry<Produto, Integer> entry : produtos.entrySet()) {
+            Produto produto = entry.getKey();
+            Integer quantidade = entry.getValue();
+            String descricao = produto.getDescricao();
+            double preco = produto.getPreco();
+            String tipo = arquivoEstoque.determinarTipoProduto(produto);
+            String detalhesEspecificos = arquivoEstoque.obterDetalhesEspecificos(produto);
+
+            listaProdutos.add(String.format("%s\nDescrição: %s\nPreço: %.2f\nTipo: %s\nDetalhes: %s\nQuantidade: %d",
+                    produto.getNome(), descricao, preco, tipo, detalhesEspecificos, quantidade));
         }
+        produtosListView.getItems().setAll(listaProdutos);
     }
 
     @FXML
     public void irParaCarrinho(ActionEvent evento) {
-        List<String> produtosSelecionados = produtosListView.getSelectionModel().getSelectedItems();
-
-        if (produtosSelecionados.isEmpty()) {
+        List<String> produtosSelecionadosText = produtosListView.getSelectionModel().getSelectedItems();
+        if (produtosSelecionadosText.isEmpty() || quantidadeTextField.getText().isEmpty()) {
             Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Nenhum Produto Selecionado");
-            alerta.setHeaderText("Você não selecionou nenhum produto.");
-            alerta.setContentText("Por favor, selecione pelo menos um produto para adicionar ao carrinho.");
+            alerta.setTitle("Erro de Seleção");
+            alerta.setHeaderText("Nenhum Produto Selecionado ou Quantidade Não Informada");
+            alerta.setContentText("Por favor, selecione pelo menos um produto e informe a quantidade.");
             alerta.showAndWait();
         } else {
-            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-            alerta.setTitle("Produtos Adicionados");
-            alerta.setHeaderText(null);
-            alerta.setContentText("Os produtos foram adicionados ao carrinho.");
-            alerta.showAndWait();
-
+            List<Produto> produtosParaAdicionar = new ArrayList<>();
             try {
-                Parent telaCarrinho = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-carrinho.fxml"));
-                Scene cenaCarrinho = new Scene(telaCarrinho);
-                Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
-                janela.setScene(cenaCarrinho);
-                janela.show();
+                int quantidade = Integer.parseInt(quantidadeTextField.getText());
+                for (String produtoText : produtosSelecionadosText) {
+                    Produto produto = encontrarProdutoPorTexto(produtoText);
+                    if (produto != null) {
+                        int quantidadeDisponivel = arquivoEstoque.getQuantidadeProduto(produto);
+                        if (quantidade <= quantidadeDisponivel) {
+                            produto.setQuantidade(quantidade);
+                            produtosParaAdicionar.add(produto);
+                            arquivoEstoque.atualizarQuantidade(produto, quantidadeDisponivel - quantidade);
+                        } else {
+                            Alert alerta = new Alert(Alert.AlertType.WARNING);
+                            alerta.setTitle("Quantidade Insuficiente");
+                            alerta.setHeaderText(null);
+                            alerta.setContentText(String.format("Não há estoque suficiente para o produto: %s. Disponível: %d", produto.getNome(), quantidadeDisponivel));
+                            alerta.showAndWait();
+                            return; // Encerra o método se não houver estoque suficiente
+                        }
+                    }
+                }
+
+                if (!produtosParaAdicionar.isEmpty()) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-caixa.fxml"));
+                    Parent telaCaixa = loader.load();
+
+                    TelaCaixaController controller = loader.getController();
+
+                    Scene cenaCaixa = new Scene(telaCaixa);
+                    Stage janela = (Stage) ((Node) evento.getSource()).getScene().getWindow();
+                    janela.setScene(cenaCaixa);
+                    janela.show();
+
+                } else {
+                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                    alerta.setTitle("Nenhum Produto Adicionado");
+                    alerta.setHeaderText(null);
+                    alerta.setContentText("Nenhum produto foi adicionado ao carrinho.");
+                    alerta.showAndWait();
+                }
+            } catch (NumberFormatException e) {
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("Quantidade Inválida");
+                alerta.setHeaderText(null);
+                alerta.setContentText("Por favor, insira uma quantidade válida.");
+                alerta.showAndWait();
             } catch (IOException e) {
                 e.printStackTrace();
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("Erro ao Ir para Carrinho");
+                alerta.setHeaderText(null);
+                alerta.setContentText("Não foi possível carregar a tela do carrinho.");
+                alerta.showAndWait();
+            } catch (DadosInvalidosException e) {
+                throw new RuntimeException(e);
             }
         }
     }
 
-    @FXML
-    public void voltarParaTelaPrincipal(ActionEvent evento) {
-        try {
-            Parent telaPrincipal = FXMLLoader.load(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-inicial.fxml"));
-            Stage janelaAtual = (Stage) ((Node) evento.getSource()).getScene().getWindow();
-
-            Stage novaJanela = new Stage();
-            novaJanela.setScene(new Scene(telaPrincipal));
-            novaJanela.setResizable(false);
-
-            novaJanela.show();
-            janelaAtual.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+    private Produto encontrarProdutoPorTexto(String texto) {
+        for (Produto produto : arquivoEstoque.getAllProdutos().keySet()) {
+            if (texto.contains(produto.getNome())) {
+                return produto;
+            }
         }
+        return null;
+    }
+
+    @FXML
+    public void adicionarAoCarrinho(ActionEvent evento) {
+        List<String> produtosSelecionadosText = produtosListView.getSelectionModel().getSelectedItems();
+        if (produtosSelecionadosText.isEmpty() || quantidadeTextField.getText().isEmpty()) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Erro de Seleção");
+            alerta.setHeaderText("Nenhum Produto Selecionado ou Quantidade Não Informada");
+            alerta.setContentText("Por favor, selecione pelo menos um produto e informe a quantidade para cada produto.");
+            alerta.showAndWait();
+        } else {
+            List<Produto> produtosParaAdicionar = new ArrayList<>();
+            try {
+                int quantidade = Integer.parseInt(quantidadeTextField.getText());
+                for (String produtoText : produtosSelecionadosText) {
+                    Produto produto = encontrarProdutoPorTexto(produtoText);
+                    if (produto != null) {
+                        int quantidadeDisponivel = getQuantidadeProduto(produto);
+                        if (quantidade <= quantidadeDisponivel) {
+                            produto.setQuantidade(quantidade);
+                            produtosParaAdicionar.add(produto);
+                            arquivoEstoque.atualizarQuantidade(produto, quantidadeDisponivel - quantidade);
+                        } else {
+                            Alert alerta = new Alert(Alert.AlertType.WARNING);
+                            alerta.setTitle("Quantidade Insuficiente");
+                            alerta.setHeaderText(null);
+                            alerta.setContentText(String.format("Não há estoque suficiente para o produto: %s. Disponível: %d", produto.getNome(), quantidadeDisponivel));
+                            alerta.showAndWait();
+                        }
+                    }
+                }
+                if (!produtosParaAdicionar.isEmpty()) {
+                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                    alerta.setTitle("Adicionado ao Carrinho");
+                    alerta.setHeaderText(null);
+                    alerta.setContentText("Produtos adicionados ao carrinho com sucesso.");
+                    alerta.showAndWait();
+                }
+            } catch (NumberFormatException e) {
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("Quantidade Inválida");
+                alerta.setHeaderText(null);
+                alerta.setContentText("Por favor, insira uma quantidade válida.");
+                alerta.showAndWait();
+            } catch (DadosInvalidosException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private int getQuantidadeProduto(Produto produto) {
+        return arquivoEstoque.getQuantidadeProduto(produto);
     }
 
     @FXML
