@@ -20,7 +20,7 @@ import java.io.IOException;
 public class TelaRelatorioControler {
 
     @FXML
-    private Button voltarButton;
+    private Button botaoVoltar;
     @FXML
     private ListView<String> listaProdutos;
     @FXML
@@ -30,10 +30,9 @@ public class TelaRelatorioControler {
 
     @FXML
     private void initialize() {
-        // Inicialize a ListView e Label com dados, se necessário
-        listaProdutos.getItems().addAll("Produto 1", "Produto 2"); // Exemplo
-        listaPedidos.getItems().addAll("Pedido 1", "Pedido 2");   // Exemplo
-        totalLabel.setText("R$ 100,00"); // Exemplo, substituir pelo valor real
+        listaProdutos.getItems().addAll("Produto 1", "Produto 2");
+        listaPedidos.getItems().addAll("Pedido 1", "Pedido 2");
+        totalLabel.setText("R$ 100,00");
     }
 
     @FXML

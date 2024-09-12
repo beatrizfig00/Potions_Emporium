@@ -1,5 +1,9 @@
 package Gui;
 
+import Arquivos.ArquivoEstoque;
+import Negocio.Produto;
+import Negocio.produtos.*;
+import Exceptions.DadosInvalidosException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -12,11 +16,10 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class TelaProdutosController {
 
@@ -29,27 +32,27 @@ public class TelaProdutosController {
     @FXML
     private Button botaoFechar;
 
-    private static final String ARQUIVO_PRODUTOS = "produtos.txt"; // Caminho para o arquivo de produtos
+    private static final String ARQUIVO_PRODUTOS = "produtos.csv";
+    private ArquivoEstoque arquivoEstoque;
 
     @FXML
     public void initialize() {
-
         produtosListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-     //   carregarProdutosDoArquivo();
-        produtosListView.getItems().add("Poção de Cura");
-        produtosListView.getItems().add("vassoura");
-        produtosListView.getItems().add("bola");
+        arquivoEstoque = new ArquivoEstoque(ARQUIVO_PRODUTOS);
+        carregarProdutosDoArquivo();
     }
 
     private void carregarProdutosDoArquivo() {
-        List<String> produtos = new ArrayList<>();
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(ARQUIVO_PRODUTOS))) {
-            String linha;
-            while ((linha = reader.readLine()) != null) {
-                produtos.add(linha);
+        try {
+            Map<Produto, Integer> produtos = arquivoEstoque.carregarProdutos();
+            List<String> listaProdutos = new ArrayList<>();
+            for (Map.Entry<Produto, Integer> entry : produtos.entrySet()) {
+                Produto produto = entry.getKey();
+                Integer quantidade = entry.getValue();
+                listaProdutos.add(String.format("%s (Quantidade: %d)", produto.getNome(), quantidade));
             }
-        } catch (IOException e) {
+            produtosListView.getItems().addAll(listaProdutos);
+        } catch (IOException | DadosInvalidosException e) {
             e.printStackTrace();
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Erro ao Carregar Produtos");
@@ -57,8 +60,6 @@ public class TelaProdutosController {
             alerta.setContentText("Não foi possível carregar os produtos. Verifique o arquivo.");
             alerta.showAndWait();
         }
-
-        produtosListView.getItems().addAll(produtos);
     }
 
     @FXML
@@ -72,12 +73,6 @@ public class TelaProdutosController {
             alerta.setContentText("Por favor, selecione pelo menos um produto para adicionar ao carrinho.");
             alerta.showAndWait();
         } else {
-            // Lógica para adicionar os produtos ao carrinho
-            // Aqui, você pode adicionar os produtos à classe Carrinho e depois navegar para a tela do carrinho.
-
-            // Exemplo de adição de produtos ao carrinho (essa lógica pode variar conforme seu sistema)
-            // Aqui você pode integrar com o seu sistema de carrinho.
-
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Produtos Adicionados");
             alerta.setHeaderText(null);

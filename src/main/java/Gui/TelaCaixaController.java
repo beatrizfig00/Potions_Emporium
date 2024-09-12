@@ -163,19 +163,18 @@ import java.io.IOException;
 public class TelaCaixaController {
 
     @FXML
-    private Label totalLabel; // Exibe o total da compra
+    private Label totalLabel;
     @FXML
-    private TextField pagamentoField; // Campo para inserir o valor do pagamento
+    private TextField pagamentoField;
     @FXML
-    private Button confirmarPagamentoButton; // Botão para confirmar o pagamento
+    private Button confirmarPagamentoButton;
     @FXML
-    private Button cancelarButton; // Botão para cancelar a compra
+    private Button cancelarButton;
 
     private double totalCompra;
 
     @FXML
     public void initialize() {
-        // Pode deixar este método vazio se o totalCompra for definido externamente
     }
 
     public void setTotalCompra(double totalCompra) {
@@ -202,7 +201,6 @@ public class TelaCaixaController {
 
     @FXML
     public void cancelarCompra(ActionEvent evento) {
-        // Voltar para a tela anterior (carrinho) sem salvar a compra
         irParaTelaCarrinho(evento);
     }
 
@@ -215,8 +213,6 @@ public class TelaCaixaController {
     }
 
     private void finalizarCompra() {
-        // Lógica para finalizar a compra
-        // Pode incluir registro da compra, atualização do estoque, etc.
     }
 
     private void irParaTelaFinalizacao(ActionEvent evento) {

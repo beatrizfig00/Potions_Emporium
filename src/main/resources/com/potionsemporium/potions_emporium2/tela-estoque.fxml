@@ -1,55 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane prefHeight="700.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.TelaEstoqueController">
-   <children>
-      <ImageView fitHeight="151.0" fitWidth="174.0" layoutX="182.0" layoutY="-4.0">
-         <image>
-            <Image url="@imagens/oculos.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="31.0" layoutY="36.0" text="Estoque" textFill="#ccb373">
-         <font>
-            <Font name="Arial Black" size="30.0" />
-         </font>
-      </Label>
-      <Button layoutX="1147.0" layoutY="616.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Voltar" textFill="#ccb373" onAction="#voltarPaginaInicial" fx:id="voltarButton" >
-         <font>
-            <Font name="Arial Black" size="20.0" />
-         </font>
-      </Button>
-      <Label layoutX="909.0" layoutY="50.0" text="Produtos" textFill="#ccb373">
-         <font>
-            <Font name="Arial Black" size="30.0" />
-         </font>
-      </Label>
-      <ListView layoutX="771.0" layoutY="125.0" prefHeight="411.0" prefWidth="422.0" fx:id="listaProdutos" />
-      <Button layoutX="50.0" layoutY="209.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Adicionar" textFill="#ccb373" onAction="#adicionarProduto" fx:id="adicionarButton" >
-         <font>
-            <Font name="Arial Black" size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="50.0" layoutY="308.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Atualizar" textFill="#ccb373" onAction="#atualizarProduto" fx:id="atualizarButton" >
-         <font>
-            <Font name="Arial Black" size="20.0" />
-         </font>
-      </Button>
-      <Button layoutX="50.0" layoutY="407.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Remover" textFill="#ccb373" onAction="#removerProduto" fx:id="removerButton" >
-         <font>
-            <Font name="Arial Black" size="20.0" />
-         </font>
-      </Button>
-      <TextField layoutX="220.0" layoutY="209.0" prefHeight="44.0" prefWidth="197.0" style="-fx-border-color: #ccb373;" fx:id="campoAdicionar" />
-      <TextField layoutX="220.0" layoutY="309.0" prefHeight="44.0" prefWidth="197.0" style="-fx-border-color: #ccb373;" fx:id="campoAtualizar" />
-      <TextField layoutX="220.0" layoutY="408.0" prefHeight="44.0" prefWidth="197.0" style="-fx-border-color: #ccb373;" fx:id="campoRemover" />
-   </children>
+    <children>
+        <ImageView fitHeight="151.0" fitWidth="174.0" layoutX="182.0" layoutY="-4.0">
+            <image>
+                <Image url="@imagens/oculos.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="31.0" layoutY="36.0" text="Estoque" textFill="#ccb373">
+            <font>
+                <Font name="Arial Black" size="30.0" />
+            </font>
+        </Label>
+        <Button fx:id="voltarButton" layoutX="1147.0" layoutY="616.0" mnemonicParsing="false" onAction="#voltarPaginaInicial" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Voltar" textFill="#ccb373">
+            <font>
+                <Font name="Arial Black" size="20.0" />
+            </font>
+        </Button>
+        <Label layoutX="909.0" layoutY="50.0" text="Produtos" textFill="#ccb373">
+            <font>
+                <Font name="Arial Black" size="30.0" />
+            </font>
+        </Label>
+        <ListView fx:id="listaProdutos" layoutX="771.0" layoutY="125.0" prefHeight="411.0" prefWidth="422.0" />
+
+        <Label layoutX="50.0" layoutY="130.0" text="ID:" textFill="#ccb373" />
+        <TextField fx:id="campoId" layoutX="150.0" layoutY="125.0" prefHeight="30.0" prefWidth="200.0" />
+
+        <Label layoutX="50.0" layoutY="170.0" text="Nome:" textFill="#ccb373" />
+        <TextField fx:id="campoNome" layoutX="150.0" layoutY="165.0" prefHeight="30.0" prefWidth="200.0" />
+
+        <Label layoutX="50.0" layoutY="210.0" text="Descrição:" textFill="#ccb373" />
+        <TextField fx:id="campoDescricao" layoutX="150.0" layoutY="205.0" prefHeight="30.0" prefWidth="200.0" />
+
+        <Label layoutX="50.0" layoutY="250.0" text="Preço:" textFill="#ccb373" />
+        <TextField fx:id="campoPreco" layoutX="150.0" layoutY="245.0" prefHeight="30.0" prefWidth="200.0" />
+
+        <Label layoutX="50.0" layoutY="290.0" text="Categoria:" textFill="#ccb373" />
+        <TextField fx:id="campoCategoria" layoutX="150.0" layoutY="285.0" prefHeight="30.0" prefWidth="200.0" />
+
+        <Label layoutX="50.0" layoutY="330.0" text="Código de Barras:" textFill="#ccb373" />
+        <TextField fx:id="campoCodigoBarra" layoutX="150.0" layoutY="325.0" prefHeight="30.0" prefWidth="200.0" />
+
+        <Label layoutX="50.0" layoutY="370.0" text="Quantidade:" textFill="#ccb373" />
+        <TextField fx:id="campoQuantidade" layoutX="150.0" layoutY="365.0" prefHeight="30.0" prefWidth="200.0" />
+
+        <Label layoutX="50.0" layoutY="410.0" text="Tipo de Produto:" textFill="#ccb373" />
+        <ComboBox fx:id="comboTipoProduto" layoutX="150.0" layoutY="410.0" prefHeight="30.0" prefWidth="200.0" />
+
+        <TabPane layoutX="44.0" layoutY="456.0" prefHeight="192.0" prefWidth="516.0">
+
+            <Tab text="Livro">
+                <VBox alignment="TOP_LEFT" spacing="10" style="-fx-padding: 10;">
+                    <Label text="Autor:" textFill="#ccb373" />
+                    <TextField fx:id="campoAutor" />
+
+                    <Label text="Nº Páginas:" textFill="#ccb373" />
+                    <TextField fx:id="campoNumeroPaginas" />
+                </VBox>
+            </Tab>
+
+            <Tab text="Item">
+                <VBox alignment="TOP_LEFT" spacing="10" style="-fx-padding: 10;">
+                    <Label text="Poder:" textFill="#ccb373" />
+                    <TextField fx:id="campoPoder" />
+                </VBox>
+            </Tab>
+
+            <Tab text="Animal">
+                <VBox alignment="TOP_LEFT" spacing="10" style="-fx-padding: 10;">
+                    <Label text="Habitat:" textFill="#ccb373" />
+                    <TextField fx:id="campoHabitat" />
+                </VBox>
+            </Tab>
+
+            <Tab text="Ingrediente">
+                <VBox alignment="TOP_LEFT" spacing="10" style="-fx-padding: 10;">
+                    <Label text="Origem:" textFill="#ccb373" />
+                    <TextField fx:id="campoOrigem" />
+                </VBox>
+            </Tab>
+            <Tab text="Poção">
+                <VBox alignment="TOP_LEFT" spacing="10" style="-fx-padding: 10;">
+                    <Label text="Efeito:" textFill="#ccb373" />
+                    <TextField fx:id="campoEfeito" />
+
+                    <Label text="Tempo de Efeito:" textFill="#ccb373" />
+                    <TextField fx:id="campoTempoEfeito" />
+                </VBox>
+            </Tab>
+
+        </TabPane>
+        <Button layoutX="507.0" layoutY="125.0" mnemonicParsing="false" onAction="#adicionarProduto" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Adicionar" textFill="#ccb373">
+            <font>
+                <Font name="Arial Black" size="12.0" />
+            </font></Button>
+        <Button layoutX="507.0" layoutY="205.0" mnemonicParsing="false" onAction="#atualizarProduto" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Atualizar" textFill="#ccb373">
+            <font>
+                <Font name="Arial Black" size="12.0" />
+            </font></Button>
+        <Button layoutX="507.0" layoutY="285.0" mnemonicParsing="false" onAction="#removerProduto" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Remover" textFill="#ccb373">
+            <font>
+                <Font name="Arial Black" size="12.0" />
+            </font></Button>
+
+    </children>
 </Pane>
