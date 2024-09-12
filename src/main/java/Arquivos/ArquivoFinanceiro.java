@@ -47,7 +47,7 @@ public class ArquivoFinanceiro {
 
                 Pagamento pagamento = new Pagamento(idPagamento, pedido, valor);
                 if (pago) {
-                    pagamento.processarPagamento(pedido.getTotal(), 0, 0); 
+                  //  pagamento.processarPagamento(pedido.getTotal(), 0, 0);
                 }
                 pagamentos.put(idPagamento, pagamento);
             }

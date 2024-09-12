@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Ajustes Tela Clientes/Cadastro">
+    <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Ajustes Tela Produto/Arquivo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoEstoque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoEstoque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Gui/TelaEstoqueController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaEstoqueController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Produto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoAnimal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoAnimal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoIngrediente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoIngrediente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoLivro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoLivro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoPocao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/produtos/ProdutoPocao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-estoque.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-estoque.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoFinanceiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoFinanceiro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Gui/TelaPrincipalClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaPrincipalClienteController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +56,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.PotionsEmporiumApplication.executor": "Debug",
+    "Application.PotionsEmporiumApplication.executor": "Run",
     "Application.TesteHistoricoCompras.executor": "Debug",
     "Application.TesteMoeda.executor": "Run",
     "Application.TestePromocoes.executor": "Run",
@@ -179,8 +172,19 @@
       <option name="project" value="LOCAL" />
       <updated>1726147605786</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Commit Ajustes Tela Produto/Arquivo">
+      <option name="closed" value="true" />
+      <created>1726164820916</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1726164820916</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.csv" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Commit Produto e Herança" />
@@ -190,6 +194,7 @@
     <MESSAGE value="Commit Arquivos Ajustados" />
     <MESSAGE value="Commit Produtos e Estoque" />
     <MESSAGE value="Commit Ajustes Tela Clientes/Cadastro" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit Ajustes Tela Clientes/Cadastro" />
+    <MESSAGE value="Commit Ajustes Tela Produto/Arquivo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit Ajustes Tela Produto/Arquivo" />
   </component>
 </project>

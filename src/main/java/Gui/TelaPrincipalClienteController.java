@@ -1,5 +1,8 @@
 package Gui;
 
+import Arquivos.ArquivoCliente;
+import Exceptions.DadosInvalidosException;
+import Negocio.Cliente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,22 +58,9 @@ public class TelaPrincipalClienteController {
     }
 
     private void carregarUsuarios() {
-        InputStream inputStream = getClass().getResourceAsStream("/com/potionsemporium/potions_emporium2/clientes.csv");
-        if (inputStream == null) {
-            return;
-        }
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
-            String linha;
-            while ((linha = reader.readLine()) != null) {
-                String[] partes = linha.split(",");
-                if (partes.length == 2) {
-                    String usuario = partes[0].trim();
-                    String senha = partes[1].trim();
-                    usuarios.put(usuario, senha);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        ArquivoCliente arquivoCliente = new ArquivoCliente("clientes.csv");
+        for (Cliente cliente : arquivoCliente.getAllClientes()) {
+            usuarios.put(cliente.getNome(), cliente.getSenha());
         }
     }
 
