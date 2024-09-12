@@ -57,7 +57,6 @@ public class TelaPrincipalClienteController {
     private void carregarUsuarios() {
         InputStream inputStream = getClass().getResourceAsStream("/com/potionsemporium/potions_emporium2/clientes.csv");
         if (inputStream == null) {
-            System.err.println("Arquivo clientes.csv não encontrado!");
             return;
         }
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {

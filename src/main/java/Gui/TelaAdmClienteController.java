@@ -15,7 +15,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TelaAdmClienteController {
@@ -27,13 +31,13 @@ public class TelaAdmClienteController {
     @FXML
     private Button atualizarButton;
     @FXML
-    private Button okButton;
-    @FXML
     private ListView<String> listaClientes;
     @FXML
-    private TextField campoId;
+    private TextField campoNome;
     @FXML
-    private TextField campoAtualizar;
+    private TextField campoCoruja;
+    @FXML
+    private TextField campoFlooPowder;
 
     private ArquivoCliente arquivoCliente;
     private List<Cliente> clientes;
@@ -49,10 +53,18 @@ public class TelaAdmClienteController {
     }
 
     private void carregarClientesNaLista() throws IOException, DadosInvalidosException {
-        clientes = arquivoCliente.carregarClientes();
+        arquivoCliente.carregarClientes();
+        clientes = arquivoCliente.getAllClientes();
+
         listaClientes.getItems().clear();
+
         for (Cliente cliente : clientes) {
-            listaClientes.getItems().add(cliente.getNome());
+            String clienteInfo = String.format("ID: %d | Nome: %s | Coruja: %s | Floo Powder: %s",
+                    cliente.getId(),
+                    cliente.getNome(),
+                    cliente.getCoruja(),
+                    cliente.getFlooPowder());
+            listaClientes.getItems().add(clienteInfo);
         }
     }
 
@@ -62,7 +74,7 @@ public class TelaAdmClienteController {
         if (clienteSelecionado != null) {
             Cliente clienteParaRemover = null;
             for (Cliente cliente : clientes) {
-                if (cliente.getNome().equals(clienteSelecionado)) {
+                if (verificarInformacoesCliente(cliente, clienteSelecionado)) {
                     clienteParaRemover = cliente;
                     break;
                 }
@@ -85,41 +97,43 @@ public class TelaAdmClienteController {
 
     @FXML
     private void atualizarCliente(ActionEvent evento) throws IOException, DadosInvalidosException {
-        String novoNome = campoAtualizar.getText();
+        String novoNome = campoNome.getText();
+        String novaCoruja = campoCoruja.getText();
+        String novoFlooPowder = campoFlooPowder.getText();
         String clienteSelecionado = listaClientes.getSelectionModel().getSelectedItem();
 
-        if (clienteSelecionado != null && novoNome != null && !novoNome.trim().isEmpty()) {
+        if (clienteSelecionado != null && !novoNome.trim().isEmpty() && !novaCoruja.trim().isEmpty() && !novoFlooPowder.trim().isEmpty()) {
             Cliente clienteParaAtualizar = null;
             for (Cliente cliente : clientes) {
-                if (cliente.getNome().equals(clienteSelecionado)) {
+                if (verificarInformacoesCliente(cliente, clienteSelecionado)) {
                     clienteParaAtualizar = cliente;
                     break;
                 }
             }
             if (clienteParaAtualizar != null) {
                 clienteParaAtualizar.setNome(novoNome);
-                try {
-                    arquivoCliente.salvarClientes();
-                } catch (IOException e) {
-                    showAlert(AlertType.ERROR, "Erro", "Não foi possível salvar as alterações.");
-                }
+                clienteParaAtualizar.setCoruja(novaCoruja);
+                clienteParaAtualizar.setFlooPowder(novoFlooPowder);
+                arquivoCliente.salvarClientes();
                 showAlert(AlertType.INFORMATION, "Cliente Atualizado", "O cliente foi atualizado com sucesso!");
+                limparCampos();
+                carregarClientesNaLista();
             }
-            campoAtualizar.clear();
-            carregarClientesNaLista();
         } else {
-            showAlert(AlertType.WARNING, "Entrada Inválida", "Por favor, selecione um cliente e insira o novo nome.");
+            showAlert(AlertType.WARNING, "Entrada Inválida", "Por favor, selecione um cliente e insira todas as informações.");
         }
     }
 
-    @FXML
-    private void confirmarId(ActionEvent evento) {
-        String id = campoId.getText();
-        if (id != null && !id.trim().isEmpty()) {
-            showAlert(AlertType.INFORMATION, "ID Confirmado", "O ID foi confirmado com sucesso!");
-        } else {
-            showAlert(AlertType.WARNING, "Entrada Inválida", "Por favor, insira um ID válido.");
-        }
+    private boolean verificarInformacoesCliente(Cliente cliente, String clienteInfo) {
+        String clienteInfoFormatted = String.format("ID: %d | Nome: %s | Coruja: %s | Floo Powder: %s",
+                cliente.getId(), cliente.getNome(), cliente.getCoruja(), cliente.getFlooPowder());
+        return clienteInfo.equals(clienteInfoFormatted);
+    }
+
+    private void limparCampos() {
+        campoNome.clear();
+        campoCoruja.clear();
+        campoFlooPowder.clear();
     }
 
     @FXML

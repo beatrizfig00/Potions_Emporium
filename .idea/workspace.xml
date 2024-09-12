@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Arquivos Ajustados">
+    <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Commit Produtos e Estoque">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Exceptions/ArquivoNaoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Exceptions/ArquivoNaoEncontradoException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Gui/TelaCaixaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaCaixaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Gui/TelaEstoqueController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaEstoqueController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Gui/TelaPrincipalClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaPrincipalClienteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Gui/TelaProdutosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaProdutosController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Gui/TelaRelatorioControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaRelatorioControler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-estoque.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-estoque.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-relatorio.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-relatorio.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Gui/TelaAdmClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaAdmClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Gui/TelaCadastroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaCadastroController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-adm-cliente.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-adm-cliente.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +158,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726109358316</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Commit Produtos e Estoque">
+      <option name="closed" value="true" />
+      <created>1726118068364</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1726118068364</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -172,6 +175,7 @@
     <MESSAGE value="Commit Front e Atualizações" />
     <MESSAGE value="Commit Atualizações" />
     <MESSAGE value="Commit Arquivos Ajustados" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit Arquivos Ajustados" />
+    <MESSAGE value="Commit Produtos e Estoque" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit Produtos e Estoque" />
   </component>
 </project>

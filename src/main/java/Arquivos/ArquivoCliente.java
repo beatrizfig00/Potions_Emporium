@@ -10,8 +10,13 @@ public class ArquivoCliente {
     private final String arquivoCSV;
 
     public ArquivoCliente(String arquivoCSV) {
-        this.clientes = new ArrayList<>();
         this.arquivoCSV = arquivoCSV;
+        this.clientes = new ArrayList<>();
+        try {
+            carregarClientes();
+        } catch (IOException | DadosInvalidosException e) {
+            e.printStackTrace();
+        }
     }
 
     public void adicionarCliente(Cliente cliente) {
@@ -36,14 +41,14 @@ public class ArquivoCliente {
     }
 
     public void salvarClientes() throws IOException {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(arquivoCSV, false))) { // false to overwrite the file
+        try (PrintWriter writer = new PrintWriter(new FileWriter(arquivoCSV, false))) {
             for (Cliente cliente : clientes) {
                 writer.println(organizarLinhas(cliente));
             }
         }
     }
 
-    public ArrayList<Cliente> carregarClientes() throws IOException, DadosInvalidosException {
+    public void carregarClientes() throws IOException, DadosInvalidosException {
         clientes.clear();
         try (BufferedReader reader = new BufferedReader(new FileReader(arquivoCSV))) {
             String linha;
@@ -51,7 +56,6 @@ public class ArquivoCliente {
                 clientes.add(criarCliente(linha));
             }
         }
-        return clientes;
     }
 
     private static String organizarLinhas(Cliente cliente) {
@@ -67,5 +71,4 @@ public class ArquivoCliente {
         int id = Integer.parseInt(atributos[0]);
         return new Cliente(id, atributos[1], atributos[2], atributos[3], atributos[4]);
     }
-
 }

@@ -51,14 +51,11 @@ public class TelaCadastroController {
     @FXML
     public void salvarCadastro(ActionEvent evento) throws DadosInvalidosException {
         String nome = nomeField.getText();
-        String cidade = cidadeField.getText();
-        String rua = ruaField.getText();
-        String numero = numeroField.getText();
         String coruja = corujaField.getText();
         String flooPowder = flooPowderField.getText();
         String senha = senhaField.getText();
 
-        if (nome.isEmpty() || cidade.isEmpty() || rua.isEmpty() || numero.isEmpty() || coruja.isEmpty() || flooPowder.isEmpty() || senha.isEmpty()) {
+        if (nome.isEmpty() || coruja.isEmpty() || flooPowder.isEmpty() || senha.isEmpty()) {
             Alert alerta = new Alert(AlertType.ERROR);
             alerta.setTitle("Erro de Cadastro");
             alerta.setHeaderText("Campos obrigatórios não preenchidos.");
@@ -78,6 +75,8 @@ public class TelaCadastroController {
             alerta.setHeaderText(null);
             alerta.setContentText("Cadastro realizado com sucesso.");
             alerta.showAndWait();
+            limparCampos();
+
         } catch (IOException e) {
             e.printStackTrace();
             Alert alerta = new Alert(AlertType.ERROR);
@@ -86,6 +85,16 @@ public class TelaCadastroController {
             alerta.setContentText("Por favor, tente novamente.");
             alerta.showAndWait();
         }
+    }
+
+    private void limparCampos() {
+        nomeField.clear();
+        cidadeField.clear();
+        ruaField.clear();
+        numeroField.clear();
+        corujaField.clear();
+        flooPowderField.clear();
+        senhaField.clear();
     }
 
     @FXML
