@@ -77,7 +77,7 @@ public class ArquivoEstoque {
                 String[] atributos = linha.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
                 if (atributos.length >= 8) {
                     Produto produto = criarProduto(atributos);
-                    String quantidadeStr = atributos[5].trim(); // Corrige o índice e o espaçamento
+                    String quantidadeStr = atributos[5].trim();
                     int quantidade = parseIntSafe(quantidadeStr, "Quantidade");
                     estoque.put(produto, quantidade);
                 } else {
