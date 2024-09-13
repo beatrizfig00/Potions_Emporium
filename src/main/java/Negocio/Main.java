@@ -308,11 +308,11 @@ public class Main {
     private static Promocao verificarPromocao(Cliente cliente) throws DadosInvalidosException {
         int numeroCompras = cliente.getHistoricoCompras().size();
         if (numeroCompras >= 3) {
-            return new Promocao(10); // 10% de desconto
+            return new Promocao(10); 
         } else if (numeroCompras >= 1) {
-            return new Promocao(5); // 5% de desconto
+            return new Promocao(5); 
         } else {
-            return new Promocao(0); // Sem desconto
+            return new Promocao(0); 
         }
     }
 }
