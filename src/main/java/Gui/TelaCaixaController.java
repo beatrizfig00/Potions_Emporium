@@ -32,15 +32,14 @@ public class TelaCaixaController {
     @FXML
     private Button botaofinalizarCompra;
 
-    private double total = 0.0; // Total da compra
-    private double desconto = 0.0; // Desconto aplicado
-    private double taxaEntrega = 0.0; // Taxa de entrega
+    private double total = 0.0; 
+    private double desconto = 0.0; 
+    private double taxaEntrega = 0.0; 
 
     private final DecimalFormat df = new DecimalFormat("0.00");
 
     @FXML
     public void initialize() {
-        // Inicialização dos valores
         totalLabel.setText("R$ " + df.format(total));
         descontoLabel.setText("R$ " + df.format(desconto));
     }
@@ -59,7 +58,6 @@ public class TelaCaixaController {
 
     @FXML
     public void finalizarCompra(ActionEvent evento) {
-        // Lógica para finalizar a compra
         try {
             double valorPago = calcularValorPago();
             if (valorPago >= total + taxaEntrega - desconto) {
