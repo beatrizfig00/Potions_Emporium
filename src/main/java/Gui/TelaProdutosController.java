@@ -86,7 +86,7 @@ public class TelaProdutosController {
                             alerta.setHeaderText(null);
                             alerta.setContentText(String.format("Não há estoque suficiente para o produto: %s. Disponível: %d", produto.getNome(), quantidadeDisponivel));
                             alerta.showAndWait();
-                            return; // Encerra o método se não houver estoque suficiente
+                            return; 
                         }
                     }
                 }
