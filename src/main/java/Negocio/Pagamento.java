@@ -24,6 +24,9 @@ public class Pagamento {
         this.pagamentoProcessado = false;
     }
 
+    public Pagamento(int idPagamento, int idPedido, double valor, boolean pagamentoProcessado) {
+    }
+
     public boolean processarPagamento(int galeoes, int sicles, int nuques) {
         int totalNuquesRecebidos = Moeda.galeoesParaNuques(galeoes)
                 + Moeda.siclesParaNuques(sicles)
@@ -86,5 +89,9 @@ public class Pagamento {
 
     public boolean isPagamentoProcessado() {
         return pagamentoProcessado;
+    }
+
+    public Object getId() {
+        return null;
     }
 }

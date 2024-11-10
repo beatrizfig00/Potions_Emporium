@@ -3,6 +3,7 @@ package Negocio;
 import Exceptions.DadosInvalidosException;
 import Exceptions.ItemNaoEncontradoException;
 import Exceptions.PromoInvalidaException;
+import Exceptions.PagamentoInvalidoException;
 
 import java.util.Map;
 
@@ -14,6 +15,7 @@ public class Pedido {
     private String statusPedido;
     private Promocao promocao;
     private Entrega entrega;
+    private Pagamento pagamento; // Adicionado para armazenar o pagamento associado ao pedido
 
     public Pedido(int idPedido, Cliente cliente, Map<Produto, Integer> itens, String statusPedido, Promocao promocao)
             throws DadosInvalidosException, PromoInvalidaException {
@@ -140,5 +142,21 @@ public class Pedido {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    // Métodos para gerenciar o pagamento do pedido
+    public Pagamento getPagamento() {
+        return pagamento;
+    }
+
+    public void setPagamento(Pagamento pagamento) throws PagamentoInvalidoException {
+        if (pagamento == null || pagamento.getValor() <= 0) {
+            throw new PagamentoInvalidoException("Pagamento inválido.");
+        }
+        this.pagamento = pagamento;
+    }
+
+    public Integer getId() {
+        return null;
     }
 }

@@ -1,101 +1,113 @@
 package Arquivos;
 
+import Exceptions.DadosInvalidosException;
+import Exceptions.PagamentoInvalidoException;
 import Negocio.Pagamento;
-import Negocio.Relatorio;
-import Negocio.Pedido; 
-import Exceptions.*;
-
+import Negocio.Pedido;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ArquivoFinanceiro {
+
+    private Map<Integer, Pagamento> pagamentos;
     private final String arquivoPagamentos;
-    private final String arquivoRelatorios;
+    private final String arquivoRelatorio;
 
-    public ArquivoFinanceiro(String arquivoPagamentos, String arquivoRelatorios) {
+    public ArquivoFinanceiro(String arquivoPagamentos, String arquivoRelatorio) {
         this.arquivoPagamentos = arquivoPagamentos;
-        this.arquivoRelatorios = arquivoRelatorios;
-    }
+        this.arquivoRelatorio = arquivoRelatorio;
+        this.pagamentos = new HashMap<>();
 
-    public void salvarPagamento(Pagamento pagamento) throws IOException {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(arquivoPagamentos, true))) {
-            writer.println(organizarLinhaPagamento(pagamento));
-        } catch (IOException e) {
-            throw new ArquivoNaoEncontradoException("Erro ao salvar o pagamento: arquivo não encontrado.");
+        File arquivoPag = new File(arquivoPagamentos);
+        if (!arquivoPag.exists()) {
+            try {
+                arquivoPag.createNewFile();
+            } catch (IOException e) {
+                System.err.println("Erro ao criar o arquivo de pagamentos: " + e.getMessage());
+            }
+        }
+
+        try {
+            carregarPagamentos();
+        } catch (IOException | DadosInvalidosException | PagamentoInvalidoException e) {
+            System.err.println("Erro ao carregar os pagamentos: " + e.getMessage());
         }
     }
 
-    public void carregarPagamentos(Map<Integer, Pedido> pedidos) throws IOException, FormatoArquivoException {
-        Map<Integer, Pagamento> pagamentos = new HashMap<>();
+    public void carregarPagamentos() throws IOException, DadosInvalidosException, PagamentoInvalidoException {
         try (BufferedReader reader = new BufferedReader(new FileReader(arquivoPagamentos))) {
             String linha;
+            reader.readLine(); // Ignora o cabeçalho
             while ((linha = reader.readLine()) != null) {
-                String[] partes = linha.split(",");
-                if (partes.length != 3) {
-                    throw new FormatoArquivoException("Erro no formato do arquivo de pagamentos.");
-                }
+                String[] dados = linha.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
+                if (dados.length >= 4) {
+                    try {
+                        int idPagamento = Integer.parseInt(dados[0].trim());
+                        int idPedido = Integer.parseInt(dados[1].trim());
+                        double valor = Double.parseDouble(dados[2].trim());
+                        boolean pagamentoProcessado = Boolean.parseBoolean(dados[3].trim());
 
-                int idPagamento = Integer.parseInt(partes[0]);
-                int valor = Integer.parseInt(partes[1]);
-                boolean pago = Boolean.parseBoolean(partes[2]);
+                        // Verificar se o pagamento é válido
+                        if (valor < 0) {
+                            throw new PagamentoInvalidoException("Pagamento com valor inválido: " + valor);
+                        }
 
-                Pedido pedido = pedidos.get(idPagamento);
-                if (pedido == null) {
-                    throw new DadosInvalidosException("Pedido não encontrado para o pagamento: " + idPagamento);
+                        Pagamento pagamento = new Pagamento(idPagamento, idPedido, valor, pagamentoProcessado);
+                        pagamentos.put(idPagamento, pagamento);
+                    } catch (NumberFormatException | PagamentoInvalidoException e) {
+                        System.err.println("Erro ao processar linha: " + linha);
+                        throw new PagamentoInvalidoException("Erro ao processar pagamento: " + e.getMessage());
+                    }
+                } else {
+                    System.err.println("Linha com dados insuficientes: " + linha);
                 }
-
-                Pagamento pagamento = new Pagamento(idPagamento, pedido, valor);
-                if (pago) {
-                  //  pagamento.processarPagamento(pedido.getTotal(), 0, 0);
-                }
-                pagamentos.put(idPagamento, pagamento);
             }
-        } catch (FileNotFoundException e) {
-            throw new ArquivoNaoEncontradoException("Arquivo de pagamentos não encontrado.");
-        } catch (PagamentoInvalidoException e) {
-            throw new RuntimeException("Erro ao processar o pagamento: " + e.getMessage(), e);
-        } catch (DadosInvalidosException e) {
-            throw new RuntimeException("Erro ao carregar o pagamento: " + e.getMessage(), e);
         }
     }
 
-    public void salvarRelatorio(Relatorio relatorio) throws IOException {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(arquivoRelatorios, false))) {
-            writer.println("Total de Vendas: " + relatorio.getTotalVendas());
-            writer.println("Produtos Vendidos:");
-            relatorio.getProdutosVendidos().forEach((produto, quantidade) -> {
-                writer.println(produto.getNome() + " - Quantidade: " + quantidade);
-            });
-        } catch (IOException e) {
-            throw new RelatoriosException("Erro ao salvar o relatório financeiro.");
-        }
-    }
 
-    public void carregarRelatorio() throws IOException, FormatoArquivoException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(arquivoRelatorios))) {
-            String linha;
-            int linhaAtual = 0;
-            while ((linha = reader.readLine()) != null) {
-                linhaAtual++;
-                if (!validarFormatoRelatorio(linha)) { 
-                    throw new FormatoArquivoException("Erro no formato do relatório na linha: " + linhaAtual);
+    public void salvarRelatorio(Map<Integer, Pedido> pedidos) throws IOException {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(arquivoRelatorio))) {
+            writer.println("Relatório Financeiro:");
+            writer.println("---------------------");
+
+            double totalRecebido = 0;
+            double totalDevido = 0;
+
+            for (Pedido pedido : pedidos.values()) {
+                Pagamento pagamento = pagamentos.get(pedido.getId());
+                if (pagamento != null && pagamento.isPagamentoProcessado()) {
+                    totalRecebido += pagamento.getValor();
+                } else {
+                    totalDevido += pedido.calcularTotal();
                 }
-                System.out.println(linha);
             }
-        } catch (FileNotFoundException e) {
-            throw new ArquivoNaoEncontradoException("Arquivo de relatórios não encontrado.");
-        } catch (IOException e) {
-            throw new FormatoArquivoException("Erro no formato do arquivo de relatórios.");
+
+            writer.printf("Total Recebido: %.2f nuques%n", totalRecebido);
+            writer.printf("Total Devido: %.2f nuques%n", totalDevido);
+            writer.printf("Saldo Final: %.2f nuques%n", (totalRecebido - totalDevido));
         }
     }
 
-    private static String organizarLinhaPagamento(Pagamento pagamento) {
-        return String.format("%d,%d,%b",
-                pagamento.getIdPagamento(), pagamento.getValor(), pagamento.validarPagamento());
-    }
+    // Método principal
+    public static void main(String[] args) {
+        Map<Integer, Pedido> pedidos = new HashMap<>();
+        ArquivoFinanceiro arquivoFinanceiro = new ArquivoFinanceiro("pagamentos.txt", "relatorio_financeiro.txt");
 
-    private boolean validarFormatoRelatorio(String linha) {
-        return linha != null && !linha.trim().isEmpty();
+        // Carregar pagamentos
+        try {
+            arquivoFinanceiro.carregarPagamentos();
+        } catch (IOException | DadosInvalidosException | PagamentoInvalidoException e) {
+            System.out.println("Erro ao carregar pagamentos: " + e.getMessage());
+        }
+
+        // Gerar relatório financeiro
+        try {
+            arquivoFinanceiro.salvarRelatorio(pedidos);
+            System.out.println("Relatório financeiro salvo com sucesso.");
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar relatório financeiro: " + e.getMessage());
+        }
     }
 }
