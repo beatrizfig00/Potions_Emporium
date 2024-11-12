@@ -4,27 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Ajustes">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_09_2024_09_06_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_09_2024_09_06__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_09_2024_18_54_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_09_2024_18_54__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_09_2024_19_35_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_09_2024_19_35__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_09_2024_00_56_[Changes]/Potions_Emporium_icone.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_09_2024_00_56_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_09_2024_00_56__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_09_2024_13_57_[Changes]/Potions_Emporium_icone.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_09_2024_13_57_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_09_2024_13_57__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_09_2024_14_30_[Changes]1/Potions_Emporium_icone.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_09_2024_14_30_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_09_2024_14_30__Changes_1.xml" beforeDir="false" />
+    <list default="true" id="aeee102f-3f0c-45cb-b45d-260ec393aab2" name="Changes" comment="Ajustes ArquivoFinanceiro">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/clientes.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoFinanceiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoFinanceiro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Pagamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Pagamento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Pedido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoEstoque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Arquivos/ArquivoEstoque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Gui/TelaEstoqueController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaEstoqueController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Gui/TelaProdutosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Gui/TelaProdutosController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Negocio/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Negocio/Produto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-estoque.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/potionsemporium/potions_emporium2/tela-estoque.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +61,7 @@
   "keyToString": {
     "Application.ArquivoFinanceiro.executor": "Run",
     "Application.Main.executor": "Debug",
-    "Application.PotionsEmporiumApplication.executor": "Run",
+    "Application.PotionsEmporiumApplication.executor": "Debug",
     "Application.TesteHistoricoCompras.executor": "Debug",
     "Application.TesteMoeda.executor": "Run",
     "Application.TestePromocoes.executor": "Run",
@@ -207,7 +193,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726185290332</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Ajustes ArquivoFinanceiro">
+      <option name="closed" value="true" />
+      <created>1731282123089</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1731282123089</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -219,6 +213,7 @@
     <MESSAGE value="Commit Produtos e Estoque" />
     <MESSAGE value="Commit Ajustes Tela Clientes/Cadastro" />
     <MESSAGE value="Ajustes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajustes" />
+    <MESSAGE value="Ajustes ArquivoFinanceiro" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajustes ArquivoFinanceiro" />
   </component>
 </project>

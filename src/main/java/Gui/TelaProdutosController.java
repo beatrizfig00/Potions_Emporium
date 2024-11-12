@@ -56,6 +56,8 @@ public class TelaProdutosController {
             listaProdutos.add(String.format("%s\nDescrição: %s\nPreço: %.2f\nTipo: %s\nDetalhes: %s\nQuantidade: %d",
                     produto.getNome(), descricao, preco, tipo, detalhesEspecificos, quantidade));
         }
+
+        listaProdutos.sort(String::compareToIgnoreCase);
         produtosListView.getItems().setAll(listaProdutos);
     }
 

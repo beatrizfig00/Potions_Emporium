@@ -39,7 +39,12 @@ public class ArquivoEstoque {
     }
 
     public void adicionarProduto(Produto produto, int quantidade) {
-        estoque.put(produto, quantidade);
+        // Verificar se o produto é null antes de adicionar
+        if (produto != null) {
+            estoque.put(produto, quantidade);
+        } else {
+            System.err.println("Erro: Produto nulo não pode ser adicionado.");
+        }
     }
 
     public Map<Produto, Integer> getAllProdutos() {
@@ -65,6 +70,9 @@ public class ArquivoEstoque {
             for (Map.Entry<Produto, Integer> entry : estoque.entrySet()) {
                 writer.println(organizarLinhas(entry.getKey(), entry.getValue()));
             }
+        } catch (IOException e) {
+            System.err.println("Erro ao salvar os produtos no arquivo: " + e.getMessage());
+            throw e;  // Propaga o erro para ser tratado mais acima
         }
     }
 
@@ -72,14 +80,18 @@ public class ArquivoEstoque {
         estoque.clear();
         try (BufferedReader reader = new BufferedReader(new FileReader(arquivoCSV))) {
             String linha;
-            reader.readLine();
+            reader.readLine(); // Ignora o cabeçalho
             while ((linha = reader.readLine()) != null) {
                 String[] atributos = linha.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
                 if (atributos.length >= 8) {
-                    Produto produto = criarProduto(atributos);
-                    String quantidadeStr = atributos[5].trim();
-                    int quantidade = parseIntSafe(quantidadeStr, "Quantidade");
-                    estoque.put(produto, quantidade);
+                    Produto produto = criarProduto(atributos); // Tenta criar o produto a partir dos dados
+                    if (produto != null) {  // Verifica se o produto foi criado corretamente
+                        String quantidadeStr = atributos[5].trim();
+                        int quantidade = parseIntSafe(quantidadeStr, "Quantidade");
+                        estoque.put(produto, quantidade);
+                    } else {
+                        System.err.println("Produto não criado corretamente.");
+                    }
                 } else {
                     System.err.println("Linha com dados insuficientes: " + linha);
                 }
@@ -87,6 +99,7 @@ public class ArquivoEstoque {
         }
         return estoque;
     }
+
 
     private String organizarLinhas(Produto produto, int quantidade) {
         String tipoProduto = determinarTipoProduto(produto);

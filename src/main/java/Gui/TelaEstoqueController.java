@@ -6,12 +6,8 @@ import Negocio.Produto;
 import Negocio.produtos.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ComboBox;
 import javafx.scene.Node;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -59,22 +55,41 @@ public class TelaEstoqueController {
     private TextField campoTempoEfeito;
     @FXML
     private ComboBox<String> comboTipoProduto;
-
+    @FXML
     private ArquivoEstoque arquivoEstoque;
+    @FXML
+    private TabPane tabPane;
 
     @FXML
     private void initialize() {
-        comboTipoProduto.getItems().addAll(
-                "Produto Animal",
-                "Produto Ingrediente",
-                "Produto Item",
-                "Produto Livro",
-                "Produto Poção"
+        comboTipoProduto.getItems().addAll("Animal", "Ingrediente", "Item Mágico", "Livro", "Poção"
         );
 
-        arquivoEstoque = new ArquivoEstoque("estoque.csv");
+        comboTipoProduto.valueProperty().addListener((observable, oldValue, newValue) -> {
+            switch (newValue) {
+                case "Animal":
+                    tabPane.getSelectionModel().select(0);
+                    break;
 
-        carregarProdutosNoListView();
+                case "Ingrediente":
+                    tabPane.getSelectionModel().select(1);
+                    break;
+
+                case "Item Mágico":
+                    tabPane.getSelectionModel().select(2);
+                    break;
+
+                case "Livro":
+                    tabPane.getSelectionModel().select(3);
+                    break;
+
+                case "Poção":
+                    tabPane.getSelectionModel().select(4);
+                    break;
+            }
+        });
+            arquivoEstoque = new ArquivoEstoque("estoque.csv");
+            carregarProdutosNoListView();
     }
 
     @FXML
@@ -90,24 +105,24 @@ public class TelaEstoqueController {
             Produto produto = null;
 
             switch (tipoProduto) {
-                case "Produto Animal":
+                case "Animal":
                     String habitat = campoHabitat.getText();
                     produto = new ProdutoAnimal(0, nome, descricao, preco, codigoBarra, quantidade, habitat);
                     break;
-                case "Produto Ingrediente":
+                case "Ingrediente":
                     String origem = campoOrigem.getText();
                     produto = new ProdutoIngrediente(0, nome, descricao, preco, codigoBarra, quantidade, origem);
                     break;
-                case "Produto Item":
+                case "Item Mágico":
                     String poder = campoPoder.getText();
                     produto = new ProdutoItem(0, nome, descricao, preco, codigoBarra, quantidade, poder);
                     break;
-                case "Produto Livro":
+                case "Livro":
                     String autor = campoAutor.getText();
                     int numeroPaginas = Integer.parseInt(campoNumeroPaginas.getText());
                     produto = new ProdutoLivro(0, nome, descricao, preco, codigoBarra, quantidade, autor, numeroPaginas);
                     break;
-                case "Produto Poção":
+                case "Poção":
                     String efeito = campoEfeito.getText();
                     int tempoEfeito = Integer.parseInt(campoTempoEfeito.getText());
                     produto = new ProdutoPocao(0, nome, descricao, preco, codigoBarra, quantidade, efeito, tempoEfeito);
@@ -197,33 +212,34 @@ public class TelaEstoqueController {
     }
 
     @FXML
-    private void removerProduto(ActionEvent evento) {
+    private void removerProduto() {
         String produtoSelecionado = listaProdutos.getSelectionModel().getSelectedItem();
+
         if (produtoSelecionado != null) {
             String nomeProduto = extrairNomeDoProduto(produtoSelecionado);
-
             Produto produto = arquivoEstoque.getProdutoPorNome(nomeProduto);
+
             if (produto != null) {
                 arquivoEstoque.removerProduto(produto);
-                salvarProdutos();
-                carregarProdutosNoListView();
+                listaProdutos.getItems().remove(produtoSelecionado);
+                System.out.println("Produto removido: " + nomeProduto);
                 showAlert(AlertType.INFORMATION, "Produto Removido", "O produto foi removido com sucesso!");
             } else {
-                showAlert(AlertType.WARNING, "Produto Não Encontrado", "O produto selecionado não foi encontrado no estoque.");
+                System.out.println("Produto não encontrado no estoque.");
             }
         } else {
+            System.out.println("Nenhum produto foi selecionado para remoção.");
             showAlert(AlertType.WARNING, "Seleção Inválida", "Por favor, selecione um produto para remover.");
         }
     }
 
     private String extrairNomeDoProduto(String detalhesProduto) {
         String[] partes = detalhesProduto.split(", ");
-        if (partes.length > 0) {
-            return partes[0].replace("Nome: ", "");
+        if (partes.length > 1) {
+            return partes[1].replace("Nome: ", "");
         }
         return "";
     }
-
 
     @FXML
     private void voltarPaginaInicial(ActionEvent evento) {
@@ -248,30 +264,20 @@ public class TelaEstoqueController {
             Produto produto = entry.getKey();
             int quantidade = entry.getValue();
 
-            String tipoProduto = arquivoEstoque.determinarTipoProduto(produto);
+            String detalhesEspecificos = arquivoEstoque.obterDetalhesEspecificos(produto);
+            String item = String.format("ID: %d, Nome: %s, Descrição: %s, Preço: %.2f, Código de Barras: %s, Quantidade: %d, Detalhes: %s",
+                    produto.getId(), produto.getNome(), produto.getDescricao(), produto.getPreco(), produto.getCodigoBarra(), produto.getQuantidade(), detalhesEspecificos);
 
-            String detalhesEspecificos = "";
-            try {
-                detalhesEspecificos = arquivoEstoque.obterDetalhesEspecificos(produto);
-            } catch (Exception e) {
-                detalhesEspecificos = "Detalhes não disponíveis";
-            }
-
-            String detalhesProduto = String.format(
-                    "Nome: %s, Descrição: %s, Preço: %.2f, Código de Barra: %s, Quantidade: %d, Tipo: %s, Detalhes: %s",
-                    produto.getNome(), produto.getDescricao(), produto.getPreco(),
-                    produto.getCodigoBarra(), quantidade, tipoProduto, detalhesEspecificos);
-
-            listaProdutos.getItems().add(detalhesProduto);
+            listaProdutos.getItems().add(item);
         }
     }
-
 
     private void salvarProdutos() {
         try {
             arquivoEstoque.salvarProdutos();
         } catch (IOException e) {
-            showAlert(AlertType.ERROR, "Erro", "Não foi possível salvar os produtos no arquivo.");
+            e.printStackTrace();
+            showAlert(AlertType.ERROR, "Erro", "Não foi possível salvar os produtos.");
         }
     }
 
@@ -288,14 +294,13 @@ public class TelaEstoqueController {
         campoNumeroPaginas.clear();
         campoEfeito.clear();
         campoTempoEfeito.clear();
-        comboTipoProduto.setValue(null);
+     // comboTipoProduto.setValue(null);
     }
 
-    private void showAlert(AlertType alertType, String title, String message) {
-        Alert alert = new Alert(alertType);
+    private void showAlert(AlertType type, String title, String content) {
+        Alert alert = new Alert(type);
         alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
+        alert.setContentText(content);
         alert.showAndWait();
     }
 }
