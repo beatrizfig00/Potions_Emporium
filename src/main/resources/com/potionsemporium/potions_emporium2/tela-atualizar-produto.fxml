@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.TelaAtualizarProdutoController">
+    <children>
+        <Label layoutX="200.0" layoutY="20.0" text="Atualizar Produto" textFill="#ccb373">
+            <font>
+                <Font name="Arial Black" size="24.0" />
+            </font>
+        </Label>
+
+        <Label layoutX="50.0" layoutY="80.0" text="Nome:" textFill="#ccb373" />
+        <TextField fx:id="campoNome" layoutX="150.0" layoutY="75.0" prefHeight="30.0" prefWidth="400.0" style="-fx-border-color: #ccb373;" />
+
+        <Label layoutX="50.0" layoutY="120.0" text="Descrição:" textFill="#ccb373" />
+        <TextField fx:id="campoDescricao" layoutX="150.0" layoutY="115.0" prefHeight="30.0" prefWidth="400.0" style="-fx-border-color: #ccb373;" />
+
+        <Label layoutX="50.0" layoutY="160.0" text="Preço:" textFill="#ccb373" />
+        <TextField fx:id="campoPreco" layoutX="150.0" layoutY="155.0" prefHeight="30.0" prefWidth="400.0" style="-fx-border-color: #ccb373;" />
+
+        <Label layoutX="50.0" layoutY="200.0" text="Código de Barras:" textFill="#ccb373" />
+        <TextField fx:id="campoCodigoBarra" layoutX="150.0" layoutY="195.0" prefHeight="30.0" prefWidth="400.0" style="-fx-border-color: #ccb373;" />
+
+        <Label layoutX="50.0" layoutY="240.0" text="Quantidade:" textFill="#ccb373" />
+        <TextField fx:id="campoQuantidade" layoutX="150.0" layoutY="235.0" prefHeight="30.0" prefWidth="400.0" style="-fx-border-color: #ccb373;" />
+
+        <Button fx:id="salvarButton" layoutX="150.0" layoutY="290.0" onAction="#salvarProduto" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Salvar" textFill="#ccb373">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+
+        <Button fx:id="cancelarButton" layoutX="210.0" layoutY="290.0" onAction="#cancelarEdicao" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Cancelar" textFill="#ccb373">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+
+        <Button fx:id="voltarButton" layoutX="28.0" layoutY="349.0" onAction="#voltarParaEstoque" style="-fx-background-color: #ffffff; -fx-border-color: #ccb373;" text="Voltar" textFill="#ccb373">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+
+        <ImageView fitHeight="136.0" fitWidth="162.0" layoutX="482.0" layoutY="265.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@imagens/planta.png" />
+            </image>
+        </ImageView>
+    </children>
+</Pane>

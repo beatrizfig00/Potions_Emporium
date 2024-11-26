@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -145,69 +146,21 @@ public class TelaEstoqueController {
 
     @FXML
     private void atualizarProduto(ActionEvent evento) {
-        String produtoSelecionado = listaProdutos.getSelectionModel().getSelectedItem();
-        if (produtoSelecionado == null) {
-            showAlert(AlertType.WARNING, "Seleção Inválida", "Por favor, selecione um produto para atualizar.");
-            return;
-        }
-
         try {
-            Produto produtoExistente = arquivoEstoque.getProdutoPorNome(produtoSelecionado);
-            if (produtoExistente == null) {
-                showAlert(AlertType.WARNING, "Produto Não Encontrado", "O produto selecionado não foi encontrado no estoque.");
-                return;
-            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/potionsemporium/potions_emporium2/tela-atualizar-produto.fxml"));
+            Parent root = loader.load();
 
-            String nome = campoNome.getText();
-            String descricao = campoDescricao.getText();
-            double preco = Double.parseDouble(campoPreco.getText());
-            String codigoBarra = campoCodigoBarra.getText();
-            int quantidade = Integer.parseInt(campoQuantidade.getText());
-            String tipoProduto = comboTipoProduto.getValue();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Atualizar Produto");
 
-            produtoExistente.setNome(nome);
-            produtoExistente.setDescricao(descricao);
-            produtoExistente.setPreco(preco);
-            produtoExistente.setCodigoBarra(codigoBarra);
-            produtoExistente.setQuantidade(quantidade);
-
-            switch (tipoProduto) {
-                case "Produto Animal":
-                    String habitat = campoHabitat.getText();
-                    ((ProdutoAnimal) produtoExistente).setHabitat(habitat);
-                    break;
-                case "Produto Ingrediente":
-                    String origem = campoOrigem.getText();
-                    ((ProdutoIngrediente) produtoExistente).setOrigem(origem);
-                    break;
-                case "Produto Item":
-                    String poder = campoPoder.getText();
-                    ((ProdutoItem) produtoExistente).setPoder(poder);
-                    break;
-                case "Produto Livro":
-                    String autor = campoAutor.getText();
-                    int numeroPaginas = Integer.parseInt(campoNumeroPaginas.getText());
-                    ((ProdutoLivro) produtoExistente).setAutor(autor);
-                    ((ProdutoLivro) produtoExistente).setNumeroPaginas(numeroPaginas);
-                    break;
-                case "Produto Poção":
-                    String efeito = campoEfeito.getText();
-                    int tempoEfeito = Integer.parseInt(campoTempoEfeito.getText());
-                    ((ProdutoPocao) produtoExistente).setEfeito(efeito);
-                    ((ProdutoPocao) produtoExistente).setTempoEfeito(tempoEfeito);
-                    break;
-            }
-
-            salvarProdutos();
-            carregarProdutosNoListView();
-
-            limparCampos();
-            showAlert(AlertType.INFORMATION, "Produto Atualizado", "O produto foi atualizado com sucesso!");
-
-        } catch (NumberFormatException e) {
-            showAlert(AlertType.WARNING, "Entrada Inválida", "Preço ou quantidade inválidos.");
-        } catch (DadosInvalidosException e) {
-            showAlert(AlertType.WARNING, "Dados Inválidos", e.getMessage());
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(((Node) evento.getSource()).getScene().getWindow());
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Erro ao carregar a tela de atualização de produto.");
         }
     }
 
